@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class SaverManager : MonoBehaviour
+public class DataManager : MonoBehaviour
 {
     public TextMeshProUGUI money;
-    
+
     public void SaveMoney()
     {
-        PlayerPrefs.SetInt("Money",Int32.Parse(money.text));
+        PlayerPrefs.SetInt("Money", Int32.Parse(money.text));
         PlayerPrefs.Save();
     }
+
 }

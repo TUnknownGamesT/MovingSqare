@@ -28,15 +28,20 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        AudioSetup();
+    }
+    private void AudioSetup()
+    {
         if (PlayerPrefs.GetInt("music") == 1)
         {
             musicOn = true;
             this.GetComponent<AudioSource>().Play();
         }
-        else {
+        else
+        {
             musicOn = false;
         }
-        if(PlayerPrefs.GetInt("sound") == 1)
+        if (PlayerPrefs.GetInt("sound") == 1)
         {
             soundOn = true;
         }
@@ -45,7 +50,6 @@ public class SoundManager : MonoBehaviour
             soundOn = false;
         }
     }
-    
 
     public void EnemyCollisionSound()
     {
@@ -66,7 +70,10 @@ public class SoundManager : MonoBehaviour
 
     public void PlayerDeathSound()
     {
-        audioSource.PlayOneShot(soundClipsList[2].audioClip);
+        if (soundOn)
+        {
+            audioSource.PlayOneShot(soundClipsList[2].audioClip);
+        }
     }
     
 }
