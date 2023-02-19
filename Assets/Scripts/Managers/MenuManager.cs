@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    
     public bool musicOn, soundOn;
+    
     // Start is called before the first frame update
     void Start()
     {
