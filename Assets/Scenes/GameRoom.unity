@@ -435,6 +435,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ff9aa6087791d4e81743d94bb52c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundOn: 0
+  musicOn: 0
   soundClipsList:
   - name: DestroyEnemy
     audioClip: {fileID: 8300000, guid: 91a59ee861c5c714a936e2cb9717eba2, type: 3}
@@ -449,7 +451,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 18926825aac28fd49a96bb8ed6af2d94, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.598
   m_Pitch: 1
   Loop: 1
@@ -730,7 +732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

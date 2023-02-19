@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
     #region Singleton
 
     public static SoundManager instance;
+    public bool soundOn, musicOn;
 
     private void Awake()
     {
@@ -27,12 +28,31 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        if (PlayerPrefs.GetInt("music") == 1)
+        {
+            musicOn = true;
+            this.GetComponent<AudioSource>().Play();
+        }
+        else {
+            musicOn = false;
+        }
+        if(PlayerPrefs.GetInt("sound") == 1)
+        {
+            soundOn = true;
+        }
+        else
+        {
+            soundOn = false;
+        }
     }
 
 
     public void EnemyCollisionSound()
     {
-        audioSource.PlayOneShot(soundClipsList[0].audioClip);
+        if (soundOn)
+        {
+            audioSource.PlayOneShot(soundClipsList[0].audioClip);
+        }
     }
     
 }
