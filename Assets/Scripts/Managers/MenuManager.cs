@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
     
     public bool musicOn, soundOn;
-    
+    public TextMeshProUGUI money;
+
     // Start is called before the first frame update
     void Start()
     {
+        money.text = PlayerPrefs.GetInt("Money").ToString();
         AudioSetup();
     }
 

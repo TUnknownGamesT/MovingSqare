@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public SpawnManager spawnManager;
     public Vector2 PlayerPosition => player.position;
-    public SaverManager saverManager;
+    public DataManager dataManager;
 
     private  Transform player;
     private bool alreadyOver;
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                saverManager.SaveMoney();
+                dataManager.SaveMoney();
                 uiManager.LoseState();
                 uiManager.FadeInFadeOutJoystick();
             }
@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetLvl()
     {
+        dataManager.SaveMoney();
         PlayerPrefs.DeleteKey("Time");
         PlayerPrefs.DeleteKey("MoneyRound");
         PlayerPrefs.Save();

@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
         }).setEaseInQuad();
     }
 
+
     public void ReloadGameScene()
     {
         LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
@@ -32,11 +33,18 @@ public class SceneLoader : MonoBehaviour
 
     public  void LoadGameRoom()
     {
+        GameObject.Find("AnimationManager").GetComponent<MenuAnimation>().leaveMenu();
+        StartCoroutine(StartGame());
+
+
+    }
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(2f);
         LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
         {
             blackCircle.localScale = Vector3.one * value;
         }).setEaseInCubic().setOnComplete(() => SceneManager.LoadScene(1));
-
     }
 
     public  void LoadMainMenu()
