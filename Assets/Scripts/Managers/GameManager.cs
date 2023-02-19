@@ -29,9 +29,17 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public SpawnManager spawnManager;
     public Vector2 PlayerPosition => player.position;
+    public SaverManager saverManager;
+
     private  Transform player;
     private bool alreadyOver;
-    
+    private static bool askedAd;
+
+    public bool AlreadyOver
+    {
+        get => alreadyOver;
+    }
+
 
     private void Start()
     {
@@ -50,25 +58,41 @@ public class GameManager : MonoBehaviour
     {
         if (!alreadyOver)
         {
-            uiManager.LoseState();
+            SoundManager.instance.PlayerDeathSound();
+            if (!askedAd)
+            {
+                uiManager.FadeInFadeOutJoystick();
+                uiManager.AdState();
+                askedAd = !askedAd;
+            }
+            else
+            {
+                saverManager.SaveMoney();
+                uiManager.LoseState();
+                uiManager.FadeInFadeOutJoystick();
+            }
             alreadyOver = !alreadyOver;
         }
     }
 
-
-    public static void Play()
+    public void ResetAlreadyOver()
     {
-        SceneManager.LoadScene(1);
+        askedAd = false;
     }
 
-    public void Pause()
+
+    public void ResetLvl()
     {
-        Time.timeScale = 0;
+        PlayerPrefs.DeleteKey("Time");
+        PlayerPrefs.DeleteKey("MoneyRound");
+        PlayerPrefs.Save();
     }
-    
-    public void Resume()
+
+    public void Retry()
     {
-        Time.timeScale = 1;
+        PlayerPrefs.SetFloat("Time",Time.time);
+        PlayerPrefs.SetInt("MoneyRound", Int32.Parse(uiManager.money.text));
+        PlayerPrefs.Save();
     }
 
 }

@@ -45,7 +45,7 @@ public class SoundManager : MonoBehaviour
             soundOn = false;
         }
     }
-
+    
 
     public void EnemyCollisionSound()
     {
@@ -53,6 +53,20 @@ public class SoundManager : MonoBehaviour
         {
             audioSource.PlayOneShot(soundClipsList[0].audioClip);
         }
+    }
+
+    public void PickCoinSound()
+    {
+        if (soundOn)
+        {
+           audioSource.PlayOneShot(soundClipsList[1].audioClip);   
+        }
+    }
+
+
+    public void PlayerDeathSound()
+    {
+        audioSource.PlayOneShot(soundClipsList[2].audioClip);
     }
     
 }
