@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
-  public InputManager inputManager;
+  
   public float speed;
 
   private Rigidbody2D _rb;
@@ -34,5 +34,14 @@ public class Movement : MonoBehaviour
   private void FixedUpdate()
   {
     _rb.MovePosition(_rb.position + moveDir*speed*Time.fixedDeltaTime);
+  }
+
+
+  private void OnCollisionEnter2D(Collision2D col)
+  {
+    if (col.gameObject.CompareTag("Enemy"))
+    {
+      GameManager.instance.GameOver();
+    }
   }
 }

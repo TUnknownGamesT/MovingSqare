@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BgMovement : MonoBehaviour
 {
-    public GameObject obj1, obj2;
+    public GameObject obj1;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,25 +12,19 @@ public class BgMovement : MonoBehaviour
         {
             if (null == child)
                 continue;
-            //child.gameobject contains the current child you can do whatever you want like add it to an array
-            StartCoroutine(WaitASec());
-            LeanTween.move(child.gameObject, this.transform.GetChild(Random.Range(0, 11)).transform.position, Random.RandomRange(4f, 7f));
+            
+            LeanTween.move(child.gameObject, transform.GetChild(Random.Range(0, 11)).transform.position,
+                Random.Range(4f, 7f));
             StartCoroutine(ResetDest(child.gameObject));
         }
     }
-    IEnumerator WaitASec()
+
+    private IEnumerator ResetDest(GameObject obj)
     {
-        yield return new WaitForSeconds(2f);
-    }
-    IEnumerator ResetDest(GameObject obj)
-    {
-        yield return new WaitForSeconds(6f);
-        LeanTween.move(obj, this.transform.GetChild(Random.Range(0, 11)).transform.position, Random.RandomRange(4f, 7f));
+        yield return new WaitForSeconds(8f);
+        LeanTween.move(obj, transform.GetChild(Random.Range(0, 11)).transform.position, 
+            Random.Range(4f, 7f));
         StartCoroutine(ResetDest(obj));
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

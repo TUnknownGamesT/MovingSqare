@@ -1,21 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
     public float speed;
-
-    public Vector2 Direction
-    {
-        set => direction = value;
-    }
+    public GameObject deadEffect;
     
-    public Vector2 direction;
     private Rigidbody2D _rb;
 
+    private void Start()
+    {
+        transform.right = GameManager.instance.PlayerPosition - (Vector2)transform.position;
+    }
 
     private void Awake()
     {  
@@ -25,12 +25,20 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + direction*speed *Time.fixedDeltaTime);
+        _rb.velocity = transform.right * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.name == "Dead Zone")
             Destroy(gameObject);
+
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            SoundManager.instance.EnemyCollisionSound();
+            Destroy(gameObject);
+            Instantiate(deadEffect, new Vector3(col.contacts[0].point.x,
+                col.contacts[0].point.y,-8) ,Quaternion.identity);
+        }
     }
 }

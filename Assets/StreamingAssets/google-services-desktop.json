@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "130545012424",
+    "project_id": "movingsquare-d2648",
+    "storage_bucket": "movingsquare-d2648.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130545012424:android:b087d33e97570683cf9ffd",
+        "android_client_info": {
+          "package_name": "com.UnknownGames.MovingSquare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130545012424-f81cpn2ia8rni5a006sjkgu9prh6eukc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3ucINinsrUK8VRFxC8oX3l5E0cNssn90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130545012424-f81cpn2ia8rni5a006sjkgu9prh6eukc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
