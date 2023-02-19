@@ -18,6 +18,18 @@ public class SceneLoader : MonoBehaviour
         }).setEaseInQuad();
     }
 
+    public void ReloadGameScene()
+    {
+        LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
+        {
+            blackCircle.localScale = Vector3.one * value;
+        }).setEaseInCubic().setOnComplete(() =>
+        {
+            SceneManager.UnloadSceneAsync(1);
+            SceneManager.LoadScene(1,LoadSceneMode.Single);
+        });
+    }
+
     public  void LoadGameRoom()
     {
         LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>

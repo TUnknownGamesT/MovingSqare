@@ -7,7 +7,8 @@ using UnityEngine.Rendering;
 
 public class AdsManager : MonoBehaviour
 {
-    
+    #region Selected Id Based On Device
+
     // These ad units are configured to always serve test ads.
 #if UNITY_ANDROID
   private string _adUnitId = "ca-app-pub-1693425253915137/2753198379";
@@ -17,6 +18,10 @@ public class AdsManager : MonoBehaviour
     private static string _adUnitId = "unused";
 #endif
 
+
+    #endregion   
+
+    public SceneLoader sceneLoader;
     private RewardedAd rewardedAd;
 
     private void Start()
@@ -30,7 +35,7 @@ public class AdsManager : MonoBehaviour
         
     }
 
-    [ContextMenu("Show Ad")]
+    
     public void ShowAd()
     {
         if (rewardedAd.CanShowAd())
@@ -43,7 +48,7 @@ public class AdsManager : MonoBehaviour
     /// <summary>
     /// Loads the rewarded ad.
     /// </summary>
-    public void LoadRewardedAd()
+    private void LoadRewardedAd()
     {
         // Clean up the old ad before loading a new one.
         if (rewardedAd != null)
@@ -84,7 +89,8 @@ public class AdsManager : MonoBehaviour
         {
             rewardedAd.Show((Reward reward) =>
             {
-                //Give another life to the player
+                GameManager.instance.Retry();
+                sceneLoader.ReloadGameScene();
                 Debug.Log("Finished Ad");
             });
         }
