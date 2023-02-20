@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,10 +7,29 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
+
+    #region Singleton
+
+    public static ShopManager instance;
+
+    private void Awake()
+    {
+        instance = FindObjectOfType<ShopManager>();
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    #endregion
+    
     public SkinPool skinPool;
     public GameObject contentFile;
     public Transform container;
+    public TextMeshProUGUI money;
     
+    
+
     // Start is called before the first frame update
     void Start()
     {

@@ -8,9 +8,25 @@ public class MenuAnimation : MonoBehaviour
 {
     public Image[] buttonsFill;
     public TextMeshProUGUI[] textFade;
+    public TextMeshProUGUI money;
     private void Start()
     {
+        InitPlayerPrefs();
+        InitAnimations();
+    }
 
+
+    private void InitPlayerPrefs()
+    {
+        money.text = PlayerPrefs.HasKey("Money") ? PlayerPrefs.GetInt("Money").ToString() : "0";
+        if (!PlayerPrefs.HasKey("currentSkin"))
+        {
+            PlayerPrefs.SetInt("currentSkin",0);
+        }
+    }
+
+    private void InitAnimations()
+    {
         for(int i=0; i < buttonsFill.Length; i++)
         {
             buttonsFill[i].fillAmount = 0;
@@ -30,9 +46,10 @@ public class MenuAnimation : MonoBehaviour
                 textFade[index].color = c ;
             });
         }
-        
+
     }
-    public void leaveMenu()
+    
+    public void LeaveMenu()
     {
         for (int i = 0; i < buttonsFill.Length; i++)
         {

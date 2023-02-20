@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,17 +7,25 @@ using UnityEngine.UI;
 
 public class ShopElement : MonoBehaviour
 {
-    public Skin mySkin;
-    public Image myImg;
+    public Skin skin;
+    public Sprite sprite;
     public GameObject questionMark, select;
     public TextMeshProUGUI price;
+
     public void Initialize(Skin skin)
     {
-        mySkin = skin;
-        myImg.sprite = mySkin.texture;
-        if(PlayerPrefs.HasKey("skin" + mySkin.id.ToString()))
+        this.skin = skin;
+        sprite = skin.sprite;
+        
+        SetStatus();
+    }
+
+
+    private void SetStatus()
+    {
+        if(PlayerPrefs.HasKey("skin" + skin.id))
         {
-            mySkin.unlocked = true;
+            skin.unlocked = true;
         }
         if (skin.unlocked)
         {
@@ -24,19 +33,29 @@ public class ShopElement : MonoBehaviour
         }
         else {
             select.SetActive(false);
-            price.text = mySkin.price.ToString();
+            price.text = skin.price.ToString();
         }
     }
+    
+    
+    
     public void Unlock()
     {
-        questionMark.SetActive(false);
-        select.SetActive(true);
-        PlayerPrefs.SetInt("skin" + mySkin.id.ToString(), 1);
+        if (Int32.Parse(ShopManager.instance.money.text)>= skin.price &&!skin.unlocked)
+        {
+            questionMark.SetActive(false);
+            select.SetActive(true);
+            PlayerPrefs.SetInt("skin" + skin.id, 1);
+        }
     }
     public void Select()
     {
-        PlayerPrefs.SetInt("currentskin", mySkin.id);
-        BgMovement[] temp = GameObject.FindObjectsOfType<BgMovement>();
-        temp[0].SetSkin();
+
+        if (skin.unlocked)
+        {
+            PlayerPrefs.SetInt("currentSkin", skin.id);
+            BgMovement[] temp = FindObjectsOfType<BgMovement>();
+            temp[0].SetSkin();
+        }
     }
 }
