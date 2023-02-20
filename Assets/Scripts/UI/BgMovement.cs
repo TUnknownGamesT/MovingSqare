@@ -9,17 +9,16 @@ public class BgMovement : MonoBehaviour
     public Sprite currentSprite;
     public GameObject prefab;
     // Start is called before the first frame update
+    
     void Start()
     {
-        if (PlayerPrefs.HasKey("currentskin"))
-        {
-            currentSprite = SkinPool.skins[PlayerPrefs.GetInt("currentskin")].texture;
-        }
-        else
-        {
-            currentSprite = SkinPool.skins[0].texture;
-        }
+        currentSprite = PlayerPrefs.HasKey("currentSkin") ? SkinPool.skins[PlayerPrefs.GetInt("currentSkin")].sprite : SkinPool.skins[0].sprite;
+        SetBGAnimation();
+    }
 
+
+    private void SetBGAnimation()
+    {
         for (int i = 0; i < 10; i++)
         {
             Instantiate(prefab, obj1.transform).GetComponent<BgSquare>().Initialize(currentSprite);
@@ -34,6 +33,7 @@ public class BgMovement : MonoBehaviour
             StartCoroutine(ResetDest(child.gameObject));
         }
     }
+    
     private IEnumerator ResetDest(GameObject obj)
     {
         yield return new WaitForSeconds(Random.Range(4f, 7f));
@@ -44,6 +44,6 @@ public class BgMovement : MonoBehaviour
     }
    public void SetSkin()
    {
-        currentSprite = SkinPool.skins[PlayerPrefs.GetInt("currentskin")].texture;
+        currentSprite = SkinPool.skins[PlayerPrefs.GetInt("currentSkin")].sprite;
     }
 }

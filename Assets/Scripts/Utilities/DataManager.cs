@@ -10,7 +10,9 @@ public class DataManager : MonoBehaviour
 
     public void SaveMoney()
     {
-        PlayerPrefs.SetInt("Money", Int32.Parse(money.text));
+        int amount = PlayerPrefs.GetInt("Money");
+        amount += Int32.Parse(money.text);
+        PlayerPrefs.SetInt("Money", amount);
         PlayerPrefs.Save();
     }
 

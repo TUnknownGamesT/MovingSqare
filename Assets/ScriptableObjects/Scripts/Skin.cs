@@ -6,8 +6,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Skins")]
 public class Skin : ScriptableObject
 {
-
     public int id,price;
-    public Sprite texture;
+    public Sprite sprite;
     public bool unlocked;
 }

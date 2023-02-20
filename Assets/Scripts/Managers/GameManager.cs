@@ -30,21 +30,18 @@ public class GameManager : MonoBehaviour
     public SpawnManager spawnManager;
     public Vector2 PlayerPosition => player.position;
     public DataManager dataManager;
+    public SkinPool skins;
 
     private  Transform player;
     private bool alreadyOver;
     private static bool askedAd;
 
-    public bool AlreadyOver
-    {
-        get => alreadyOver;
-    }
-
-
     private void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         StartCoroutine(InitGame());
+        Debug.LogWarning(PlayerPrefs.GetInt("currentSkin"));
+        player.GetComponent<SpriteRenderer>().sprite = skins.skins[PlayerPrefs.GetInt("currentSkin")].sprite;
     }
 
     IEnumerator InitGame()
@@ -67,7 +64,6 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                dataManager.SaveMoney();
                 uiManager.LoseState();
                 uiManager.FadeInFadeOutJoystick();
             }
@@ -83,7 +79,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetLvl()
     {
-        dataManager.SaveMoney();
         PlayerPrefs.DeleteKey("Time");
         PlayerPrefs.DeleteKey("MoneyRound");
         PlayerPrefs.Save();
