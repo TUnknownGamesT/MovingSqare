@@ -6,25 +6,34 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopElement : MonoBehaviour
-{
+{ 
+    [HideInInspector]
     public Skin skin;
+    [HideInInspector]
     public Sprite sprite;
+
+    public RawImage statusButton;
     public GameObject questionMark, select;
     public TextMeshProUGUI price;
+    public Texture2D unselectedTexture;
+    public Texture2D selectTexture;
 
-    public void Initialize(Skin skin)
+    public ShopElement Initialize(Skin skin)
     {
         this.skin = skin;
         sprite = skin.sprite;
         
         SetStatus();
-    }
 
+        return this;
+    }
+ 
 
     private void SetStatus()
     {
         if(PlayerPrefs.HasKey("skin" + skin.id))
         {
+            statusButton.texture = unselectedTexture;
             skin.unlocked = true;
         }
         if (skin.unlocked)
@@ -53,6 +62,7 @@ public class ShopElement : MonoBehaviour
 
         if (skin.unlocked)
         {
+            statusButton.texture = selectTexture;
             PlayerPrefs.SetInt("currentSkin", skin.id);
             BgMovement[] temp = FindObjectsOfType<BgMovement>();
             temp[0].SetSkin();

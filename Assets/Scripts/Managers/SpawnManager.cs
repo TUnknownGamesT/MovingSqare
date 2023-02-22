@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Xml;
-using Unity.VisualScripting;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
@@ -12,6 +9,7 @@ public class SpawnManager : MonoBehaviour
 {
    public List<Transform> spawningPoints;
    public List<GameObject> spawnableObjects;
+   public GameObject enemyAlertSignPrefab;
    
    [Header("V Values")] 
    public float maxV;
@@ -22,8 +20,7 @@ public class SpawnManager : MonoBehaviour
    [Header("E Values")] 
    public float maxE;
    public float minE;
-
-
+   
    [Header("Money Spawner Zone")] 
    public float maxX;
    public float minX;
@@ -36,9 +33,9 @@ public class SpawnManager : MonoBehaviour
    public GameObject averageMoney;
    public GameObject extraMoney;
    
-   
    private Vector2 positionToSpawn;
    private float time;
+   private AttentionSignBehaviour attentionSignBehaviour;
 
    private void Awake()
    {
@@ -56,10 +53,12 @@ public class SpawnManager : MonoBehaviour
    private void Start()
    {
       StartCoroutine(time >= timeForExtraMoney ? SpawnExtraMoney() : SpawnAverageMoney());
-      StartCoroutine(SpawnObjects());
+      StartCoroutine(SpawnEnemy());
    }
 
-   IEnumerator SpawnAverageMoney()
+   #region Money Spawning
+
+   private IEnumerator SpawnAverageMoney()
    {
       yield return new WaitForSeconds(timeBetweenSpawnMoney);
       time = Time.time;
@@ -69,7 +68,7 @@ public class SpawnManager : MonoBehaviour
    }
 
 
-   IEnumerator SpawnExtraMoney()
+   private IEnumerator SpawnExtraMoney()
    {
       yield return new WaitForSeconds(timeBetweenSpawnMoney);
       Instantiate(extraMoney, new Vector2(Random.Range(minX, maxX)
@@ -77,39 +76,45 @@ public class SpawnManager : MonoBehaviour
       StartCoroutine(SpawnExtraMoney());
    }
 
-   IEnumerator SpawnObjects()
+   #endregion
+  
+   
+   private IEnumerator SpawnEnemy()
    {
       yield return new WaitForSeconds(timeBetweenSpawnEnemy);
 
       GameObject objectToSpawn = spawnableObjects[Random.Range(0, 3)];
       Transform spawnPoint = spawningPoints[Random.Range(0, 3)];
-      EnemyDirection(spawnPoint.name);
-      Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity);
+     
+      attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
+         .GetComponent<AttentionSignBehaviour>();
+      
+      EnemyDirection(spawnPoint);
+      attentionSignBehaviour.target = Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity).GetComponent<Transform>();
 
-      StartCoroutine(SpawnObjects());
+      StartCoroutine(SpawnEnemy());
    }
 
 
-   private void EnemyDirection(string spawnedPoint)
+   private void EnemyDirection(Transform spawnedPoint)
    {
-      switch (spawnedPoint)
+      switch (spawnedPoint.name)
       {
          case "E" :
             positionToSpawn = new Vector2(5.99f,Random.Range(minE, maxE));
+            attentionSignBehaviour.enemyDirection = Constants.Directions.E;
             break;
-           // return Vector2.left;
          case "V":
             positionToSpawn = new Vector2(-4.9f,Random.Range(minV,maxV));
+            attentionSignBehaviour.enemyDirection = Constants.Directions.V;
             break;
-           // return Vector2.right;
          case "W":
             positionToSpawn = new Vector2(Random.Range(minW, maxW),6.14f);
+            attentionSignBehaviour.enemyDirection = Constants.Directions.W;
             break;
-           // return Vector2.down;
          default:
             Debug.LogError("Error in Enemy Direction");
             break;
-           // return Vector2.zero;
       }
    }
    
