@@ -7,30 +7,27 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:130545012424:android:b087d33e97570683cf9ffd",
+        "mobilesdk_app_id": "1:130545012424:ios:b61ec03bc224f38fcf9ffd",
         "android_client_info": {
           "package_name": "com.UnknownGames.MovingSquare"
         }
       },
       "oauth_client": [
         {
-          "client_id": "130545012424-f81cpn2ia8rni5a006sjkgu9prh6eukc.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "130545012424-el38dug5dbl22q3idlr79go2nos4hloc.apps.googleusercontent.com"
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB3ucINinsrUK8VRFxC8oX3l5E0cNssn90"
+          "current_key": "AIzaSyC_psdLnek7nPFVkam_tc_ObhcmtF5_-vs"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 0
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "130545012424-f81cpn2ia8rni5a006sjkgu9prh6eukc.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1
         }
       }
     }
