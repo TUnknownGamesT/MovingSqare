@@ -33,8 +33,6 @@ public class SceneLoader : MonoBehaviour
     {
         GameObject.Find("AnimationManager").GetComponent<MenuAnimation>().LeaveMenu();
         StartCoroutine(StartGame());
-
-
     }
     IEnumerator StartGame()
     {

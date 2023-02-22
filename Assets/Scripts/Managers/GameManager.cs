@@ -39,8 +39,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        
         StartCoroutine(InitGame());
-        Debug.LogWarning(PlayerPrefs.GetInt("currentSkin"));
+        
         player.GetComponent<SpriteRenderer>().sprite = skins.skins[PlayerPrefs.GetInt("currentSkin")].sprite;
     }
 

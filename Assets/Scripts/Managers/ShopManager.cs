@@ -27,21 +27,28 @@ public class ShopManager : MonoBehaviour
     public GameObject contentFile;
     public Transform container;
     public TextMeshProUGUI money;
-    
-    
+
+    private readonly List<ShopElement> shopElements = new ();
+
 
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i<skinPool.skins.Length; i++)
-        {
-            Instantiate(contentFile, container).GetComponent<ShopElement>().Initialize(skinPool.skins[i]);
-        }
+        Init();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Init()
     {
+        foreach (var t in skinPool.skins)
+        {
+            shopElements.Add(Instantiate(contentFile, container).GetComponent<ShopElement>().Initialize(t));
+        }
         
+        if (PlayerPrefs.HasKey("currentSkin"))
+        {
+            int id = PlayerPrefs.GetInt("currentSkin");
+            shopElements[id].Select();
+        }
     }
 }
