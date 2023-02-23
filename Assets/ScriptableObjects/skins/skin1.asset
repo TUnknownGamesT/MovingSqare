@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   price: 100
-  texture: {fileID: 21300000, guid: 3ee517a458907475aa1b85f6720456b6, type: 3}
-  unlocked: 0
+  sprite: {fileID: 21300000, guid: aa4b2fa421b9842c79237e23e04a9302, type: 3}
+  unlocked: 1
