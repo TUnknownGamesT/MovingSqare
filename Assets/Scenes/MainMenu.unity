@@ -908,6 +908,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4841140331069530164, guid: 223ef801a9a3b4a7c9fe155744179478, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4841140331893359254, guid: 223ef801a9a3b4a7c9fe155744179478, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -981,6 +985,10 @@ MonoBehaviour:
   contentFile: {fileID: 4838253340333488280, guid: 68f6ac2d68cbc4e05af26bde9bed0732, type: 3}
   container: {fileID: 1338459198}
   money: {fileID: 167519050}
+  selectedSkin: 0
+  unselectedTexture: {fileID: 2800000, guid: 5a51a10bc22784e5ebf0c8c42abd579c, type: 3}
+  selectTexture: {fileID: 2800000, guid: fa7065799bf45db45b82f29b57727e41, type: 3}
+  unBoughtImage: {fileID: 2800000, guid: 888b881144e0af241b3734260b6d05e3, type: 3}
 --- !u!1 &522817681
 GameObject:
   m_ObjectHideFlags: 0

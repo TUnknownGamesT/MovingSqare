@@ -2,70 +2,106 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopElement : MonoBehaviour
-{ 
-    [HideInInspector]
-    public Skin skin;
-    [HideInInspector]
-    public Sprite sprite;
+{
+    private Skin skin;
+    private Sprite skinSprite;
+    private RawImage skinImageShow;
+    private RawImage buttonSprite;
+    private TextMeshProUGUI text;
 
-    public RawImage statusButton;
-    public GameObject questionMark, select;
-    public TextMeshProUGUI price;
-    public Texture2D unselectedTexture;
-    public Texture2D selectTexture;
-
-    public ShopElement Initialize(Skin skin)
+    public ShopElement Initialize(Skin skin,bool status)
     {
         this.skin = skin;
-        sprite = skin.sprite;
-        
-        SetStatus();
+        skinSprite = skin.sprite;
+        skinImageShow = transform.GetChild(0).GetComponent<RawImage>();
+        buttonSprite = transform.GetChild(1).GetComponent<RawImage>();
+
+        text = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        SetStatus(status);
 
         return this;
     }
  
 
-    private void SetStatus()
+    public void SetStatus(bool status)
     {
-        if(PlayerPrefs.HasKey("skin" + skin.id))
+        AddListener(status);
+        if (status)
         {
-            statusButton.texture = unselectedTexture;
-            skin.unlocked = true;
+            buttonSprite.texture = ShopManager.instance.unselectedTexture;
+            text.text = "Select";
+            skinImageShow.texture = skinSprite.texture;
+            text.color = new Color32(0, 0, 0, 255);
         }
-        if (skin.unlocked)
+        else
         {
-            questionMark.SetActive(false);
-        }
-        else {
-            select.SetActive(false);
-            price.text = skin.price.ToString();
+            skinImageShow.texture = ShopManager.instance.unBoughtImage;
+            text.color = new Color32(255, 255, 255, 255);
+            text.text = skin.price.ToString();
         }
     }
-    
-    
-    
-    public void Unlock()
+
+
+    private void Unlock()
     {
-        if (Int32.Parse(ShopManager.instance.money.text)>= skin.price &&!skin.unlocked)
+        if (Int32.Parse(ShopManager.instance.money.text)>= skin.price)
         {
-            questionMark.SetActive(false);
-            select.SetActive(true);
+            Debug.Log("UNLOCKKKKKKKKKKKK");
+            skinImageShow.texture = skinSprite.texture;
+            text.text = "Select";
+            text.color = new Color32(255, 255, 255, 255);
             PlayerPrefs.SetInt("skin" + skin.id, 1);
+            ClearListener();
+            AddListener(true);
         }
     }
+
+    public void Unselect(Texture2D unselectedTexture)
+    {
+        buttonSprite.texture = unselectedTexture;
+        text.text = "Select";
+        
+    }
+    
     public void Select()
     {
+        Debug.Log("SELECTTTTTTTTT");
+        ShopManager.instance.selectedSkin = skin.id;
+        buttonSprite.texture = ShopManager.instance.selectTexture;
+        text.text = "Selected";
+        text.color = new Color32(0, 0, 0, 255);
+        PlayerPrefs.SetInt("currentSkin", skin.id);
+    }
 
-        if (skin.unlocked)
+
+    private void AddListener(bool status)
+    {
+        
+        if (status)
         {
-            statusButton.texture = selectTexture;
-            PlayerPrefs.SetInt("currentSkin", skin.id);
-            BgMovement[] temp = FindObjectsOfType<BgMovement>();
-            temp[0].SetSkin();
+            buttonSprite.gameObject.GetComponent<Button>().onClick.AddListener(()=>
+            { 
+                ShopManager.instance.ChangeSelectedSkin(skin.id);
+                Select();
+            });
+            
         }
+        else
+        {
+           buttonSprite.gameObject.GetComponent<Button>().onClick.AddListener(Unlock);   
+        }
+
+    }
+
+
+    private void ClearListener()
+    {
+        buttonSprite.GetComponent<Button>().onClick.RemoveAllListeners();
     }
 }
