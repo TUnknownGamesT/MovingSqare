@@ -22,7 +22,6 @@ public class ShopElement : MonoBehaviour
         buttonSprite = transform.GetChild(1).GetComponent<RawImage>();
 
         text = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
-
         SetStatus(status);
 
         return this;
@@ -52,7 +51,6 @@ public class ShopElement : MonoBehaviour
     {
         if (Int32.Parse(ShopManager.instance.money.text)>= skin.price)
         {
-            Debug.Log("UNLOCKKKKKKKKKKKK");
             skinImageShow.texture = skinSprite.texture;
             text.text = "Select";
             text.color = new Color32(255, 255, 255, 255);
@@ -71,7 +69,6 @@ public class ShopElement : MonoBehaviour
     
     public void Select()
     {
-        Debug.Log("SELECTTTTTTTTT");
         ShopManager.instance.selectedSkin = skin.id;
         buttonSprite.texture = ShopManager.instance.selectTexture;
         text.text = "Selected";
