@@ -14,6 +14,7 @@ public class AttentionSignBehaviour :MonoBehaviour, IMoveAlongAnAxe
     
     private void Start()
     {
+        Destroy(gameObject,7);
         localTransform = GetComponent<Transform>();
     }
 
