@@ -49,8 +49,13 @@ public class ShopElement : MonoBehaviour
 
     private void Unlock()
     {
-        if (Int32.Parse(ShopManager.instance.money.text)>= skin.price)
+
+        int currentMoney = Int32.Parse(ShopManager.instance.money.text);
+        if ( currentMoney >= skin.price)
         {
+            currentMoney -= skin.price;
+            PlayerPrefs.SetInt("Money",currentMoney);
+            ShopManager.instance.money.text = currentMoney.ToString();
             skinImageShow.texture = skinSprite.texture;
             text.text = "Select";
             text.color = new Color32(255, 255, 255, 255);

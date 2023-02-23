@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         
         StartCoroutine(InitGame());
