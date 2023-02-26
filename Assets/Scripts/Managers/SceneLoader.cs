@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -32,10 +31,8 @@ public class SceneLoader : MonoBehaviour
 
     public  void LoadGameRoom()
     {
-        GameObject.Find("AnimationManager").GetComponent<MenuAnimation>().leaveMenu();
+        GameObject.Find("AnimationManager").GetComponent<MenuAnimation>().LeaveMenu();
         StartCoroutine(StartGame());
-
-
     }
     IEnumerator StartGame()
     {

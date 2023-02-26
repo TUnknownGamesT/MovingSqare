@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using GoogleMobileAds.Api;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class AdsManager : MonoBehaviour
 {
+    
+    
     #region Selected Id Based On Device
 
     // These ad units are configured to always serve test ads.
@@ -69,11 +72,12 @@ public class AdsManager : MonoBehaviour
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
+                    
                     Debug.LogError("Rewarded ad failed to load an ad " +
                                    "with error : " + error);
                     return;
                 }
-
+               
                 Debug.Log("Rewarded ad loaded with response : "
                           + ad.GetResponseInfo());
 
@@ -82,9 +86,6 @@ public class AdsManager : MonoBehaviour
     }
     private void ShowRewardedAd()
     {
-        const string rewardMsg =
-            "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
-
         if (rewardedAd != null && rewardedAd.CanShowAd())
         {
             rewardedAd.Show((Reward reward) =>
@@ -151,8 +152,7 @@ public class AdsManager : MonoBehaviour
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
         {
-            Debug.LogError("Rewarded ad failed to open full screen content " +
-                           "with error : " + error);
+            Debug.LogError(error);
         };
     }
 }

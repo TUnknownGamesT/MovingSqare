@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameRoom.unity
     guid: c678d1367c8e3624e99fcc1d4dddba22
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b1525790261eb984b9e3cb6cf91069ad, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 5701c84b4b10e054aba8986049e06ffb, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 7e310f6898b77bc4cbfa8b6d0ff36c46, type: 2}

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Skins")]
+[CreateAssetMenu(fileName = "Skins", menuName = "Custom/Skin")]
 public class Skin : ScriptableObject
 {
-
     public int id,price;
-    public Sprite texture;
+    public Sprite sprite;
     public bool unlocked;
 }
