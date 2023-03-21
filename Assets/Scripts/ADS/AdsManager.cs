@@ -14,7 +14,7 @@ public class AdsManager : MonoBehaviour
 
     // These ad units are configured to always serve test ads.
 #if UNITY_ANDROID
-  private string _adUnitId = "ca-app-pub-1693425253915137/2753198379";
+  private static string _adUnitId = "ca-app-pub-1693425253915137/6809078593";
 #elif UNITY_IPHONE
   private string _adUnitId = "ca-app-pub-1693425253915137/3874708352";
 #else
@@ -24,8 +24,8 @@ public class AdsManager : MonoBehaviour
 
     #endregion   
 
-    public SceneLoader sceneLoader;
-    private RewardedAd rewardedAd;
+    public static SceneLoader sceneLoader;
+    private static RewardedAd rewardedAd;
 
     private void Start()
     {
@@ -39,7 +39,7 @@ public class AdsManager : MonoBehaviour
     }
 
     
-    public void ShowAd()
+    public static void ShowAd()
     {
         if (rewardedAd.CanShowAd())
         {
@@ -51,7 +51,7 @@ public class AdsManager : MonoBehaviour
     /// <summary>
     /// Loads the rewarded ad.
     /// </summary>
-    private void LoadRewardedAd()
+    private static void LoadRewardedAd()
     {
         // Clean up the old ad before loading a new one.
         if (rewardedAd != null)
@@ -84,7 +84,7 @@ public class AdsManager : MonoBehaviour
                 rewardedAd = ad;
             });
     }
-    private void ShowRewardedAd()
+    private static void ShowRewardedAd()
     {
         if (rewardedAd != null && rewardedAd.CanShowAd())
         {
@@ -97,7 +97,7 @@ public class AdsManager : MonoBehaviour
         }
     }
     
-    private void RegisterReloadHandler(RewardedAd ad)
+    private static void RegisterReloadHandler(RewardedAd ad)
     {
         // Raised when the ad closed full screen content.
         ad.OnAdFullScreenContentClosed += () =>
@@ -119,7 +119,7 @@ public class AdsManager : MonoBehaviour
     }
     
     
-    private void RegisterEventHandlers(RewardedAd ad)
+    private static void RegisterEventHandlers(RewardedAd ad)
     {
         // Raised when the ad is estimated to have earned money.
         ad.OnAdPaid += (AdValue adValue) =>

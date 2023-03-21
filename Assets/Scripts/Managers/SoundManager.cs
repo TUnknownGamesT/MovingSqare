@@ -24,7 +24,18 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource audioSource;
     public List<Constants.SoundClips> soundClipsList;
-    
+
+
+    private void OnEnable()
+    {
+        GameManager.onGameOver += PlayerDeathSound;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameOver -= PlayerDeathSound;
+    }
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();

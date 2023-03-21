@@ -8,6 +8,8 @@ public class SceneLoader : MonoBehaviour
 {
     public RectTransform blackCircle;
 
+    private bool isLoading;
+
     private void Start()
     {
         LeanTween.value(30, 0, 2f).setOnUpdate(value =>
@@ -19,20 +21,29 @@ public class SceneLoader : MonoBehaviour
 
     public void ReloadGameScene()
     {
-        LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
+        if (!isLoading)
         {
-            blackCircle.localScale = Vector3.one * value;
-        }).setEaseInCubic().setOnComplete(() =>
-        {
-            SceneManager.UnloadSceneAsync(1);
-            SceneManager.LoadScene(1,LoadSceneMode.Single);
-        });
+            isLoading = !isLoading;
+            LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
+            {
+                blackCircle.localScale = Vector3.one * value;
+            }).setEaseInCubic().setOnComplete(() =>
+            {
+                SceneManager.UnloadSceneAsync(1);
+                SceneManager.LoadScene(1,LoadSceneMode.Single);
+            });
+        }
+       
     }
 
     public  void LoadGameRoom()
     {
-        GameObject.Find("AnimationManager").GetComponent<MenuAnimation>().LeaveMenu();
-        StartCoroutine(StartGame());
+        if (!isLoading)
+        {
+            isLoading = !isLoading;
+            GameObject.Find("AnimationManager").GetComponent<MenuAnimation>().LeaveMenu();
+            StartCoroutine(StartGame());
+        }
     }
     IEnumerator StartGame()
     {
@@ -45,10 +56,16 @@ public class SceneLoader : MonoBehaviour
 
     public  void LoadMainMenu()
     {
-        LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
+        
+        if (!isLoading)
         {
-            blackCircle.localScale = Vector3.one * value;
-        }).setEaseInCubic().setOnComplete(() =>SceneManager.LoadScene(0));
+            GameManager.instance.ResetAlreadyOver();
+            isLoading = !isLoading;
+            LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
+            {
+                blackCircle.localScale = Vector3.one * value;
+            }).setEaseInCubic().setOnComplete(() =>SceneManager.LoadScene(0));
+        }
         
     }
 }

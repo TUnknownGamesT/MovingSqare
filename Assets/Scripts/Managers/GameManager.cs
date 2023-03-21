@@ -25,8 +25,10 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    public static Action onGameOver;
     
-    public UIManager uiManager;
+    public UIManagerGameRoom uiManager;
     public SpawnManager spawnManager;
     public Vector2 PlayerPosition => player.position;
     public DataManager dataManager;
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         if (!alreadyOver)
         {
-            SoundManager.instance.PlayerDeathSound();
+            onGameOver?.Invoke();
             if (!askedAd)
             {
                 uiManager.FadeInFadeOutJoystick();
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("Time");
         PlayerPrefs.DeleteKey("MoneyRound");
+        PlayerPrefs.DeleteKey("ScoreRound");
         PlayerPrefs.Save();
     }
 
@@ -91,7 +94,9 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Time",Time.time);
         PlayerPrefs.SetInt("MoneyRound", Int32.Parse(uiManager.money.text));
+        PlayerPrefs.SetInt("ScoreRound", Int32.Parse(uiManager.score.text));
         PlayerPrefs.Save();
     }
+    
 
 }
