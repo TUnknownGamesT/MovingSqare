@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -34,6 +36,7 @@ public class UIManagerGameRoom : MonoBehaviour
     public GameObject firstButton;
     public GameObject secondButton;
     public SceneLoader sceneLoader;
+    public RectTransform x2Money;
     
     private bool gameOver;
 
@@ -47,6 +50,25 @@ public class UIManagerGameRoom : MonoBehaviour
         GameManager.onGameOver -= SetGameOver;
     }
 
+    public void DoubleMoneySign()
+    {
+        x2Money.gameObject.SetActive(true);
+        LeanTween.move(x2Money, new Vector3(596, 484, 0), 1.8f).setEaseInCubic();
+        LeanTween.value(0, 1, 0.9f).setOnUpdate(value =>
+        {
+            Color c = x2Money.GetComponent<TextMeshProUGUI>().color;
+            c.a = value;
+            x2Money.GetComponent<TextMeshProUGUI>().color = c;
+        }).setEaseInCubic().setOnComplete(() =>
+        {
+            LeanTween.value(1, 0, 0.9f).setOnUpdate(value =>
+            {
+                Color c = x2Money.GetComponent<TextMeshProUGUI>().color;
+                c.a = value;
+                x2Money.GetComponent<TextMeshProUGUI>().color = c;
+            }).setEaseInCubic().setOnComplete(()=>x2Money.gameObject.SetActive(false));
+        });
+    }
 
     private void Start()
     {

@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public static Action onGameOver;
-    
+
     public UIManagerGameRoom uiManager;
     public SpawnManager spawnManager;
     public Vector2 PlayerPosition => player.position;
@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     private  Transform player;
     private bool alreadyOver;
     private static bool askedAd;
+
+    public Transform Player => player;
 
     private void Start()
     {
