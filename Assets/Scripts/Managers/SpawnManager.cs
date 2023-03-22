@@ -86,8 +86,7 @@ public class SpawnManager : MonoBehaviour
       GameObject objectToSpawn = spawnableObjects[Random.Range(0, 3)];
       Transform spawnPoint = spawningPoints[Random.Range(0, 3)];
      
-      attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
-         .GetComponent<AttentionSignBehaviour>();
+      attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation).GetComponent<AttentionSignBehaviour>();
       
       EnemyDirection(spawnPoint);
       attentionSignBehaviour.target = Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity).GetComponent<Transform>();
@@ -102,15 +101,15 @@ public class SpawnManager : MonoBehaviour
       {
          case "E" :
             positionToSpawn = new Vector2(5.99f,Random.Range(minE, maxE));
-            attentionSignBehaviour.enemyDirection = Constants.Directions.E;
+             attentionSignBehaviour.enemyDirection = Constants.Directions.E;
             break;
          case "V":
             positionToSpawn = new Vector2(-4.9f,Random.Range(minV,maxV));
-            attentionSignBehaviour.enemyDirection = Constants.Directions.V;
+           attentionSignBehaviour.enemyDirection = Constants.Directions.V;
             break;
          case "W":
             positionToSpawn = new Vector2(Random.Range(minW, maxW),6.14f);
-            attentionSignBehaviour.enemyDirection = Constants.Directions.W;
+             attentionSignBehaviour.enemyDirection = Constants.Directions.W;
             break;
          default:
             Debug.LogError("Error in Enemy Direction");

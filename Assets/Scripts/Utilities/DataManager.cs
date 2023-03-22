@@ -7,8 +7,33 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     public TextMeshProUGUI money;
+    public TextMeshProUGUI score;
 
-    public void SaveMoney()
+
+    private void OnEnable()
+    {
+        GameManager.onGameOver += SaveMoney;
+        GameManager.onGameOver += SaveHighScore;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameOver -= SaveMoney;
+        GameManager.onGameOver -= SaveHighScore;
+    }
+
+
+    private void SaveHighScore()
+    {
+        int highScore = PlayerPrefs.GetInt("HighScore");
+        int score = Int32.Parse(this.score.text);
+        
+        if(score>highScore)
+            PlayerPrefs.SetInt("HighScore",score);
+        
+    }
+
+    private void SaveMoney()
     {
         int amount = PlayerPrefs.GetInt("Money");
         amount += Int32.Parse(money.text);

@@ -12,7 +12,7 @@ public class CoinsBehaviour : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
             SoundManager.instance.PickCoinSound();
-            UIManager.instance.UpdateMoney(amount);
+            UIManagerGameRoom.instance.UpdateMoney(amount);
             Destroy(gameObject);
         }
     }
