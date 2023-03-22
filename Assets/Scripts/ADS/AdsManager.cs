@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using GoogleMobileAds.Api;
+using GoogleMobileAds.Api;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 public class AdsManager : MonoBehaviour
 {
     
-    /*
+    
     #region Selected Id Based On Device
 
     // These ad units are configured to always serve test ads.
@@ -154,5 +154,5 @@ public class AdsManager : MonoBehaviour
         {
             Debug.LogError(error);
         };
-    }*/
+    }
 }
