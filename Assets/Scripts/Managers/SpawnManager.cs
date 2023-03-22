@@ -32,6 +32,7 @@ public class SpawnManager : MonoBehaviour
    public float timeForExtraMoney;
    public GameObject averageMoney;
    public GameObject extraMoney;
+   public UIManagerGameRoom uiManagerGameRoom;
    
    private Vector2 positionToSpawn;
    private float time;
@@ -64,7 +65,16 @@ public class SpawnManager : MonoBehaviour
       time = Time.time;
       Instantiate(averageMoney, new Vector2(Random.Range(minX, maxX)
          , Random.Range(minY, maxY)), Quaternion.identity);
-      StartCoroutine(time >= timeForExtraMoney ? SpawnExtraMoney() : SpawnAverageMoney());
+
+      if (time >= timeForExtraMoney)
+      {
+         uiManagerGameRoom.DoubleMoneySign();
+         StartCoroutine(SpawnExtraMoney());
+      }
+      else
+      {
+         StartCoroutine(SpawnAverageMoney());
+      }
    }
 
 
