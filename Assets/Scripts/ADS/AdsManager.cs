@@ -16,7 +16,7 @@ public class AdsManager : MonoBehaviour
 #if UNITY_ANDROID
   private static string _adUnitId = "ca-app-pub-1693425253915137/6809078593";
 #elif UNITY_IPHONE
-  private string _adUnitId = "ca-app-pub-1693425253915137/3874708352";
+  private static string _adUnitId = "ca-app-pub-1693425253915137/3874708352";
 #else
     private static string _adUnitId = "unused";
 #endif
