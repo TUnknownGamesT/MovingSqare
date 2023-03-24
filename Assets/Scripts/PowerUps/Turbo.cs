@@ -9,5 +9,6 @@ public class Turbo : MonoBehaviour, IPowerUp
     {
         Movement playerMovement = GameManager.instance.Player.GetComponent<Movement>();
         playerMovement.speed += 1;
+        Destroy(gameObject);
     }
 }

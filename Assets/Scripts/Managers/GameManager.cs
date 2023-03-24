@@ -37,27 +37,30 @@ public class GameManager : MonoBehaviour
     private  Transform player;
     private bool alreadyOver;
     private static bool askedAd;
+    private int moneyMultiplayer=1;
 
     public Transform Player => player;
 
     private void Start()
     {
-
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         
         StartCoroutine(InitGame());
-        
-        player.GetComponent<SpriteRenderer>().sprite = skins.skins[PlayerPrefs.GetInt("currentSkin")].sprite;
     }
 
     IEnumerator InitGame()
     {
+        //Init Money
+        CoinsBehaviour.amount = moneyMultiplayer;
+        uiManager.SetMoneySign(moneyMultiplayer);
+        
+        player.GetComponent<SpriteRenderer>().sprite = skins.skins[PlayerPrefs.GetInt("currentSkin")].sprite;
+        
         yield return new WaitForSeconds(2f);
         spawnManager.enabled = true;
     }
     
-
     public void GameOver()
     {
         if (!alreadyOver)
@@ -86,19 +89,23 @@ public class GameManager : MonoBehaviour
 
     public void ResetLvl()
     {
-        PlayerPrefs.DeleteKey("Time");
-        PlayerPrefs.DeleteKey("MoneyRound");
-        PlayerPrefs.DeleteKey("ScoreRound");
+        PlayerPrefs.DeleteKey("multiplayer");
+        PlayerPrefs.DeleteKey("scoreRound");
         PlayerPrefs.Save();
     }
 
     public void Retry()
     {
-        PlayerPrefs.SetFloat("Time",Time.time);
-        PlayerPrefs.SetInt("MoneyRound", Int32.Parse(uiManager.money.text));
-        PlayerPrefs.SetInt("ScoreRound", Int32.Parse(uiManager.score.text));
+        PlayerPrefs.SetFloat("multiplayer",moneyMultiplayer);
+        PlayerPrefs.SetInt("scoreRound",Int32.Parse(uiManager.money.text));
         PlayerPrefs.Save();
     }
     
+    public void IncreaseMoneyValue()
+    {
+        moneyMultiplayer *= 2;
+        CoinsBehaviour.amount = moneyMultiplayer;
+        uiManager.SetMoneySign(moneyMultiplayer);
+    }
 
 }

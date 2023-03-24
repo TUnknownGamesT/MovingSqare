@@ -78,7 +78,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-
     public void PlayerDeathSound()
     {
         if (soundOn)

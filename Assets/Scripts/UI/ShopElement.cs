@@ -59,7 +59,7 @@ public class ShopElement : MonoBehaviour
             skinImageShow.texture = skinSprite.texture;
             text.text = "Select";
             text.color = new Color32(255, 255, 255, 255);
-            PlayerPrefs.SetInt("skin" + skin.id, 1);
+            PlayerPrefs.SetInt("unlockedSkin" + skin.id, 1);
             ClearListener();
             AddListener(true);
         }
@@ -84,7 +84,6 @@ public class ShopElement : MonoBehaviour
 
     private void AddListener(bool status)
     {
-        
         if (status)
         {
             buttonSprite.gameObject.GetComponent<Button>().onClick.AddListener(()=>
@@ -92,13 +91,11 @@ public class ShopElement : MonoBehaviour
                 ShopManager.instance.ChangeSelectedSkin(skin.id);
                 Select();
             });
-            
         }
         else
         {
            buttonSprite.gameObject.GetComponent<Button>().onClick.AddListener(Unlock);   
         }
-
     }
 
 
