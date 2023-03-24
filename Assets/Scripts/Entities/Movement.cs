@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,13 +33,5 @@ public class Movement : MonoBehaviour
   {
     _rb.MovePosition(_rb.position + moveDir*speed*Time.fixedDeltaTime);
   }
-
-
-  private void OnCollisionEnter2D(Collision2D col)
-  {
-    if (col.gameObject.CompareTag("Enemy"))
-    {
-      GameManager.instance.GameOver();
-    }
-  }
+  
 }

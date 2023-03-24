@@ -38,8 +38,6 @@ public class ShopManager : MonoBehaviour
     private  List<BgMovement> bkSquares = new();
     private Dictionary<int,bool> skinStatus = new();
     
-    
-
 
     // Start is called before the first frame update
     void Start()

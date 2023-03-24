@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,10 +25,8 @@ public class UIManagerGameRoom : MonoBehaviour
     }
 
     #endregion
-
-    public TextMeshProUGUI uiScore;
+    
     public TextMeshProUGUI highScore;
-    public TextMeshProUGUI score;
     public TextMeshProUGUI moneyCollected;
     public CanvasGroup loseState;
     public RawImage joyStick;
@@ -37,9 +36,11 @@ public class UIManagerGameRoom : MonoBehaviour
     public GameObject secondButton;
     public SceneLoader sceneLoader;
     public RectTransform x2Money;
-    
-    private bool gameOver;
+    public List<GameObject> playerLives;
 
+    private bool gameOver;
+    private int index = 0;
+    
     private void OnEnable()
     {
         GameManager.onGameOver += SetGameOver;
@@ -49,52 +50,28 @@ public class UIManagerGameRoom : MonoBehaviour
     {
         GameManager.onGameOver -= SetGameOver;
     }
-
-    public void DoubleMoneySign()
+    
+    public void SetMoneySign(int amount)
     {
-        x2Money.gameObject.SetActive(true);
-        LeanTween.move(x2Money, new Vector3(596, 484, 0), 1.8f).setEaseInCubic();
-        LeanTween.value(0, 1, 0.9f).setOnUpdate(value =>
-        {
-            Color c = x2Money.GetComponent<TextMeshProUGUI>().color;
-            c.a = value;
-            x2Money.GetComponent<TextMeshProUGUI>().color = c;
-        }).setEaseInCubic().setOnComplete(() =>
-        {
-            LeanTween.value(1, 0, 0.9f).setOnUpdate(value =>
+        x2Money.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"X{amount}";
+        LeanTween.scale(x2Money, new Vector3(1.5f, 1.5f, 1.5f), 1f).setEaseInBounce()
+            .setOnComplete(() =>
             {
-                Color c = x2Money.GetComponent<TextMeshProUGUI>().color;
-                c.a = value;
-                x2Money.GetComponent<TextMeshProUGUI>().color = c;
-            }).setEaseInCubic().setOnComplete(()=>x2Money.gameObject.SetActive(false));
-        });
+                LeanTween.scale(x2Money, Vector3.one, 0.5f).setEaseOutBounce();
+            });
     }
 
     private void Start()
     {
        SetBkSize();
        SetDataFromPreviousRound();
-
-       StartCoroutine(IncreaseScore());
     }
 
     private void SetDataFromPreviousRound()
     {
-        money.text = PlayerPrefs.GetInt("MoneyRound").ToString();
-        score.text = PlayerPrefs.GetInt("ScoreRound").ToString();
+        money.text = PlayerPrefs.GetInt("scoreRound").ToString();
     }
-
-    IEnumerator IncreaseScore()
-    {
-        yield return new WaitForSeconds(1.8f);
-        
-        int score = Int32.Parse(this.score.text);
-        score += 1;
-        this.score.text = score.ToString();
-
-        if (!gameOver)
-            StartCoroutine(IncreaseScore());
-    }
+    
     
     private void  SetBkSize()
     {
@@ -134,8 +111,7 @@ public class UIManagerGameRoom : MonoBehaviour
 
         }).setEaseInQuad().setOnComplete(()=>joyStick.gameObject.SetActive(false));
     }
-
-
+    
     public void AdState()
     {
         UpdateScoreUI();
@@ -158,14 +134,12 @@ public class UIManagerGameRoom : MonoBehaviour
             joyStick.color = c;
             
         }).setEaseInQuad().setOnComplete(()=>joyStick.gameObject.SetActive(false));
-        
     }
 
     private void UpdateScoreUI()
     {
-        highScore.text =  $"High Score:{PlayerPrefs.GetInt("HighScore")}";
-        uiScore.text =  $"Score:{score.text}";
-        moneyCollected.text =  $"Score:{money.text}";
+        highScore.text =  $"High Score\n{PlayerPrefs.GetInt("HighScore")}";
+        moneyCollected.text =  $"Score\n{money.text}";
     }
     
     private void ButtonsAdState()
@@ -207,5 +181,19 @@ public class UIManagerGameRoom : MonoBehaviour
     {
         gameOver = true;
     }
+
+    public void IncreaseLife()
+    {
+        index++;
+        playerLives[index].SetActive(true);
+    }
+
+    public void DecreaseLife()
+    {
+        playerLives[index].SetActive(false);
+        index--;
+        
+    }
+    
     
 }

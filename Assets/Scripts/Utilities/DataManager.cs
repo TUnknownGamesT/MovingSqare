@@ -7,7 +7,6 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     public TextMeshProUGUI money;
-    public TextMeshProUGUI score;
 
 
     private void OnEnable()
@@ -26,11 +25,10 @@ public class DataManager : MonoBehaviour
     private void SaveHighScore()
     {
         int highScore = PlayerPrefs.GetInt("HighScore");
-        int score = Int32.Parse(this.score.text);
+        int score = Int32.Parse(money.text);
         
         if(score>highScore)
             PlayerPrefs.SetInt("HighScore",score);
-        
     }
 
     private void SaveMoney()

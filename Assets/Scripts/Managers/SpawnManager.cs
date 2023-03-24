@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
 {
    public List<Transform> spawningPoints;
    public List<GameObject> spawnableObjects;
+   public List<GameObject> powerUps;
    public GameObject enemyAlertSignPrefab;
    
    [Header("V Values")] 
@@ -26,69 +27,38 @@ public class SpawnManager : MonoBehaviour
    public float minX;
    public float maxY;
    public float minY;
-   
+
+   public float timeBetweenSpawnPowerUps;
    public float timeBetweenSpawnEnemy;
    public float timeBetweenSpawnMoney;
-   public float timeForExtraMoney;
-   public GameObject averageMoney;
-   public GameObject extraMoney;
-   public UIManagerGameRoom uiManagerGameRoom;
-   
+   public GameObject coinPrefab;
+
+
    private Vector2 positionToSpawn;
-   private float time;
    private AttentionSignBehaviour attentionSignBehaviour;
-
-   private void Awake()
-   {
-      SetTime();
-   }
-
-   private void SetTime()
-   {
-      if (PlayerPrefs.HasKey("Time"))
-      {
-         time = PlayerPrefs.GetFloat("Time");
-      }
-   }
-
+   
+   
    private void Start()
    {
-      StartCoroutine(time >= timeForExtraMoney ? SpawnExtraMoney() : SpawnAverageMoney());
+      StartCoroutine(SpawnMoney());
       StartCoroutine(SpawnEnemy());
+      StartCoroutine(SpawnPowerUps());
    }
 
-   #region Money Spawning
+   #region Spawn Money
 
-   private IEnumerator SpawnAverageMoney()
+   private IEnumerator SpawnMoney()
    {
       yield return new WaitForSeconds(timeBetweenSpawnMoney);
-      time = Time.time;
-      Instantiate(averageMoney, new Vector2(Random.Range(minX, maxX)
+      Instantiate(coinPrefab, new Vector2(Random.Range(minX, maxX)
          , Random.Range(minY, maxY)), Quaternion.identity);
 
-      if (time >= timeForExtraMoney)
-      {
-         uiManagerGameRoom.DoubleMoneySign();
-         StartCoroutine(SpawnExtraMoney());
-      }
-      else
-      {
-         StartCoroutine(SpawnAverageMoney());
-      }
-   }
-
-
-   private IEnumerator SpawnExtraMoney()
-   {
-      yield return new WaitForSeconds(timeBetweenSpawnMoney);
-      Instantiate(extraMoney, new Vector2(Random.Range(minX, maxX)
-         , Random.Range(minY, maxY)), Quaternion.identity);
-      StartCoroutine(SpawnExtraMoney());
+      StartCoroutine(SpawnMoney());
    }
 
    #endregion
-  
-   
+
+   #region Spawn Enemy
    private IEnumerator SpawnEnemy()
    {
       yield return new WaitForSeconds(timeBetweenSpawnEnemy);
@@ -111,20 +81,37 @@ public class SpawnManager : MonoBehaviour
       {
          case "E" :
             positionToSpawn = new Vector2(5.99f,Random.Range(minE, maxE));
-             attentionSignBehaviour.enemyDirection = Constants.Directions.E;
+            attentionSignBehaviour.enemyDirection = Constants.Directions.E;
             break;
          case "V":
             positionToSpawn = new Vector2(-4.9f,Random.Range(minV,maxV));
-           attentionSignBehaviour.enemyDirection = Constants.Directions.V;
+            attentionSignBehaviour.enemyDirection = Constants.Directions.V;
             break;
          case "W":
             positionToSpawn = new Vector2(Random.Range(minW, maxW),6.14f);
-             attentionSignBehaviour.enemyDirection = Constants.Directions.W;
+            attentionSignBehaviour.enemyDirection = Constants.Directions.W;
             break;
          default:
             Debug.LogError("Error in Enemy Direction");
             break;
       }
    }
+   
+
+   #endregion
+
+   #region Spawn Power Ups
+
+   IEnumerator SpawnPowerUps()
+   {
+      yield return new WaitForSeconds(timeBetweenSpawnPowerUps);
+      Instantiate(powerUps[Random.Range(0,3)], new Vector2(Random.Range(minX, maxX)
+         , Random.Range(minY, maxY)), Quaternion.identity);
+      StartCoroutine(SpawnPowerUps());
+   }
+   
+
+   #endregion
+  
    
 }
