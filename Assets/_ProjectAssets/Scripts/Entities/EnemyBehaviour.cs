@@ -5,10 +5,17 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum Stages
+{
+    first,
+    second,
+}
+
 public class EnemyBehaviour : MonoBehaviour
 {
     public float speed;
     public GameObject deadEffect;
+    public Stages stage;
     
     private Rigidbody2D _rb;
 
@@ -27,6 +34,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         _rb.velocity = transform.right * speed;
     }
+    
+    
 
     private void OnCollisionEnter2D(Collision2D col)
     {

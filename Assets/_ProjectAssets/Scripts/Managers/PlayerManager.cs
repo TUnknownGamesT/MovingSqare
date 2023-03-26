@@ -11,7 +11,8 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Enemy"))
+        if (col.gameObject.CompareTag("Enemy")||
+            col.gameObject.CompareTag("Projectile"))
         {
             playerLife.Damage(1);
         }
