@@ -7,6 +7,7 @@ TagManager:
   - DeadZone
   - Enemy
   - PowerUp
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - MovingZone
   - Money
   - PowerUps
-  - 
-  - 
+  - Player
+  - Projectile
   - 
   - 
   - 
