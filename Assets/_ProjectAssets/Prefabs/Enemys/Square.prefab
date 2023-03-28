@@ -3789,7 +3789,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3844,11 +3844,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 512
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4884,7 +4884,7 @@ GameObject:
   - component: {fileID: 891096635595320179}
   - component: {fileID: 2595129392843688008}
   - component: {fileID: 6992549832175803623}
-  - component: {fileID: 232716915451924378}
+  - component: {fileID: 472596213449615522}
   m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
@@ -5007,20 +5007,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &232716915451924378
+--- !u!114 &472596213449615522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023566006283250090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9072ef6e379d95a44b915ffac3219892, type: 3}
+  m_Script: {fileID: 11500000, guid: 85aeddc97c7da7d40a5d836118adc84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
   deadEffect: {fileID: 938355462728799340, guid: 5104cb0027b01e844b6a7c790b66bb6a, type: 3}
+  stage: 1
+  particleSystem:
+  - {fileID: 1120333792365937360}
 --- !u!1 &4044507384100815226
 GameObject:
   m_ObjectHideFlags: 0
@@ -5064,7 +5067,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

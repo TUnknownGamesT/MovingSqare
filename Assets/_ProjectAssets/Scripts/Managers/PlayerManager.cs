@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,9 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Enemy")||
-            col.gameObject.CompareTag("Projectile"))
+        Debug.Log(col.gameObject.name);
+        
+        if (col.gameObject.CompareTag("Enemy") )
         {
             playerLife.Damage(1);
         }
@@ -21,8 +23,21 @@ public class PlayerManager : MonoBehaviour
         {
             col.gameObject.GetComponent<IPowerUp>().Effect();
         }
-        
     }
     
-    
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log(col.gameObject.name);
+        
+        if (col.gameObject.CompareTag("Projectile"))
+        {
+            playerLife.Damage(1);
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        playerLife.Damage(1);
+    }
 }
