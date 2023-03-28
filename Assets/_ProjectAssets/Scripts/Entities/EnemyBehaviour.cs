@@ -5,21 +5,16 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum Stages
-{
-    first,
-    second,
-}
-
 public class EnemyBehaviour : MonoBehaviour
 {
     public float speed;
     public GameObject deadEffect;
     public Stages stage;
+    public List<GameObject> particleSystem;
     
     private Rigidbody2D _rb;
 
-    private void Start()
+    public virtual void Start()
     {
         transform.right = GameManager.instance.PlayerPosition - (Vector2)transform.position;
     }
@@ -34,8 +29,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         _rb.velocity = transform.right * speed;
     }
-    
-    
 
     private void OnCollisionEnter2D(Collision2D col)
     {
