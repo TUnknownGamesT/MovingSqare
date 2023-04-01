@@ -44,4 +44,11 @@ public class Movement : MonoBehaviour
       GameManager.instance.GameOver();
     }
   }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            GameManager.instance.GameOver();
+        }
+    }
 }
