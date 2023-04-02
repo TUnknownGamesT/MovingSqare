@@ -3485,6 +3485,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607092, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607092, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: thrust
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 178476164381607097, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: uiManagerGameRoom
       value: 
