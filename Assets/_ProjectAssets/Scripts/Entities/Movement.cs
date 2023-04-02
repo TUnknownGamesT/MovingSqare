@@ -5,13 +5,16 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
-  
   public float speed;
+  [HideInInspector]
+  public Vector2 moveDir;
 
   private Rigidbody2D _rb;
-  private Vector2 moveDir;
   private bool isMoving;
   private PlayerInput _playerInput;
+  private Vector2 currentInputValue;
+  private Vector2 smoothInputValue;
+  private float smoothInputSpeed = .2f;
 
   private void Awake()
   {
@@ -31,7 +34,11 @@ public class Movement : MonoBehaviour
 
   private void FixedUpdate()
   {
-    _rb.MovePosition(_rb.position + moveDir*speed*Time.fixedDeltaTime);
+    //_rb.MovePosition(_rb.position + moveDir*speed*Time.fixedDeltaTime);
+    
+    currentInputValue = Vector2.SmoothDamp(currentInputValue, moveDir*speed, ref smoothInputValue, smoothInputSpeed,10);
+    _rb.velocity = currentInputValue;
   }
+  
   
 }

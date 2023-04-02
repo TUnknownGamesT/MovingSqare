@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922029888}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40cf3572fbba6004389c7ac4e7fbad0b, type: 3}
   m_Name: 
@@ -1376,7 +1376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &959231091
 Transform:
   m_ObjectHideFlags: 0
@@ -3484,6 +3484,14 @@ PrefabInstance:
     - target: {fileID: 178476164381607090, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607092, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607092, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: thrust
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 178476164381607097, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: uiManagerGameRoom

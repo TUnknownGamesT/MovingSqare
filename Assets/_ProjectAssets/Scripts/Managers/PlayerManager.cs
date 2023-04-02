@@ -40,4 +40,5 @@ public class PlayerManager : MonoBehaviour
     {
         playerLife.Damage(1);
     }
+
 }
