@@ -70,5 +70,12 @@ public class MenuAnimation : MonoBehaviour
                 textFade[index].color = c;
             });
         }
+        GameObject sign = money.transform.parent.Find("Sign").gameObject;
+        LeanTween.value(1f, 0f, 1f).setOnUpdate(value => {
+            sign.GetComponent<RawImage>().color = new Color(1, 1, 1, value);
+        });
+        LeanTween.value(1f, 0f, 1f).setOnUpdate(value => {
+            money.color = new Color(1, 1, 1, value);
+        });
     }
 }
