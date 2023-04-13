@@ -1373,7 +1373,7 @@ public class LeanTween : MonoBehaviour {
     }
 
     /**
-    * <summary>Move a GUI Element to a certain location</summary>
+    * <summary>Move a GUI Item to a certain location</summary>
     * 
     * @method LeanTween.move (GUI)
     * @param {LTRect} ltRect:LTRect ltRect LTRect object that you wish to move
@@ -1637,7 +1637,7 @@ public class LeanTween : MonoBehaviour {
     }
 
     /**
-    * <summary>Scale a GUI Element to a certain width and height</summary>
+    * <summary>Scale a GUI Item to a certain width and height</summary>
     * 
     * @method LeanTween.scale (GUI)
     * @param {LTRect} LTRect ltRect LTRect object that you wish to move
@@ -4017,7 +4017,7 @@ public class LTGUI {
             k++;
         }
 
-        Debug.LogError("You ran out of GUI Element spaces");
+        Debug.LogError("You ran out of GUI Item spaces");
 
         return null;
     }

@@ -8,9 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_ProjectAssets/Scenes/MainMenu.unity
     guid: 90106ec79d15f4f2fbf8414e00f05819
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/_ProjectAssets/Scenes/GameRoom.unity
+    guid: ae3aca567ff250e4abc2b1a8b133cda8
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b1525790261eb984b9e3cb6cf91069ad, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 5701c84b4b10e054aba8986049e06ffb, type: 2}

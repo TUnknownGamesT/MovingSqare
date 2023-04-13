@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SkinPool", menuName = "Custom/SkinPool")]
-public class SkinPool : ScriptableObject
+public class ItemsPool : ScriptableObject
 {
-    public Skin[] skins;
+    public Item[] items;
 }
