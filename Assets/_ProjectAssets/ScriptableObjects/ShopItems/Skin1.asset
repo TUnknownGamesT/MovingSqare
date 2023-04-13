@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847fca652d9544d0f9599650d443f606, type: 3}
-  m_Name: skin4
+  m_Script: {fileID: 11500000, guid: 650320a3211c715498b8cc9fe93229dc, type: 3}
+  m_Name: Skin1
   m_EditorClassIdentifier: 
-  id: 4
-  price: 400
-  sprite: {fileID: 21300000, guid: b28d95fe3d1594f2dbefccbdfc7a8dba, type: 3}
-  unlocked: 1
+  id: 1
+  sprite: {fileID: 21300000, guid: 3ee517a458907475aa1b85f6720456b6, type: 3}
+  unlocked: 0
+  type: 0
+  effects:
+  - name: size
+    price: 0
+    effect: -0.2

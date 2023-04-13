@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heal : MonoBehaviour,IPowerUp
+public class Heal : PowerUpBehaviour
 {
-    public void Effect()
+    public override void Effect()
     {
         PlayerLife playerLife = GameManager.instance.Player.GetComponent<PlayerLife>();
         playerLife.AddLife(1);

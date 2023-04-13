@@ -9,7 +9,6 @@ public class PlayerManager : MonoBehaviour
     public PlayerLife playerLife;
     public Movement movement;
 
-
     private void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log(col.gameObject.name);
@@ -21,7 +20,7 @@ public class PlayerManager : MonoBehaviour
 
         if (col.gameObject.CompareTag("PowerUp"))
         {
-            col.gameObject.GetComponent<IPowerUp>().Effect();
+            col.gameObject.GetComponent<PowerUpBehaviour>().Effect();
         }
     }
     

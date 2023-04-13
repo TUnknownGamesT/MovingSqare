@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public SpawnManager spawnManager;
     public Vector2 PlayerPosition => player.position;
     public DataManager dataManager;
-    public SkinPool skins;
+    public ItemsPool items;
 
     private  Transform player;
     private bool alreadyOver;
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         CoinsBehaviour.amount = moneyMultiplayer;
         uiManager.SetMoneySign(moneyMultiplayer);
         
-        player.GetComponent<SpriteRenderer>().sprite = skins.skins[PlayerPrefs.GetInt("currentSkin")].sprite;
+        player.GetComponent<SpriteRenderer>().sprite = items.items[PlayerPrefs.GetInt("currentSkin")].sprite;
         
         yield return new WaitForSeconds(2f);
         spawnManager.enabled = true;

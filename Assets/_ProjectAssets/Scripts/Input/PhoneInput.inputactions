@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PhoneInput",
     "maps": [
         {
             "name": "Player",
@@ -10,6 +10,15 @@
                     "type": "PassThrough",
                     "id": "3c9f585c-4374-4c6c-98e7-63a5b7b8cc90",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Touching",
+                    "type": "Button",
+                    "id": "1d5e93c6-6665-4632-99a6-e0bf443a1434",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -24,6 +33,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31498942-6d44-4c49-bd8b-9a78fe64b33f",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Touching",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

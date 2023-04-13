@@ -5,14 +5,14 @@ using UnityEngine;
 public class BgMovement : MonoBehaviour
 {
     public GameObject obj1;
-    public SkinPool SkinPool;
+    public ItemsPool itemsPool;
     public Sprite currentSprite;
     public GameObject prefab;
     // Start is called before the first frame update
     
     void Start()
     {
-        currentSprite = PlayerPrefs.HasKey("currentSkin") ? SkinPool.skins[PlayerPrefs.GetInt("currentSkin")].sprite : SkinPool.skins[0].sprite;
+        currentSprite = PlayerPrefs.HasKey("currentSkin") ? itemsPool.items[PlayerPrefs.GetInt("currentSkin")].sprite : itemsPool.items[0].sprite;
         SetBGAnimation();
     }
 
@@ -44,6 +44,6 @@ public class BgMovement : MonoBehaviour
     }
    public void SetSkin()
    {
-        currentSprite = SkinPool.skins[PlayerPrefs.GetInt("currentSkin")].sprite;
+        currentSprite = itemsPool.items[PlayerPrefs.GetInt("currentSkin")].sprite;
     }
 }

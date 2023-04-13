@@ -8,13 +8,13 @@ public class Movement : MonoBehaviour
   public float speed;
   [HideInInspector]
   public Vector2 moveDir;
+  public float smoothInputSpeed = .2f;
 
   private Rigidbody2D _rb;
   private bool isMoving;
   private PlayerInput _playerInput;
   private Vector2 currentInputValue;
   private Vector2 smoothInputValue;
-  private float smoothInputSpeed = .2f;
 
   private void Awake()
   {
@@ -26,7 +26,6 @@ public class Movement : MonoBehaviour
   private void Update()
   {
     moveDir = _playerInput.actions["Move"].ReadValue<Vector2>();
-
     isMoving = Convert.ToBoolean(moveDir.magnitude);
 
   }
