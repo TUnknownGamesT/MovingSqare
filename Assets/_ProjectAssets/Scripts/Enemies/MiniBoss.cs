@@ -20,6 +20,7 @@ public class MiniBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // transform.Translate();
         if (!wait)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, mainPosition, Time.deltaTime * speed);
