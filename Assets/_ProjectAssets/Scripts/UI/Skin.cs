@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class Skin :  ShopItem
 {
-    public int upgradeStage;
-    
     private Sprite itemSprite;
     private RawImage skinImageShow;
     private RawImage buttonSprite;
@@ -23,7 +21,8 @@ public class Skin :  ShopItem
         effects = shopItem.effects;
         type = shopItem.type;
         id = shopItem.id;
-        price = effects[0].price;
+        price = type == ElementType.Skin ? effects[0].price : effects[PlayerPrefs.GetInt(effects[0].name)].price;
+
         itemSprite = shopItem.sprite;
         
         skinImageShow = transform.GetChild(0).GetComponent<RawImage>();

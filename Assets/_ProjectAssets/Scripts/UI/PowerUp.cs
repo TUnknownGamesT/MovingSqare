@@ -11,20 +11,18 @@ public class PowerUp :  ShopItem
 
     private RawImage skinImageShow;
     private TextMeshProUGUI text;
-    private int price;
     private ElementType type;
 
     public override ShopItem Initialize(Item shopItem, bool status)
     {
+        
         effects = shopItem.effects;
         type = shopItem.type;
-
-        upgradeStage = PlayerPrefs.GetInt(effects[0].name);
-
-
+        
+        upgradeStage = PlayerPrefs.HasKey(effects[0].name) ? PlayerPrefs.GetInt(effects[0].name) : 0;
+        
         text = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
         transform.GetChild(0).GetComponent<RawImage>().texture = shopItem.sprite.texture;
-        
         
         SetStatus();
     
@@ -58,12 +56,12 @@ public class PowerUp :  ShopItem
         int currentMoney = Int32.Parse(ShopManager.instance.money.text);
         if ( currentMoney >= effects[upgradeStage].price)
         {
-            currentMoney -= price;
+            currentMoney -= Int32.Parse(text.text);
             PlayerPrefs.SetInt("Money",currentMoney);
             ShopManager.instance.money.text = currentMoney.ToString();
 
             upgradeStage++;
-
+            
             text.text = upgradeStage == 3 ? "MAX" : effects[upgradeStage].price.ToString();
             
             PlayerPrefs.SetInt(effects[0].name, upgradeStage);

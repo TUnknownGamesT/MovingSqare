@@ -19,10 +19,10 @@ MonoBehaviour:
   effects:
   - name: size
     price: 400
-    effect: -0.5
+    effect: -0.02
   - name: size
     price: 500
-    effect: -0.75
+    effect: -0.03
   - name: size
     price: 600
-    effect: -1
+    effect: -0.04
