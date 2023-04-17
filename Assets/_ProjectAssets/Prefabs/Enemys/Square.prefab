@@ -4901,8 +4901,8 @@ Transform:
   m_GameObject: {fileID: 2023566006283250090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.46, y: 3.07, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7907898420024876347}
   m_Father: {fileID: 0}
@@ -5021,7 +5021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   deadEffect: {fileID: 938355462728799340, guid: 5104cb0027b01e844b6a7c790b66bb6a, type: 3}
-  stage: 1
+  stage: 0
   particleSystem:
   - {fileID: 1120333792365937360}
 --- !u!1 &4044507384100815226

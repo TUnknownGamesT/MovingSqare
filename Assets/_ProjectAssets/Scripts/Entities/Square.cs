@@ -30,7 +30,7 @@ public class Square : EnemyBehaviour,IEnemyStages
 
     IEnumerator SpawnMiniCubes()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4.5f);
         particleSystem[0].SetActive(true);
     }
 }

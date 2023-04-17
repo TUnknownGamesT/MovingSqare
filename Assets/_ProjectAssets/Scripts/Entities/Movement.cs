@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
   public float speed;
-  [HideInInspector]
-  public Vector2 moveDir;
-  public float smoothInputSpeed = .2f;
+  [HideInInspector] public Vector2 moveDir;
 
   private Rigidbody2D _rb;
   private bool isMoving;
@@ -34,10 +32,9 @@ public class Movement : MonoBehaviour
   private void FixedUpdate()
   {
     //_rb.MovePosition(_rb.position + moveDir*speed*Time.fixedDeltaTime);
-    
-    currentInputValue = Vector2.SmoothDamp(currentInputValue, moveDir*speed, ref smoothInputValue, smoothInputSpeed,10);
-    _rb.velocity = currentInputValue;
+    currentInputValue = Vector2.SmoothDamp(currentInputValue, moveDir,
+      ref smoothInputValue, 0.1f);
+    _rb.velocity = currentInputValue*speed;
   }
-  
   
 }

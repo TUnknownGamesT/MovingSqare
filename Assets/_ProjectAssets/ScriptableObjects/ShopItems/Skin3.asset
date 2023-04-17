@@ -18,5 +18,5 @@ MonoBehaviour:
   type: 0
   effects:
   - name: speed
-    price: 0
+    price: 300
     effect: +0.4
