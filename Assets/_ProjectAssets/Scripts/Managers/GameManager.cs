@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -31,8 +28,9 @@ public class GameManager : MonoBehaviour
     public UIManagerGameRoom uiManager;
     public SpawnManager spawnManager;
     public Vector2 PlayerPosition => player.position;
-    public DataManager dataManager;
     public ItemsPool items;
+    public int difficultySpeed;
+    public float extraMoneyIncrease;
 
     private  Transform player;
     private bool alreadyOver;
@@ -44,8 +42,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
-        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        player.GetComponent<PlayerManager>().InitPlayer(items.items[PlayerPrefs.GetInt("currentSkin")]);
+
         StartCoroutine(InitGame());
     }
 
@@ -54,11 +54,13 @@ public class GameManager : MonoBehaviour
         //Init Money
         CoinsBehaviour.amount = moneyMultiplayer;
         uiManager.SetMoneySign(moneyMultiplayer);
-        
-        player.GetComponent<SpriteRenderer>().sprite = items.items[PlayerPrefs.GetInt("currentSkin")].sprite;
-        
+
         yield return new WaitForSeconds(2f);
         spawnManager.enabled = true;
+        
+        
+        StartCoroutine(IncreaseDifficulty());
+        StartCoroutine(IncreaseMoneyValue());
     }
     
     public void GameOver()
@@ -101,11 +103,45 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
     
-    public void IncreaseMoneyValue()
+    private IEnumerator IncreaseMoneyValue()
     {
+        yield return new WaitForSeconds(extraMoneyIncrease);
         moneyMultiplayer *= 2;
         CoinsBehaviour.amount = moneyMultiplayer;
         uiManager.SetMoneySign(moneyMultiplayer);
+
+        StartCoroutine(IncreaseMoneyValue());
+    }
+    
+    private IEnumerator IncreaseDifficulty()
+    {
+        yield return new WaitForSeconds(difficultySpeed);
+
+        int enemy = Random.Range(1, 4);
+
+        switch (enemy)
+        {
+            case 1:
+            {
+                spawnManager.squareStage2 += Random.value;
+                break;
+            }
+
+            case 2:
+            {
+                spawnManager.circleStage2 += Random.value;
+                break;
+            }
+
+            case 3:
+            {
+                spawnManager.hexagonStage2 += Random.value;
+                break;
+            }
+        }
+
+        StartCoroutine(IncreaseDifficulty());
+
     }
 
 }

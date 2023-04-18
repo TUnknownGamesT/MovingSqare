@@ -9,10 +9,54 @@ public class PlayerManager : MonoBehaviour
     public PlayerLife playerLife;
     public Movement movement;
 
+    public void InitPlayer(Item item)
+    {
+        GetComponent<SpriteRenderer>().sprite = item.sprite;
+        ApplyEffect(item);
+    }
+
+
+    private void ApplyEffect( Item item)
+    {
+        switch (item.effects[0].name)
+        {
+            case "nothing":
+            {
+                return;
+            }
+            
+            case "size":
+            {
+                Debug.Log(Vector3.one * float.Parse(item.effects[0].effect));
+                transform.localScale += Vector3.one * float.Parse(item.effects[0].effect);
+                float scale =  GetComponent<TrailRenderer>().widthMultiplier - 0.12f*PlayerPrefs.GetInt(item.effects[0].name);
+                GetComponent<TrailRenderer>().widthMultiplier = scale;
+                break;
+            }
+
+            case "speed":
+            {
+                movement.speed += float.Parse(item.effects[0].effect);
+                break;
+            }
+            
+            case "heal":
+            {
+                playerLife.AddLife(1);
+                break;
+            }
+
+            default:
+            {
+                Debug.LogError("Effect from player not defined in switch");
+                return;
+            }
+        }
+    }
+    
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log(col.gameObject.name);
-        
+
         if (col.gameObject.CompareTag("Enemy") )
         {
             playerLife.Damage(1);

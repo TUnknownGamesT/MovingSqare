@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Rendering;
 
 public class Minimize :  PowerUpBehaviour
 {
@@ -12,9 +13,17 @@ public class Minimize :  PowerUpBehaviour
     {
         Transform player=  GameManager.instance.Player;
         TrailRenderer trailRenderer = player.GetComponent<TrailRenderer>();
-        
-        int upgradeLvl = PlayerPrefs.GetInt(item.effects[0].name);
-        
+
+
+        LeanTween.value(player.localScale.x, player.localScale.x + item.GetEffect(item.effects[0].name), 0.2f)
+            .setOnUpdate(value =>
+            {
+                player.localScale = Vector3.one * value;
+            }).setEaseInCubic().setOnComplete(() =>
+            {
+                float scale = trailRenderer.widthMultiplier - 0.5f*PlayerPrefs.GetInt(item.effects[0].name);
+                trailRenderer.widthMultiplier = scale;
+            });
         
         StartCoroutine(DestroyMinimiseEffect());
 
@@ -29,9 +38,15 @@ public class Minimize :  PowerUpBehaviour
         Transform player=  GameManager.instance.Player;
         TrailRenderer trailRenderer = player.GetComponent<TrailRenderer>();
         
-        player.localScale += Vector3.one * 0.01f;
-        float scale = trailRenderer.widthMultiplier + 0.12f;
-        trailRenderer.widthMultiplier = scale;
+        LeanTween.value(player.localScale.x, player.localScale.x - item.GetEffect(item.effects[0].name), 0.2f)
+            .setOnUpdate(value =>
+            {
+                player.localScale = Vector3.one * value;
+            }).setEaseInCubic().setOnComplete(() =>
+            {
+                float scale = trailRenderer.widthMultiplier + 0.5f*PlayerPrefs.GetInt(item.effects[0].name);
+                trailRenderer.widthMultiplier = scale;
+            });
         
         Destroy(gameObject);
         

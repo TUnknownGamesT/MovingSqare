@@ -28,4 +28,16 @@ public class Item : ScriptableObject
     public bool unlocked;
     public ElementType type;
     public Effects[] effects;
+
+    public float GetEffect(string itemName)
+    {
+        int index = PlayerPrefs.GetInt(itemName);
+        
+        if (index == 3)
+            index--;
+        
+        return float.Parse(effects[index].effect); 
+    }
+    
+    
 }

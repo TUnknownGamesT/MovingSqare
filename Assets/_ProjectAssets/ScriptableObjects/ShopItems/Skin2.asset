@@ -18,5 +18,5 @@ MonoBehaviour:
   type: 0
   effects:
   - name: size
-    price: 0
-    effect: -0.5
+    price: 200
+    effect: -0.01
