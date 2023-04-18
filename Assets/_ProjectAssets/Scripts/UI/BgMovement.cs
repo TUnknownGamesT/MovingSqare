@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BgMovement : MonoBehaviour
 {
@@ -33,7 +34,19 @@ public class BgMovement : MonoBehaviour
             StartCoroutine(ResetDest(child.gameObject));
         }
     }
-    
+    public void Dissapear()
+    {
+        foreach (Transform child in obj1.transform)
+        {
+            if (null == child)
+                continue;
+            Debug.Log(child.gameObject.name);
+            LeanTween.value(1f, 0f, 1f).setOnUpdate(value => {
+                child.GetComponent<Image>().color = new Color(1, 1, 1, value);
+            });
+
+        }
+    }
     private IEnumerator ResetDest(GameObject obj)
     {
         yield return new WaitForSeconds(Random.Range(4f, 7f));
