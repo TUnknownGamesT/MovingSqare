@@ -18,6 +18,21 @@ public class SceneLoader : MonoBehaviour
         }).setEaseInQuad();
     }
 
+    public void ReloadBossRoom()
+    {
+        if (!isLoading)
+        {
+            isLoading = !isLoading;
+            LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
+            {
+                blackCircle.localScale = Vector3.one * value;
+            }).setEaseInCubic().setOnComplete(() =>
+            {
+                SceneManager.UnloadSceneAsync(1);
+                SceneManager.LoadScene(2,LoadSceneMode.Single);
+            });
+        }
+    }
 
     public void ReloadGameScene()
     {

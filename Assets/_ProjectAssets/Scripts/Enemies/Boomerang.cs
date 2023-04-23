@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Boomerang : MonoBehaviour
@@ -8,6 +9,7 @@ public class Boomerang : MonoBehaviour
     private Vector2 destination;
     private Transform player;
     public Transform temp;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +25,19 @@ public class Boomerang : MonoBehaviour
         this.player = temp;
         StartCoroutine(wait(5,1));
     }
+    
     IEnumerator wait(int time, int turn)
     {
         yield return new WaitForSeconds(time);
         SetDirection(turn);
     }
+    
     IEnumerator Kill()
     {
         yield return new WaitForSeconds(4);
         Destroy(this.gameObject);
     }
+    
     private void SetDirection(int turn)
     {
         
@@ -51,15 +56,11 @@ public class Boomerang : MonoBehaviour
             {
                 destination.x = -2.1f;
             }
+            
             trail.transform.LookAt(destination);
             LeanTween.move(this.gameObject, destination, 4f).setEase(LeanTweenType.easeInOutSine);
-            if (turn > 1)
-            {
-                StartCoroutine(Kill());
-            }
-            else {
-                StartCoroutine(wait(4, 2));
-                    }
+            
+            StartCoroutine(turn > 1 ? Kill() : wait(4, 2));
         }
         else
         {
