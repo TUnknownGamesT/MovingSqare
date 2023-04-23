@@ -27,7 +27,6 @@ public class PlayerManager : MonoBehaviour
             
             case "size":
             {
-                Debug.Log(Vector3.one * float.Parse(item.effects[0].effect));
                 transform.localScale += Vector3.one * float.Parse(item.effects[0].effect);
                 float scale =  GetComponent<TrailRenderer>().widthMultiplier - 0.12f*PlayerPrefs.GetInt(item.effects[0].name);
                 GetComponent<TrailRenderer>().widthMultiplier = scale;
@@ -71,8 +70,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name);
-        
+
         if (col.gameObject.CompareTag("Projectile"))
         {
             playerLife.Damage(1);

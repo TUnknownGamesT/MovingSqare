@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         instance = FindObjectOfType<GameManager>();
 
         if (instance == null)
@@ -31,24 +32,40 @@ public class GameManager : MonoBehaviour
     public ItemsPool items;
     public int difficultySpeed;
     public float extraMoneyIncrease;
-
+    
+    
     private  Transform player;
     private bool alreadyOver;
     private static bool askedAd;
     private int moneyMultiplayer=1;
+    private int index;
 
     public Transform Player => player;
+
+
+    private void OnEnable()
+    {
+        BossGameplay.OnBossAppear += StopCoroutine;
+        BossGameplay.OnBossDisappear += StartCoroutine;
+    }
+    
+    
+    private void OnDisable()
+    {
+        BossGameplay.OnBossAppear -= StopCoroutine;
+        BossGameplay.OnBossDisappear -= StartCoroutine;
+    }
 
     private void Start()
     {
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
         
-        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         player.GetComponent<PlayerManager>().InitPlayer(items.items[PlayerPrefs.GetInt("currentSkin")]);
-
+        
         StartCoroutine(InitGame());
-    }
 
+    }
+    
     IEnumerator InitGame()
     {
         //Init Money
@@ -56,13 +73,13 @@ public class GameManager : MonoBehaviour
         uiManager.SetMoneySign(moneyMultiplayer);
 
         yield return new WaitForSeconds(2f);
-        spawnManager.enabled = true;
-        
+        spawnManager.StartSpawning();
         
         StartCoroutine(IncreaseDifficulty());
         StartCoroutine(IncreaseMoneyValue());
     }
     
+
     public void GameOver()
     {
         if (!alreadyOver)
@@ -82,25 +99,35 @@ public class GameManager : MonoBehaviour
             alreadyOver = !alreadyOver;
         }
     }
-
+    
     public void ResetAlreadyOver()
     {
         askedAd = false;
     }
-
-
+    
     public void ResetLvl()
     {
         PlayerPrefs.DeleteKey("multiplayer");
         PlayerPrefs.DeleteKey("scoreRound");
         PlayerPrefs.Save();
     }
-
+    
     public void Retry()
     {
         PlayerPrefs.SetFloat("multiplayer",moneyMultiplayer);
         PlayerPrefs.SetInt("scoreRound",Int32.Parse(uiManager.money.text));
         PlayerPrefs.Save();
+    }
+
+    private void StopCoroutine()
+    {
+        StopAllCoroutines();
+    }
+
+    private void StartCoroutine()
+    {
+        StartCoroutine(IncreaseDifficulty());
+        StartCoroutine(IncreaseMoneyValue());
     }
     
     private IEnumerator IncreaseMoneyValue()

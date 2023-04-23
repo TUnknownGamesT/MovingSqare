@@ -53,12 +53,12 @@ public class UIManagerGameRoom : MonoBehaviour
     
     public void SetMoneySign(int amount)
     {
-        //x2Money.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"X{amount}";
-        //LeanTween.scale(x2Money, new Vector3(1.5f, 1.5f, 1.5f), 1f).setEaseInBounce()
-        //    .setOnComplete(() =>
-        //    {
-        //        LeanTween.scale(x2Money, Vector3.one, 0.5f).setEaseOutBounce();
-        //    });
+        x2Money.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"X{amount}";
+        LeanTween.scale(x2Money, new Vector3(1.5f, 1.5f, 1.5f), 1f).setEaseInBounce()
+           .setOnComplete(() =>
+           {
+               LeanTween.scale(x2Money, Vector3.one, 0.5f).setEaseOutBounce();
+            });
     }
 
     private void Start()

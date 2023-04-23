@@ -32,10 +32,5 @@ public class PlayerLife : MonoBehaviour
         if(life <=0)
             GameManager.instance.GameOver();
     }
-    
-    
-    
-    
-    
-    
+
 }

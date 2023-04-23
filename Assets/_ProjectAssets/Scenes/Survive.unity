@@ -826,7 +826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &655162600
 Transform:
   m_ObjectHideFlags: 0
@@ -880,9 +880,9 @@ MonoBehaviour:
   minX: -1.59
   maxY: 4.35
   minY: -2.04
-  timeBetweenSpawnPowerUps: 5
-  timeBetweenSpawnEnemy: 1
-  timeBetweenSpawnMoney: 7
+  spawnPowerUps: 0
+  spawnEnemy: 0
+  spawnMoney: 0
   coinPrefab: {fileID: 141189488381344411, guid: 652c2241b038b0645b53c3361c825e58, type: 3}
 --- !u!224 &713992442 stripped
 RectTransform:
@@ -2487,6 +2487,9 @@ MonoBehaviour:
   items: {fileID: 11400000, guid: b7ea795655413406ea507c2ff8ac869a, type: 2}
   difficultySpeed: 7
   extraMoneyIncrease: 15
+  bossRoom: 0
+  roundsDurations: []
+  bossPrefab: {fileID: 0}
 --- !u!1 &1721086442
 GameObject:
   m_ObjectHideFlags: 0
