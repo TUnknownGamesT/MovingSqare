@@ -64,13 +64,20 @@ public class Skin :  ShopItem
             currentMoney -= price;
             PlayerPrefs.SetInt("Money",currentMoney);
             ShopManager.instance.money.text = currentMoney.ToString();
-            skinImageShow.texture = itemSprite.texture;
-            text.text = "Select";
-            text.color = new Color32(255, 255, 255, 255);
+            StartCoroutine(AnimatePurchase());
             PlayerPrefs.SetInt("unlockedSkin" + id, 1);
             ClearListener();
             AddListener(true);
         }
+    }
+    IEnumerator AnimatePurchase()
+    {
+        LeanTween.scale(skinImageShow.gameObject, new Vector3(0,0,0),1f);
+        yield return new WaitForSeconds(1f);
+        skinImageShow.texture = itemSprite.texture;
+        text.text = "Select";
+        text.color = new Color32(255, 255, 255, 255);
+        LeanTween.scale(skinImageShow.gameObject, new Vector3(1,1,1), 0.5f).setEase(LeanTweenType.easeOutBack);
     }
 
     public void Unselect(Texture2D unselectedTexture)

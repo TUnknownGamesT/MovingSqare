@@ -388,3 +388,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effects: []
+  upgradeStage: 0

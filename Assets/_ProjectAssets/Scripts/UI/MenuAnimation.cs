@@ -9,6 +9,9 @@ public class MenuAnimation : MonoBehaviour
     public Image[] buttonsFill;
     public TextMeshProUGUI[] textFade;
     public TextMeshProUGUI money;
+    public GameObject main, shop, topBar, startButton, gameModeMenu;
+    public RawImage darkEdgeShop;
+    public Image backButonShop;
     private void Start()
     {
         InitPlayerPrefs();
@@ -73,9 +76,67 @@ public class MenuAnimation : MonoBehaviour
         GameObject sign = money.transform.parent.Find("Sign").gameObject;
         LeanTween.value(1f, 0f, 1f).setOnUpdate(value => {
             sign.GetComponent<RawImage>().color = new Color(1, 1, 1, value);
-        });
-        LeanTween.value(1f, 0f, 1f).setOnUpdate(value => {
             money.color = new Color(1, 1, 1, value);
+        });
+    }
+
+    public void GoShop()
+    {
+        StartCoroutine(AnimateTransition(1, 30,0));
+        StartCoroutine(ShowHideShop(0,1,1));
+    }
+    public void LeaveShop()
+    {
+        StartCoroutine(AnimateTransition(30, 1,1));
+        StartCoroutine(ShowHideShop(1, 0,0));
+    }
+    IEnumerator AnimateTransition(float from, float to, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        if (waitTime > 0)
+        {
+            shop.SetActive(false);
+        }
+        LeanTween.value(from, to, 1f).setOnUpdate(value => {
+            Vector3 temp = new Vector3(value, value, 1);
+            main.transform.localScale = temp;
+            topBar.transform.localScale = temp;
+        });
+        
+    }
+    IEnumerator ShowHideShop(float from, float to,float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        
+        shop.SetActive(true);
+        LeanTween.value(from, to, 1f).setOnUpdate(value =>
+        {
+            
+            darkEdgeShop.uvRect = new Rect(1-value, 0, 1, 1);
+            backButonShop.fillAmount = value;
+        });
+    }
+
+    public void ChoseGameMode()
+    {
+        LeanTween.rotate(startButton, new Vector3(0, 0, 6120), 2f);
+        StartCoroutine(ShowGameModeMenu());
+
+    }
+    public IEnumerator ShowGameModeMenu()
+    {
+        yield return new WaitForSeconds(1f);
+        gameModeMenu.GetComponent<HorizontalLayoutGroup>().spacing = -650f;
+        gameModeMenu.SetActive(true);
+        startButton.SetActive(false);
+        foreach(Transform child in gameModeMenu.transform)
+        {
+            Debug.Log(child.name);
+            LeanTween.rotate(child.gameObject, new Vector3(0, 0, 6120), 2f);
+        }
+        LeanTween.value(-650f, 20f, 2f).setOnUpdate(value =>
+        {
+            gameModeMenu.GetComponent<HorizontalLayoutGroup>().spacing = value;
         });
     }
 }
