@@ -7,6 +7,8 @@ public class TouchExplosion : MonoBehaviour
 {
     public GameObject explosionPrefab;
     public Camera mainCam;
+
+#if !UNITY_EDITOR
     void Start()
     {
         TouchSimulation.Enable();
@@ -19,4 +21,6 @@ public class TouchExplosion : MonoBehaviour
         Vector2 mousePos = mainCam.ScreenToWorldPoint(finger.screenPosition);
         Instantiate(explosionPrefab, mousePos, Quaternion.identity);
     }
+#endif  
+    
 }
