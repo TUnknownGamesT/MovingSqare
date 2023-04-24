@@ -44,34 +44,34 @@ public class UIManagerGameRoom : MonoBehaviour
     private void OnEnable()
     {
         GameManager.onGameOver += SetGameOver;
+        AdsManager.onAdFinish += ResetMainMenu;
     }
 
     private void OnDisable()
     {
         GameManager.onGameOver -= SetGameOver;
+        AdsManager.onAdFinish -= ResetMainMenu;
     }
+    
+   
+
+    private void Start()
+    {
+        money.text = "0";
+        
+       SetBkSize();
+    }
+    
     
     public void SetMoneySign(int amount)
     {
         x2Money.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"X{amount}";
         LeanTween.scale(x2Money, new Vector3(1.5f, 1.5f, 1.5f), 1f).setEaseInBounce()
-           .setOnComplete(() =>
-           {
-               LeanTween.scale(x2Money, Vector3.one, 0.5f).setEaseOutBounce();
+            .setOnComplete(() =>
+            {
+                LeanTween.scale(x2Money, Vector3.one, 0.5f).setEaseOutBounce();
             });
     }
-
-    private void Start()
-    {
-       SetBkSize();
-       SetDataFromPreviousRound();
-    }
-
-    private void SetDataFromPreviousRound()
-    {
-        money.text = PlayerPrefs.GetInt("scoreRound").ToString();
-    }
-    
     
     private void  SetBkSize()
     {
@@ -100,6 +100,7 @@ public class UIManagerGameRoom : MonoBehaviour
     
     public void LoseState()
     {
+        FadeInFadeOutJoystick(1,0);
         UpdateScoreUI();
         ButtonsLoseState();
         ResetLvlListener();
@@ -114,6 +115,7 @@ public class UIManagerGameRoom : MonoBehaviour
     
     public void AdState()
     {
+        FadeInFadeOutJoystick(1,0);
         UpdateScoreUI();
         ButtonsAdState();
         AdListener();
@@ -121,13 +123,12 @@ public class UIManagerGameRoom : MonoBehaviour
         LeanTween.value(0, 1, 1f).setOnUpdate(value =>
         {
             loseState.alpha = value;
-
         }).setEaseInQuad().setOnComplete(()=>joyStick.gameObject.SetActive(false));
     }
-    
-    public void FadeInFadeOutJoystick()
+
+    public void FadeInFadeOutJoystick(float startValue, float endValue)
     {
-        LeanTween.value(1, 0, 1f).setOnUpdate(value =>
+        LeanTween.value(startValue, endValue, 1f).setOnUpdate(value =>
         {
             Color c =  joyStick.color;
             c.a = value;
@@ -156,6 +157,7 @@ public class UIManagerGameRoom : MonoBehaviour
     private void ButtonsLoseState()
     {
         firstButton.GetComponent<Image>().color = Color.white;
+        firstButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Retry";
         firstButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
         
         secondButton.GetComponent<Image>().color = Color.white;
@@ -169,14 +171,24 @@ public class UIManagerGameRoom : MonoBehaviour
 
     private void ResetLvlListener()
     {
+        firstButton.GetComponent<Button>().onClick.RemoveAllListeners();
         firstButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            GameManager.instance.ResetLvl();
-            GameManager.instance.ResetAlreadyOver();
             sceneLoader.ReloadGameScene();
         });
     }
 
+    public void ResetMainMenu()
+    {
+        FadeInFadeOutJoystick(0,1);
+        firstButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        LeanTween.value(1, 0, 1f).setOnUpdate(value =>
+        {
+            loseState.alpha = value;
+
+        }).setEaseInQuad().setOnComplete(()=>joyStick.gameObject.SetActive(true));
+    }
+    
     private void SetGameOver()
     {
         gameOver = true;

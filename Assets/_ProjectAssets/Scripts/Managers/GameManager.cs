@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     {
         BossGameplay.OnBossAppear += StopCoroutine;
         BossGameplay.OnBossDisappear += StartCoroutine;
+        AdsManager.onAdFinish += ResetAlreadyOver;
     }
     
     
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         BossGameplay.OnBossAppear -= StopCoroutine;
         BossGameplay.OnBossDisappear -= StartCoroutine;
+        AdsManager.onAdFinish -= ResetAlreadyOver;
     }
 
     private void Start()
@@ -84,17 +86,17 @@ public class GameManager : MonoBehaviour
     {
         if (!alreadyOver)
         {
+            Debug.Log("In already Over yeyoooo");
             onGameOver?.Invoke();
             if (!askedAd)
             {
-                uiManager.FadeInFadeOutJoystick();
                 uiManager.AdState();
                 askedAd = !askedAd;
             }
             else
             {
+                askedAd = !askedAd;
                 uiManager.LoseState();
-                uiManager.FadeInFadeOutJoystick();
             }
             alreadyOver = !alreadyOver;
         }
@@ -102,21 +104,7 @@ public class GameManager : MonoBehaviour
     
     public void ResetAlreadyOver()
     {
-        askedAd = false;
-    }
-    
-    public void ResetLvl()
-    {
-        PlayerPrefs.DeleteKey("multiplayer");
-        PlayerPrefs.DeleteKey("scoreRound");
-        PlayerPrefs.Save();
-    }
-    
-    public void Retry()
-    {
-        PlayerPrefs.SetFloat("multiplayer",moneyMultiplayer);
-        PlayerPrefs.SetInt("scoreRound",Int32.Parse(uiManager.money.text));
-        PlayerPrefs.Save();
+        alreadyOver = !alreadyOver;
     }
 
     private void StopCoroutine()
