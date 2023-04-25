@@ -126,46 +126,7 @@ public class BossBehaivour : MonoBehaviour
         prepareToAttack = false;
         StartCoroutine(TimeToAttack());
     }
-    //IEnumerator SendMiniBoss(int lastPos)
-    //{
-
-    //    int newPos = lastPos + Random.Range(-1, 2);
-    //    if (newPos < 0) { newPos = 0; }else if (newPos > 3) { newPos = 3; }
-    //    yield return new WaitForSeconds(1f);
-    //    for (int i = 0; i < 4; i++)
-    //    {
-    //        if (i != newPos)
-    //        {
-    //            Vector3 temp = miniBossPos[i].position;
-    //            temp.y = -10f;
-    //            Instantiate(miniBossPrefab, miniBossPos[i].position, Quaternion.identity).GetComponent<MiniBoss>().SetPos(temp, false);
-    //        }
-    //    }
-    //    StartCoroutine(SendMiniBoss(newPos));
-    //}
-
-    //IEnumerator FlankBoss()
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //    for(int i =0; i < flankPos.Length; i++)
-    //    {
-    //        Vector3 spawn = flankPos[i].position;
-    //        Vector3 temp = flankPos[i].position;
-    //        if (i % 2 == 0)
-    //        {
-    //            temp.x = 3;
-    //            spawn.x = -3;
-    //            Instantiate(miniBossPrefab, spawn, Quaternion.Euler(0, 0, 90)).GetComponent<MiniBoss>().SetPos(temp, true);
-    //        }
-    //        else
-    //        {
-    //            temp.x = -3;
-    //            spawn.x = 3;
-    //            Instantiate(miniBossPrefab,spawn, Quaternion.Euler(0, 0, -90)).GetComponent<MiniBoss>().SetPos(temp, true);
-    //        }
-
-    //    }
-    //}
+    
     // Update is called once per frame
     void Update()
     {

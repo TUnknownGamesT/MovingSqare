@@ -62,7 +62,7 @@ public partial class @PhoneInput : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""31498942-6d44-4c49-bd8b-9a78fe64b33f"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Touching"",

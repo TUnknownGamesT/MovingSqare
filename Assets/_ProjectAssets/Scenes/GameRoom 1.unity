@@ -1258,6 +1258,9 @@ MonoBehaviour:
   - {fileID: 2023566006283250090, guid: 2732291cf6bb83744a4d0f2b73c1e981, type: 3}
   powerUps: []
   enemyAlertSignPrefab: {fileID: 7786718456191243107, guid: e29cc032366c1044495bb74baaacdfd9, type: 3}
+  squareStage2: 0
+  circleStage2: 0
+  hexagonStage2: 0
   maxV: 4.41
   minV: -2.93
   maxW: 4.24
@@ -2096,7 +2099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5529689795805235530, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5529689795805235533, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_RootOrder
@@ -2855,6 +2858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0721bb93a5d7454097404cc05e04144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectTime: 0
+  item: {fileID: 0}
 --- !u!1 &1563786756
 GameObject:
   m_ObjectHideFlags: 0
@@ -3247,8 +3252,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 922029890}
   spawnManager: {fileID: 655162601}
-  dataManager: {fileID: 597441479}
-  skins: {fileID: 11400000, guid: b7ea795655413406ea507c2ff8ac869a, type: 2}
+  items: {fileID: 0}
+  difficultySpeed: 0
+  extraMoneyIncrease: 0
 --- !u!1 &1721086442
 GameObject:
   m_ObjectHideFlags: 0

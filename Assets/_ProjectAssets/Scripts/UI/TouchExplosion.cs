@@ -7,8 +7,10 @@ public class TouchExplosion : MonoBehaviour
 {
     public GameObject explosionPrefab;
     public Camera mainCam;
+    private bool effectsOn;
     void Start()
     {
+        effectsOn = true;
         TouchSimulation.Enable();
         EnhancedTouchSupport.Enable();
         UnityEngine.InputSystem.EnhancedTouch.Touch.onFingerDown += SpawnEffect;
@@ -17,6 +19,10 @@ public class TouchExplosion : MonoBehaviour
     void SpawnEffect(Finger finger)
     {
         Vector2 mousePos = mainCam.ScreenToWorldPoint(finger.screenPosition);
-        Instantiate(explosionPrefab, mousePos, Quaternion.identity);
+        if (effectsOn) { Instantiate(explosionPrefab, mousePos, Quaternion.identity); }
+    }
+    public void ToogleEffects(bool value)
+    {
+        effectsOn = value;
     }
 }
