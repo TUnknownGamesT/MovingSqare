@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
 
   private void FixedUpdate()
   {
-    _rb.MovePosition(_rb.position + moveDir*speed*Time.fixedDeltaTime);
+    _rb.velocity = moveDir * speed * Time.fixedDeltaTime;
     /*currentInputValue = Vector2.SmoothDamp(currentInputValue, moveDir,
       ref smoothInputValue, 0.1f);
     _rb.velocity = currentInputValue * speed * Time.fixedDeltaTime;*/
