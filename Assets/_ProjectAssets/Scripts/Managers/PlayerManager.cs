@@ -9,6 +9,18 @@ public class PlayerManager : MonoBehaviour
     public PlayerLife playerLife;
     public Movement movement;
 
+
+    private void OnEnable()
+    {
+        AdsManager.onAdFinish += Revive;
+    }
+
+    private void OnDisable()
+    {
+        AdsManager.onAdFinish -= Revive;
+    }
+
+
     public void InitPlayer(Item item)
     {
         GetComponent<SpriteRenderer>().sprite = item.sprite;
@@ -27,7 +39,6 @@ public class PlayerManager : MonoBehaviour
             
             case "size":
             {
-                Debug.Log(Vector3.one * float.Parse(item.effects[0].effect));
                 transform.localScale += Vector3.one * float.Parse(item.effects[0].effect);
                 float scale =  GetComponent<TrailRenderer>().widthMultiplier - 0.12f*PlayerPrefs.GetInt(item.effects[0].name);
                 GetComponent<TrailRenderer>().widthMultiplier = scale;
@@ -54,6 +65,20 @@ public class PlayerManager : MonoBehaviour
         }
     }
     
+    private void Revive()
+    {
+        playerLife.AddLife(1);
+        GetComponent<BoxCollider2D>().enabled = false;
+        LeanTween.value(1, 0.5f, 0.3f).setOnUpdate(value =>
+        {
+            Color c = GetComponent<SpriteRenderer>().color;
+            c.a = value;
+            GetComponent<SpriteRenderer>().color = c;
+        }).setLoopCount(10).setEaseInOutCubic().setLoopPingPong()
+            .setOnComplete(()=> GetComponent<BoxCollider2D>().enabled = true);
+    }
+    
+    
     private void OnCollisionEnter2D(Collision2D col)
     {
 
@@ -71,8 +96,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name);
-        
+
         if (col.gameObject.CompareTag("Projectile"))
         {
             playerLife.Damage(1);

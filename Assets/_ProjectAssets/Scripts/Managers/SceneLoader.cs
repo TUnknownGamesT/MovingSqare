@@ -17,8 +17,7 @@ public class SceneLoader : MonoBehaviour
             blackCircle.localScale = Vector3.one * value;
         }).setEaseInQuad();
     }
-
-
+    
     public void ReloadGameScene()
     {
         if (!isLoading)
@@ -29,34 +28,40 @@ public class SceneLoader : MonoBehaviour
                 blackCircle.localScale = Vector3.one * value;
             }).setEaseInCubic().setOnComplete(() =>
             {
-                SceneManager.UnloadSceneAsync(1);
-                SceneManager.LoadScene(1,LoadSceneMode.Single);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
             });
         }
-       
     }
 
-    public  void LoadGameRoom()
+    public void LoadBossScene()
     {
         if (!isLoading)
         {
             isLoading = !isLoading;
             GameObject.Find("AnimationManager").GetComponent<MenuAnimation>().LeaveMenu();
-            StartCoroutine(StartGame());
+            StartGame(2);
         }
     }
-    IEnumerator StartGame()
+    
+    public  void LoadSurviveScene()
     {
-        yield return new WaitForSeconds(2f);
+        if (!isLoading)
+        {
+            isLoading = !isLoading;
+            GameObject.Find("AnimationManager").GetComponent<MenuAnimation>().LeaveMenu();
+            StartGame(1);
+        }
+    }
+    private void StartGame(int sceneIndex)
+    {
         LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
         {
             blackCircle.localScale = Vector3.one * value;
-        }).setEaseInCubic().setOnComplete(() => SceneManager.LoadScene(1));
+        }).setEaseInCubic().setOnComplete(() => SceneManager.LoadScene(sceneIndex)).setDelay(2f);
     }
 
     public  void LoadMainMenu()
     {
-        
         if (!isLoading)
         {
             GameManager.instance.ResetAlreadyOver();

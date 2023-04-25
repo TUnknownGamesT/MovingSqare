@@ -34094,7 +34094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6541333629067499162}
   - component: {fileID: 3641421062934643566}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34126,7 +34126,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00874275, y: -4.6713037}
@@ -43968,7 +43968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6084663335863877379}
   - component: {fileID: 1542269311586771454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44000,7 +44000,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.018519878, y: -5.187968}
@@ -49036,7 +49036,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6372a585c144546759158e0b67bd77c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -49065,7 +49065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5529689795805235533
 Transform:
   m_ObjectHideFlags: 0
@@ -49101,8 +49101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d24ed5de7ab4a4189c5b90456337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wave: 0
-  hp: 0
+  wave: 3
+  hp: 4
   missle: {fileID: 7030688881234565024, guid: bcdd31a3390cb45dd883ff99930db543, type: 3}
   boomerang: {fileID: 1135871336998019858, guid: 050ceafccf1ff4c89b7f8344d783f3fe, type: 3}
   miniBossPos:
@@ -49117,14 +49117,17 @@ MonoBehaviour:
   - {fileID: 1795564159585989505}
   - {fileID: 5466997348788412764}
   particleLasers:
-  - {fileID: 1889886111363558922}
   - {fileID: 5666854345934685837}
+  - {fileID: 1889886111363558922}
   - {fileID: 5446522033261168749}
   particleColliders:
   - {fileID: 9163173962523525094}
   - {fileID: 2965700657255265779}
   - {fileID: 4882232371866913965}
-  visual: []
+  visual:
+  - {fileID: 5529689796377028358}
+  - {fileID: 5529689795669856429}
+  - {fileID: 5529689796325674619}
 --- !u!61 &7260012493670999830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -49223,7 +49226,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6372a585c144546759158e0b67bd77c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -49260,8 +49263,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5529689796377028358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.8200002, z: 11}
-  m_LocalScale: {x: 0.058141727, y: 0.11897211, z: 0.1989833}
+  m_LocalPosition: {x: -0.03, y: 3.8200002, z: 11}
+  m_LocalScale: {x: 0.067607194, y: 0.13834076, z: 0.23137777}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 506170158564167025}
@@ -49307,7 +49310,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6372a585c144546759158e0b67bd77c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -73713,7 +73716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5202568315588820726}
   - component: {fileID: 2416057618429191554}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73745,7 +73748,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02395165, y: -4.0856557}

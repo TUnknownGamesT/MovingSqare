@@ -1,82 +1,58 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using Random = UnityEngine.Random;
 
 public class BossBehaivour : MonoBehaviour
 {
     public int wave,hp;
     public GameObject  missle , boomerang;
-    private bool  prepareToAttack;
-    private Transform player;
     public Transform[] miniBossPos;
     public Transform[] flankPos;
     public GameObject[] particleLasers;
     public GameObject[] particleColliders, visual;
+    public Transform startPosition;
+    public BossGameplay bossGameplay;
+
+    [HideInInspector]
+    public bool lastWave;
+    
+
+    [HideInInspector]
+    public bool  prepareToAttack;
+    private Transform player;
+    private Animator _anim;
+    private CancellationTokenSource cts;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").transform;
-        prepareToAttack = false;
-        StartCoroutine(TimeToAttack());
+        player = GameManager.instance.Player;
+        _anim = GetComponent<Animator>(); 
+        cts = new CancellationTokenSource();
+    }
+
+    public void InitBoss()
+    {
+        cts = new CancellationTokenSource();
+        Attack().AttachExternalCancellation(cts.Token);
+    }
+
+    public void SetBossStatus(int hp)
+    {
+        this.hp = hp;
+    }
+
+
+
+    async UniTask Attack()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(3f));
         
-    }
-
-    IEnumerator spawnLaser(int nrOfLasers)
-    {
-        Debug.Log("Spawner");
-        if (nrOfLasers > 1)
-        {
-            for (int i = 0; i < particleLasers.Length; i++)
-            {
-                if(nrOfLasers==2 && i == 1)
-                {
-                }
-                else { particleLasers[i].SetActive(true); }
-            }
-
-            yield return new WaitForSeconds(2f);
-
-            for (int i = 0; i < particleColliders.Length; i++)
-            {
-                if (nrOfLasers == 2 && i == 1)
-                {
-                }
-                else
-                {
-                    particleColliders[i].SetActive(true);
-                }
-            }
-
-
-            yield return new WaitForSeconds(2f);
-
-            for (int i = 0; i < particleLasers.Length; i++)
-            {
-                particleLasers[i].SetActive(false);
-            }
-
-            for (int i = 0; i < particleColliders.Length; i++)
-            {
-                particleColliders[i].SetActive(false);
-            }
-        }
-        else
-        {
-            particleLasers[1].SetActive(true);
-            yield return new WaitForSeconds(2f);
-            particleColliders[1].SetActive(true);
-            yield return new WaitForSeconds(2f);
-            particleLasers[1].SetActive(false);
-            particleColliders[1].SetActive(false);
-        }
-        prepareToAttack = false;
-        StartCoroutine(TimeToAttack());
-    }
-
-    IEnumerator TimeToAttack()
-    {
-        yield return new WaitForSeconds(3f);
         prepareToAttack = true;
         if (wave < 2)
         {
@@ -105,8 +81,61 @@ public class BossBehaivour : MonoBehaviour
                 StartCoroutine(spawnBoomerang());
             }
         }
-        
+
     }
+    
+    
+    IEnumerator spawnLaser(int nrOfLasers)
+    {
+        Debug.Log("Spawner");
+        if (nrOfLasers > 1)
+        {
+            for (int i = 0; i < particleLasers.Length; i++)
+            {
+                if(nrOfLasers==2 && i == 1)
+                {
+                }
+                else { particleLasers[i].SetActive(true); }
+            }
+
+            yield return new WaitForSeconds(2f);
+
+            for (int i = 0; i < particleColliders.Length; i++)
+            {
+                if (nrOfLasers == 2 && i == 1)
+                {
+                }
+                else
+                {
+                    particleColliders[i].SetActive(true);
+                }
+            }
+
+            yield return new WaitForSeconds(2f);
+
+            for (int i = 0; i < particleLasers.Length; i++)
+            {
+                particleLasers[i].SetActive(false);
+            }
+
+            for (int i = 0; i < particleColliders.Length; i++)
+            {
+                particleColliders[i].SetActive(false);
+            }
+        }
+        else
+        {
+            particleLasers[1].SetActive(true);
+            yield return new WaitForSeconds(2f);
+            particleColliders[1].SetActive(true);
+            yield return new WaitForSeconds(2f);
+            particleLasers[1].SetActive(false);
+            particleColliders[1].SetActive(false);
+        }
+        prepareToAttack = false;
+        Attack().AttachExternalCancellation(cts.Token);
+    }
+    
     IEnumerator spawnMissle(int nrOfMissle)
     {
         for (int i = 0; i < nrOfMissle; i++)
@@ -115,8 +144,9 @@ public class BossBehaivour : MonoBehaviour
         }
         yield return new WaitForSeconds(5f);
         prepareToAttack = false;
-        StartCoroutine(TimeToAttack());
+        Attack().AttachExternalCancellation(cts.Token);
     }
+    
     IEnumerator spawnBoomerang()
     {
 
@@ -124,10 +154,9 @@ public class BossBehaivour : MonoBehaviour
         
         yield return new WaitForSeconds(5f);
         prepareToAttack = false;
-        StartCoroutine(TimeToAttack());
+        Attack().AttachExternalCancellation(cts.Token);
     }
     
-    // Update is called once per frame
     void Update()
     {
         if (!prepareToAttack)
@@ -135,6 +164,7 @@ public class BossBehaivour : MonoBehaviour
             Move();
         }
     }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "projectile")
@@ -158,27 +188,65 @@ public class BossBehaivour : MonoBehaviour
         hp -= value;
         if (hp < 1)
         {
-            Destroy(this.gameObject);
+            if (lastWave)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+               StopAllCoroutines();
+               LoseAllHP();
+            }
         }
-        StartCoroutine(VisualFeedback());
+        _anim.SetTrigger("TakeDmg");
     }
-    IEnumerator VisualFeedback()
+
+    private void LoseAllHP()
     {
+        wave++;
+        bossGameplay.finishedWave = true;
         
-        for (int i = 0; i < 3; i++)
-        {
-            foreach (var obj in visual)
-            {
-                obj.GetComponent<SpriteRenderer>().color = Color.red;
-            }
-            yield return new WaitForSeconds(0.1f);
-            foreach (var obj in visual)
-            {
-                obj.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-            yield return new WaitForSeconds(0.1f);
-        }
+        //Stop Ready To Attack
+        cts.Cancel();
+        prepareToAttack = false;
+        
+        MoveToInitialPosition();
+       
     }
+    
+    [ContextMenu("Take Damage")]
+    void TakeDmg()
+    {
+        hp -= 1;
+        if (hp < 1)
+        {
+            if (lastWave)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                bossGameplay.finishedWave = true;
+                StopAllCoroutines();
+                cts.Cancel();
+                prepareToAttack = false;
+                MoveToInitialPosition();
+                wave++;
+            }
+        }
+        
+        _anim.SetTrigger("TakeDmg");
+    }
+    
+    
+    private void MoveToInitialPosition()
+    {
+        LeanTween.moveLocal(gameObject, startPosition.position, 2f)
+            .setEaseInCubic().setOnComplete(()=>gameObject.SetActive(false));
+    }
+    
+    
+    
     void Move()
     {
         float step = 1f * Time.deltaTime;

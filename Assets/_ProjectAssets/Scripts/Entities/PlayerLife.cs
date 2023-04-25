@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLife : MonoBehaviour
 {
+    
     public UIManagerGameRoom uiManagerGameRoom;
     
     private int life=1;
@@ -32,10 +34,5 @@ public class PlayerLife : MonoBehaviour
         if(life <=0)
             GameManager.instance.GameOver();
     }
-    
-    
-    
-    
-    
-    
+
 }

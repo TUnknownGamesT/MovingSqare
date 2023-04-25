@@ -22,9 +22,15 @@ public class AdsManager : MonoBehaviour
 #endif
 
 
-    #endregion   
+    #endregion
 
-    public static SceneLoader sceneLoader;
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
+    public static Action onAdFinish;
+    
     private static RewardedAd rewardedAd;
 
     private void Start()
@@ -90,8 +96,7 @@ public class AdsManager : MonoBehaviour
         {
             rewardedAd.Show((Reward reward) =>
             {
-                GameManager.instance.Retry();
-                sceneLoader.ReloadGameScene();
+                onAdFinish?.Invoke();
                 Debug.Log("Finished Ad");
             });
         }

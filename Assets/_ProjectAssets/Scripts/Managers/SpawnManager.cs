@@ -16,10 +16,19 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> spawnableObjects;
     public List<GameObject> powerUps;
     public GameObject enemyAlertSignPrefab;
+    public GameObject coinPrefab;
+   
+    [Header("Status")]
+    public float spawnPowerUps;
+    public float spawnEnemy;
+    public float spawnMoney;
 
-    [Range(0, 1)] public float squareStage2;
-    [Range(0, 1)] public float circleStage2;
-    [Range(0, 1)] public float hexagonStage2;
+    [HideInInspector]
+    public float squareStage2;
+    [HideInInspector]
+    public float circleStage2;
+    [HideInInspector]
+    public float hexagonStage2;
 
     [Header("V Values")] public float maxV;
     public float minV;
@@ -32,30 +41,47 @@ public class SpawnManager : MonoBehaviour
     public float minX;
     public float maxY;
     public float minY;
-
-
-    public float timeBetweenSpawnPowerUps;
-    public float timeBetweenSpawnEnemy;
-    public float timeBetweenSpawnMoney;
-    public GameObject coinPrefab;
-
-
+    
+    
+    
     private Vector2 positionToSpawn;
     private AttentionSignBehaviour attentionSignBehaviour;
 
 
-    private void Start()
+    private void OnEnable()
+    {
+        BossGameplay.OnBossAppear += StopSpawning;
+        BossGameplay.OnBossDisappear += StartSpawning;
+    }
+
+    private void OnDisable()
+    {
+        BossGameplay.OnBossAppear -= StopSpawning;
+        BossGameplay.OnBossDisappear -= StartSpawning;
+    }
+
+
+    public void StopSpawning()
+    {
+        StopAllCoroutines();
+        Debug.Log("Stop Spawning");
+    }
+
+    public void StartSpawning()
     {
         StartCoroutine(SpawnMoney());
         StartCoroutine(SpawnEnemy());
         StartCoroutine(SpawnPowerUps());
+        
+        Debug.Log("Start Spawning");
+        
     }
 
     #region Spawn Money
 
     private IEnumerator SpawnMoney()
     {
-        yield return new WaitForSeconds(timeBetweenSpawnMoney);
+        yield return new WaitForSeconds(spawnMoney);
         Instantiate(coinPrefab, new Vector2(Random.Range(minX, maxX)
             , Random.Range(minY, maxY)), Quaternion.identity);
 
@@ -68,7 +94,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(timeBetweenSpawnEnemy);
+        yield return new WaitForSeconds(spawnEnemy);
 
         GameObject objectToSpawn = spawnableObjects[Random.Range(0, 3)];
         Transform spawnPoint = spawningPoints[Random.Range(0, 3)];
@@ -143,7 +169,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUps()
     {
-        yield return new WaitForSeconds(timeBetweenSpawnPowerUps);
+        yield return new WaitForSeconds(spawnPowerUps);
         Instantiate(powerUps[Random.Range(0, 3)], new Vector2(Random.Range(minX, maxX)
             , Random.Range(minY, maxY)), Quaternion.identity);
         StartCoroutine(SpawnPowerUps());
