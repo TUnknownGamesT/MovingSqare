@@ -788,7 +788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &632462505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3497,7 +3497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 178476164381607092, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: speed
-      value: 3
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 178476164381607092, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: thrust
@@ -3510,6 +3510,26 @@ PrefabInstance:
     - target: {fileID: 178476164381607095, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607095, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0.008356512
+      objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607095, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 0.5263724
+      objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607095, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.2996788
+      objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607095, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.272597
+      objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607095, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[2].value
+      value: 0.24412394
       objectReference: {fileID: 0}
     - target: {fileID: 178476164381607097, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: uiManagerGameRoom
