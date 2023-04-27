@@ -119,22 +119,22 @@ public class MenuAnimation : MonoBehaviour
 
     public void ChoseGameMode()
     {
-        LeanTween.rotate(startButton, new Vector3(0, 0, 6120), 2f);
+        LeanTween.rotate(startButton, new Vector3(0, 0, 360), 2f);
         StartCoroutine(ShowGameModeMenu());
 
     }
     public IEnumerator ShowGameModeMenu()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         gameModeMenu.GetComponent<HorizontalLayoutGroup>().spacing = -650f;
         gameModeMenu.SetActive(true);
         startButton.SetActive(false);
         foreach(Transform child in gameModeMenu.transform)
         {
-            Debug.Log(child.name);
-            LeanTween.rotate(child.gameObject, new Vector3(0, 0, 6120), 2f);
+            //LeanTween.rotate(child.gameObject, new Vector3(0, 0, 360), 2f);
+            LeanTween.rotateLocal(child.gameObject, new Vector3(0, 0, 360), 0.7f);
         }
-        LeanTween.value(-650f, 20f, 2f).setOnUpdate(value =>
+        LeanTween.value(-650f, 20f, 0.7f).setOnUpdate(value =>
         {
             gameModeMenu.GetComponent<HorizontalLayoutGroup>().spacing = value;
         });
