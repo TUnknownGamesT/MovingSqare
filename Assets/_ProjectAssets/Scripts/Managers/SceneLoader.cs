@@ -43,6 +43,7 @@ public class SceneLoader : MonoBehaviour
         }
     }
     
+    
     public  void LoadSurviveScene()
     {
         if (!isLoading)

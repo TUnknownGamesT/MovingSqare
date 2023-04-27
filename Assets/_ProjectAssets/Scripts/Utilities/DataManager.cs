@@ -31,7 +31,7 @@ public class DataManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore",score);
     }
 
-    private void SaveMoney()
+    public void SaveMoney()
     {
         int amount = PlayerPrefs.GetInt("Money");
         amount += Int32.Parse(money.text);

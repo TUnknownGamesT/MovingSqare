@@ -18,11 +18,11 @@ MonoBehaviour:
   type: 1
   effects:
   - name: heal
-    price: 50
+    price: 500
     effect: +1
   - name: heal
-    price: 100
+    price: 700
     effect: +2
   - name: heal
-    price: 200
+    price: 1000
     effect: +3

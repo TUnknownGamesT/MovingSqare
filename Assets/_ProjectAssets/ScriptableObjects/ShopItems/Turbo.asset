@@ -18,11 +18,11 @@ MonoBehaviour:
   type: 1
   effects:
   - name: speed
-    price: 50
+    price: 300
     effect: +10
   - name: speed
-    price: 200
+    price: 500
     effect: +20
   - name: speed
-    price: 300
+    price: 800
     effect: +30

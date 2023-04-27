@@ -1,12 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Newtonsoft.Json.Converters;
-using UnityEditor;
+using GD.MinMaxSlider;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
@@ -22,7 +17,11 @@ public class SpawnManager : MonoBehaviour
     public float spawnPowerUps;
     public float spawnEnemy;
     public float spawnMoney;
-
+    [MinMaxSlider(0,2)] 
+    public Vector2 enemySizeRange;
+    [MinMaxSlider(2, 10)] 
+    public Vector2 enemySpeedRange;
+    
     [HideInInspector]
     public float squareStage2;
     [HideInInspector]
@@ -99,7 +98,10 @@ public class SpawnManager : MonoBehaviour
         GameObject objectToSpawn = spawnableObjects[Random.Range(0, 3)];
         Transform spawnPoint = spawningPoints[Random.Range(0, 3)];
 
-        objectToSpawn.GetComponent<EnemyBehaviour>().speed = Random.Range(2, 4);
+        objectToSpawn.GetComponent<EnemyBehaviour>().speed = Random.Range(enemySpeedRange.x , enemySpeedRange.y);
+
+        float randomSize = Random.Range(enemySizeRange.x, enemySizeRange.y);
+        objectToSpawn.transform.localScale = new Vector2(randomSize, randomSize);
         
         //Set direction, Target and Stage
         SetStage(objectToSpawn);
