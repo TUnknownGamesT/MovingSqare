@@ -870,13 +870,15 @@ MonoBehaviour:
   coinPrefab: {fileID: 141189488381344411, guid: 652c2241b038b0645b53c3361c825e58, type: 3}
   spawnPowerUps: 10
   spawnEnemy: 1
-  spawnMoney: 3
+  spawnMoney: 7
+  enemySizeRange: {x: 0.6, y: 1}
+  enemySpeedRange: {x: 2, y: 5}
   squareStage2: 0
   circleStage2: 0
   hexagonStage2: 0
   maxV: 4.41
   minV: -2.93
-  maxW: 4.24
+  maxW: 4.39
   minW: -3.23
   maxE: 4.38
   minE: -3.07

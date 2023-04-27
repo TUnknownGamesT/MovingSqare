@@ -86,7 +86,6 @@ public class GameManager : MonoBehaviour
     {
         if (!alreadyOver)
         {
-            Debug.Log("In already Over yeyoooo");
             onGameOver?.Invoke();
             if (!askedAd)
             {
