@@ -446,13 +446,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1542269311586771454, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416057618429191554, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2965700657255265779, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2965700657255265779, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3641421062934643566, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4882232371866913965, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882232371866913965, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
       objectReference: {fileID: 0}
     - target: {fileID: 4890205250328361449, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_Layer
@@ -556,7 +576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6071644400648265548, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: wave
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6071644400648265548, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: bossGameplay
@@ -566,9 +586,21 @@ PrefabInstance:
       propertyPath: startPosition
       value: 
       objectReference: {fileID: 2141196407}
+    - target: {fileID: 6071644400648265548, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+      propertyPath: particleColliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 1342210034}
+    - target: {fileID: 6071644400648265548, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+      propertyPath: particleColliders.Array.data[1]
+      value: 
+      objectReference: {fileID: 2134271787}
     - target: {fileID: 9163173962523525094, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163173962523525094, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
@@ -585,7 +617,7 @@ GameObject:
   - component: {fileID: 501094393}
   - component: {fileID: 501094392}
   - component: {fileID: 501094391}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dead Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +663,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 11.669909, y: -0.50996447}
+  m_Offset: {x: 11.669909, y: -1.0422425}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -642,7 +674,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 16.063187}
+  m_Size: {x: 1, y: 17.127743}
   m_EdgeRadius: 0
 --- !u!61 &501094393
 BoxCollider2D:
@@ -657,7 +689,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3952713, y: 7.3407483}
+  m_Offset: {x: 0.21684885, y: 7.3407483}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -668,7 +700,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20.838844, y: 0.7741308}
+  m_Size: {x: 22.063084, y: 0.7741308}
   m_EdgeRadius: 0
 --- !u!61 &501094394
 BoxCollider2D:
@@ -683,7 +715,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -10.201758, y: -1.1867094}
+  m_Offset: {x: -10.201758, y: -1.1600957}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -694,7 +726,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1505795, y: 14.817461}
+  m_Size: {x: 1.1505795, y: 16.361069}
   m_EdgeRadius: 0
 --- !u!4 &501094395
 Transform:
@@ -1005,7 +1037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &632462505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6770,7 +6802,7 @@ MonoBehaviour:
   portal: {fileID: 3815842416876600653}
   bossWaves:
   - bossHP: 2
-    durationOfWave: 20
+    durationOfWave: 0
   - bossHP: 3
     durationOfWave: 30
   - bossHP: 4
@@ -6874,6 +6906,11 @@ Transform:
   m_Father: {fileID: 735233348}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1342210034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2965700657255265779, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+  m_PrefabInstance: {fileID: 476242208}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1353275228
 GameObject:
   m_ObjectHideFlags: 0
@@ -8503,6 +8540,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070532277}
   m_CullTransparentMesh: 1
+--- !u!1 &2134271787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9163173962523525094, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
+  m_PrefabInstance: {fileID: 476242208}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2141196406
 GameObject:
   m_ObjectHideFlags: 0

@@ -49121,13 +49121,17 @@ MonoBehaviour:
   - {fileID: 1889886111363558922}
   - {fileID: 5446522033261168749}
   particleColliders:
-  - {fileID: 9163173962523525094}
   - {fileID: 2965700657255265779}
+  - {fileID: 9163173962523525094}
   - {fileID: 4882232371866913965}
   visual:
   - {fileID: 5529689796377028358}
   - {fileID: 5529689795669856429}
   - {fileID: 5529689796325674619}
+  startPosition: {fileID: 0}
+  bossGameplay: {fileID: 0}
+  lastWave: 0
+  prepareToAttack: 0
 --- !u!61 &7260012493670999830
 BoxCollider2D:
   m_ObjectHideFlags: 0

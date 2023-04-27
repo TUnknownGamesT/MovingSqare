@@ -49,6 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trail: {fileID: 1135871337039600459}
   temp: {fileID: 0}
+  RayCastLayer:
+  - serializedVersion: 2
+    m_Bits: 64
+  - serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &1135871337039600459
 GameObject:
   m_ObjectHideFlags: 0
@@ -9685,6 +9690,7 @@ GameObject:
   - component: {fileID: 4458761931180680383}
   - component: {fileID: 4458761931180680381}
   - component: {fileID: 4458761931180680382}
+  - component: {fileID: 603427970690631273}
   m_Layer: 10
   m_Name: projectile
   m_TagString: Projectile
@@ -14554,3 +14560,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &603427970690631273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4458761931180680376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872d8b1beea0144f496fadf83408306e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 6270261738801356332, guid: 10e28f84b420f4a98b3b1d469db10053, type: 3}

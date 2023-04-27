@@ -51,19 +51,19 @@ public class BossBehaivour : MonoBehaviour
 
     async UniTask Attack()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(3f));
+        await UniTask.Delay(TimeSpan.FromSeconds(4f));
         
         prepareToAttack = true;
         if (wave < 2)
         {
-            int rand = Random.Range(0, 2);
-            if (rand == 0)
+            int rand = Random.Range(0, 3);
+            if (rand >1)
             {
-                StartCoroutine(spawnLaser(wave));
+                SpawnLaser(wave).AttachExternalCancellation(cts.Token);
             }
             else
             {
-                StartCoroutine(spawnBoomerang());
+                SpawnBoomerang().AttachExternalCancellation(cts.Token);
             }
         }
         else
@@ -71,88 +71,67 @@ public class BossBehaivour : MonoBehaviour
             int rand = Random.Range(0, 3);
             if (rand == 0)
             {
-                StartCoroutine(spawnLaser(wave));
+                SpawnLaser(wave).AttachExternalCancellation(cts.Token);
             }
             else if (rand == 1) 
             {
-                StartCoroutine(spawnMissle(wave));
-            }else
+                SpawnMissle(wave).AttachExternalCancellation(cts.Token);
+            }
+            else
             {
-                StartCoroutine(spawnBoomerang());
+                SpawnBoomerang().AttachExternalCancellation(cts.Token);
             }
         }
 
     }
-    
-    
-    IEnumerator spawnLaser(int nrOfLasers)
+    async UniTask SpawnLaser(int nrOfLasers)
     {
-        Debug.Log("Spawner");
-        if (nrOfLasers > 1)
+        if (nrOfLasers >= 2)
         {
-            for (int i = 0; i < particleLasers.Length; i++)
-            {
-                if(nrOfLasers==2 && i == 1)
-                {
-                }
-                else { particleLasers[i].SetActive(true); }
-            }
-
-            yield return new WaitForSeconds(2f);
-
-            for (int i = 0; i < particleColliders.Length; i++)
-            {
-                if (nrOfLasers == 2 && i == 1)
-                {
-                }
-                else
-                {
-                    particleColliders[i].SetActive(true);
-                }
-            }
-
-            yield return new WaitForSeconds(2f);
-
-            for (int i = 0; i < particleLasers.Length; i++)
-            {
-                particleLasers[i].SetActive(false);
-            }
-
-            for (int i = 0; i < particleColliders.Length; i++)
-            {
-                particleColliders[i].SetActive(false);
-            }
+            //spawn the first and last laser
+            particleLasers[0].SetActive(true);
+            particleLasers[2].SetActive(true);
         }
-        else
+        if (nrOfLasers == 3 || nrOfLasers == 1)
         {
-            particleLasers[1].SetActive(true);
-            yield return new WaitForSeconds(2f);
+            particleLasers[1].SetActive(true);//spawn the laser from middle
+        }
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        if (nrOfLasers >= 2)
+        {
+            //spawn the first and last laser collider
+            particleColliders[0].SetActive(true);
+            particleColliders[2].SetActive(true);
+        }
+        if (nrOfLasers == 3 || nrOfLasers == 1)
+        {
             particleColliders[1].SetActive(true);
-            yield return new WaitForSeconds(2f);
-            particleLasers[1].SetActive(false);
-            particleColliders[1].SetActive(false);
         }
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        for (int i = 0; i < particleLasers.Length; i++)
+        {
+            particleLasers[i].SetActive(false);
+            particleColliders[i].SetActive(false);
+        }
+
         prepareToAttack = false;
         Attack().AttachExternalCancellation(cts.Token);
     }
-    
-    IEnumerator spawnMissle(int nrOfMissle)
+    async UniTask SpawnMissle(int nrOfMissle)
     {
         for (int i = 0; i < nrOfMissle; i++)
         {
             Instantiate(missle, particleLasers[1].transform.position, Quaternion.identity);
         }
-        yield return new WaitForSeconds(5f);
+        await UniTask.Delay(TimeSpan.FromSeconds(5f));
         prepareToAttack = false;
         Attack().AttachExternalCancellation(cts.Token);
     }
-    
-    IEnumerator spawnBoomerang()
+    async UniTask SpawnBoomerang()
     {
-
         Instantiate(boomerang, particleLasers[1].transform.position, Quaternion.identity).GetComponent<Boomerang>().Instantiate(player);
-        
-        yield return new WaitForSeconds(5f);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(8f));
         prepareToAttack = false;
         Attack().AttachExternalCancellation(cts.Token);
     }
