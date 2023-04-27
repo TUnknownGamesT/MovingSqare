@@ -8,6 +8,8 @@ public class TouchExplosion : MonoBehaviour
     public GameObject explosionPrefab;
     public Camera mainCam;
     private bool effectsOn;
+#if !UNITY_EDITOR
+
     void Start()
     {
         effectsOn = true;
@@ -25,4 +27,5 @@ public class TouchExplosion : MonoBehaviour
     {
         effectsOn = value;
     }
+#endif
 }
