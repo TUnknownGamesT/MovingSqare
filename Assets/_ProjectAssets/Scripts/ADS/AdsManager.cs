@@ -90,6 +90,7 @@ public class AdsManager : MonoBehaviour
                 rewardedAd = ad;
             });
     }
+    
     private static void ShowRewardedAd()
     {
         if (rewardedAd != null && rewardedAd.CanShowAd())
@@ -97,7 +98,7 @@ public class AdsManager : MonoBehaviour
             rewardedAd.Show((Reward reward) =>
             {
                 onAdFinish?.Invoke();
-                Debug.Log("Finished Ad");
+                LoadRewardedAd();
             });
         }
     }

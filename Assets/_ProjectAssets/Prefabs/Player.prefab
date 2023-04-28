@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 178476164381607088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
+  m_LocalScale: {x: 0.059999995, y: 0.059999995, z: 0.06}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a55c6cbd0f63264cab6c40ce4843e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 150
   moveDir: {x: 0, y: 0}
 --- !u!61 &178476164381607094
 BoxCollider2D:
@@ -259,8 +259,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.4871788
+        time: 0.008356512
+        value: 0.2934288
         inSlope: -0.08497886
         outSlope: -0.08497886
         tangentMode: 0
@@ -268,8 +268,8 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0.10059172
       - serializedVersion: 3
-        time: 0.51801586
-        value: 0.460097
+        time: 0.5263724
+        value: 0.266347
         inSlope: 0.05329616
         outSlope: 0.05329616
         tangentMode: 0
@@ -278,7 +278,7 @@ TrailRenderer:
         outWeight: 0.22247757
       - serializedVersion: 3
         time: 1
-        value: 0.43162394
+        value: 0.23787394
         inSlope: -0.16666667
         outSlope: -0.16666667
         tangentMode: 0

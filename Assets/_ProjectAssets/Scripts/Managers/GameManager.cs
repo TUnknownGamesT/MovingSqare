@@ -86,7 +86,6 @@ public class GameManager : MonoBehaviour
     {
         if (!alreadyOver)
         {
-            Debug.Log("In already Over yeyoooo");
             onGameOver?.Invoke();
             if (!askedAd)
             {
@@ -105,6 +104,11 @@ public class GameManager : MonoBehaviour
     public void ResetAlreadyOver()
     {
         alreadyOver = !alreadyOver;
+    }
+
+    public void ResetAD()
+    {
+        askedAd = !askedAd;
     }
 
     private void StopCoroutine()

@@ -82,7 +82,7 @@ public class PlayerManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
 
-        if (col.gameObject.CompareTag("Enemy") )
+        if (col.gameObject.CompareTag("Enemy"))
         {
             playerLife.Damage(1);
         }
@@ -105,7 +105,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        playerLife.Damage(1);
+        Debug.Log("Touch");
     }
 
 }

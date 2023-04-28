@@ -42,7 +42,6 @@ public class Boomerang : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, player.position - this.transform.position, Mathf.Infinity, RayCastLayer[turn]);
         if (hit.collider != null)
         {
-            Debug.LogError("NewPos"+ player.position);
             destination = hit.point;
             trail.transform.LookAt(destination);
             LeanTween.move(this.gameObject, destination, 3f).setEase(LeanTweenType.easeInOutSine);
