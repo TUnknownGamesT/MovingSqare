@@ -106,6 +106,11 @@ public class GameManager : MonoBehaviour
         alreadyOver = !alreadyOver;
     }
 
+    public void ResetAD()
+    {
+        askedAd = !askedAd;
+    }
+
     private void StopCoroutine()
     {
         StopAllCoroutines();

@@ -32,9 +32,7 @@ public class UIManagerGameRoom : MonoBehaviour
     public RawImage joyStick;
     public GameObject movingZone;
     public TextMeshProUGUI money;
-    public GameObject firstButton;
-    public GameObject secondButton;
-    public SceneLoader sceneLoader;
+    public GameObject revive;
     public RectTransform x2Money;
     public List<GameObject> playerLives;
 
@@ -53,13 +51,11 @@ public class UIManagerGameRoom : MonoBehaviour
         AdsManager.onAdFinish -= ResetMainMenu;
     }
     
-   
 
     private void Start()
     {
         money.text = "0";
-        
-       SetBkSize();
+        SetBkSize();
     }
     
     
@@ -102,9 +98,10 @@ public class UIManagerGameRoom : MonoBehaviour
     {
         FadeInFadeOutJoystick(1,0);
         UpdateScoreUI();
-        ButtonsLoseState();
-        ResetLvlListener();
+        
+        
         loseState.gameObject.SetActive(true);
+        revive.SetActive(false);
         
         LeanTween.value(0, 1, 1f).setOnUpdate(value =>
         {
@@ -117,8 +114,9 @@ public class UIManagerGameRoom : MonoBehaviour
     {
         FadeInFadeOutJoystick(1,0);
         UpdateScoreUI();
-        ButtonsAdState();
         AdListener();
+
+        revive.SetActive(true);
         loseState.gameObject.SetActive(true);
         LeanTween.value(0, 1, 1f).setOnUpdate(value =>
         {
@@ -143,45 +141,17 @@ public class UIManagerGameRoom : MonoBehaviour
         moneyCollected.text =  $"Score\n{money.text}";
     }
     
-    private void ButtonsAdState()
-    {
-        firstButton.GetComponent<Image>().color = Color.green;
-        firstButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Revive";
-        firstButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
-        
-        
-        secondButton.GetComponent<Image>().color = Color.red;
-        secondButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
-    }
-
-    private void ButtonsLoseState()
-    {
-        firstButton.GetComponent<Image>().color = Color.white;
-        firstButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Retry";
-        firstButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
-        
-        secondButton.GetComponent<Image>().color = Color.white;
-        secondButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
-    }
 
     private void AdListener()
     {
-        firstButton.GetComponent<Button>().onClick.AddListener(AdsManager.ShowAd);
+        revive.GetComponent<Button>().onClick.AddListener(AdsManager.ShowAd);
     }
-
-    private void ResetLvlListener()
-    {
-        firstButton.GetComponent<Button>().onClick.RemoveAllListeners();
-        firstButton.GetComponent<Button>().onClick.AddListener(() =>
-        {
-            sceneLoader.ReloadGameScene();
-        });
-    }
+    
 
     public void ResetMainMenu()
     {
         FadeInFadeOutJoystick(0,1);
-        firstButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        revive.GetComponent<Button>().onClick.RemoveAllListeners();
         LeanTween.value(1, 0, 1f).setOnUpdate(value =>
         {
             loseState.alpha = value;

@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
-    "com.guciodevs.simple-min-max-slider": "https://github.com/GucioDevs/SimpleMinMaxSlider.git#upm",
     "com.unity.adaptiveperformance": "4.0.1",
     "com.unity.adaptiveperformance.samsung.android": "4.0.2",
     "com.unity.collab-proxy": "1.15.18",

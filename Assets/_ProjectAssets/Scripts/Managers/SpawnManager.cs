@@ -1,9 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using GD.MinMaxSlider;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
+
+
+public enum PowerUps
+{
+    heal,
+    speed,
+    size
+}
 
 public class SpawnManager : MonoBehaviour
 {
@@ -12,14 +20,13 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> powerUps;
     public GameObject enemyAlertSignPrefab;
     public GameObject coinPrefab;
-   
-    [Header("Status")]
-    public float spawnPowerUps;
+    public GameStats gameStats;
+    
+    [HideInInspector]
     public float spawnEnemy;
+    public float spawnPowerUps;
     public float spawnMoney;
-    [MinMaxSlider(0,2)] 
     public Vector2 enemySizeRange;
-    [MinMaxSlider(2, 10)] 
     public Vector2 enemySpeedRange;
     
     [HideInInspector]
@@ -45,6 +52,7 @@ public class SpawnManager : MonoBehaviour
     
     private Vector2 positionToSpawn;
     private AttentionSignBehaviour attentionSignBehaviour;
+    private List<GameObject> availablePowerUps;
 
 
     private void OnEnable()
@@ -59,18 +67,58 @@ public class SpawnManager : MonoBehaviour
         BossGameplay.OnBossDisappear -= StartSpawning;
     }
 
+    private void Start()
+    {
+        InitStats();
+        InitPowerUps();
+    }
+
+    private void InitStats()
+    {
+        spawnPowerUps = gameStats.spawnPowerUpsTime;
+        spawnMoney = gameStats.spawnMoneyTime;
+        spawnEnemy = gameStats.spawnEnemyTime;
+
+        enemySizeRange = gameStats.enemySizeRange;
+        enemySpeedRange = gameStats.enemySpeedRange;
+    }
+
+    private void InitPowerUps()
+    {
+        availablePowerUps = new();
+        
+        if (PlayerPrefs.HasKey(PowerUps.heal.ToString()))
+        {
+            availablePowerUps.Add(powerUps[0]);
+        }
+        
+        if (PlayerPrefs.HasKey(PowerUps.size.ToString()))
+        {
+            availablePowerUps.Add(powerUps[1]);
+        }
+        
+        if (PlayerPrefs.HasKey(PowerUps.speed.ToString()))
+        {
+            availablePowerUps.Add(powerUps[2]);
+        }
+        
+    }
+
 
     public void StopSpawning()
     {
         StopAllCoroutines();
-        Debug.Log("Stop Spawning");
     }
 
     public void StartSpawning()
     {
         StartCoroutine(SpawnMoney());
         StartCoroutine(SpawnEnemy());
-        StartCoroutine(SpawnPowerUps());
+
+        if (availablePowerUps.Count != 0)
+        {
+            StartCoroutine(SpawnPowerUps());
+        }
         
         Debug.Log("Start Spawning");
         
@@ -172,7 +220,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator SpawnPowerUps()
     {
         yield return new WaitForSeconds(spawnPowerUps);
-        Instantiate(powerUps[Random.Range(0, 3)], new Vector2(Random.Range(minX, maxX)
+        Instantiate(availablePowerUps[Random.Range(0, availablePowerUps.Count-1)], new Vector2(Random.Range(minX, maxX)
             , Random.Range(minY, maxY)), Quaternion.identity);
         StartCoroutine(SpawnPowerUps());
     }

@@ -42,8 +42,8 @@ public class SceneLoader : MonoBehaviour
             StartGame(2);
         }
     }
-    
-    
+
+
     public  void LoadSurviveScene()
     {
         if (!isLoading)
@@ -66,6 +66,7 @@ public class SceneLoader : MonoBehaviour
         if (!isLoading)
         {
             GameManager.instance.ResetAlreadyOver();
+            GameManager.instance.ResetAD();
             isLoading = !isLoading;
             LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
             {
