@@ -30,7 +30,7 @@ public class EnemyBehaviour : MonoBehaviour
         _rb.velocity = transform.right * speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private  void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.name == "Dead Zone")
             Destroy(gameObject);

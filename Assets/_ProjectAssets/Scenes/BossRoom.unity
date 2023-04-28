@@ -20991,7 +20991,7 @@ MonoBehaviour:
   portal: {fileID: 3815842416876600653}
   bossWaves:
   - bossHP: 2
-    durationOfWave: 25
+    durationOfWave: 0
   - bossHP: 3
     durationOfWave: 30
   - bossHP: 4

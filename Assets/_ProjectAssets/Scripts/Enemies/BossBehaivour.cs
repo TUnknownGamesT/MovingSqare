@@ -39,101 +39,118 @@ public class BossBehaivour : MonoBehaviour
     public void InitBoss()
     {
         cts = new CancellationTokenSource();
-        Attack().AttachExternalCancellation(cts.Token);
+        Attack();
     }
 
     public void SetBossStatus(int hp)
     {
         this.hp = hp;
     }
+    
 
-
-
-    async UniTask Attack()
+    private  void Attack()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(4f));
+        UniTask.Void(async () =>
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(4f),cancellationToken:cts.Token);
         
-        prepareToAttack = true;
-        if (wave < 2)
-        {
-            int rand = Random.Range(0, 3);
-            if (rand >1)
+            prepareToAttack = true;
+            if (wave < 2)
             {
-                SpawnLaser(wave).AttachExternalCancellation(cts.Token);
+                int rand = Random.Range(0, 3);
+                if (rand >1)
+                {
+                    SpawnLaser(wave);
+                }
+                else
+                {
+                    SpawnBoomerang();
+                }
             }
             else
             {
-                SpawnBoomerang().AttachExternalCancellation(cts.Token);
+                int rand = Random.Range(0, 3);
+                if (rand == 0)
+                {
+                    SpawnLaser(wave);
+                }
+                else if (rand == 1) 
+                {
+                    SpawnMissle(wave);
+                }
+                else
+                {
+                    SpawnBoomerang();
+                }
             }
-        }
-        else
-        {
-            int rand = Random.Range(0, 3);
-            if (rand == 0)
-            {
-                SpawnLaser(wave).AttachExternalCancellation(cts.Token);
-            }
-            else if (rand == 1) 
-            {
-                SpawnMissle(wave).AttachExternalCancellation(cts.Token);
-            }
-            else
-            {
-                SpawnBoomerang().AttachExternalCancellation(cts.Token);
-            }
-        }
-
+        });
     }
-    async UniTask SpawnLaser(int nrOfLasers)
+    private  void  SpawnLaser(int nrOfLasers)
     {
-        if (nrOfLasers >= 2)
+        UniTask.Void(async () =>
         {
-            //spawn the first and last laser
-            particleLasers[0].SetActive(true);
-            particleLasers[2].SetActive(true);
-        }
-        if (nrOfLasers == 3 || nrOfLasers == 1)
-        {
-            particleLasers[1].SetActive(true);//spawn the laser from middle
-        }
-        await UniTask.Delay(TimeSpan.FromSeconds(2f));
-        if (nrOfLasers >= 2)
-        {
-            //spawn the first and last laser collider
-            particleColliders[0].SetActive(true);
-            particleColliders[2].SetActive(true);
-        }
-        if (nrOfLasers == 3 || nrOfLasers == 1)
-        {
-            particleColliders[1].SetActive(true);
-        }
-        await UniTask.Delay(TimeSpan.FromSeconds(2f));
-        for (int i = 0; i < particleLasers.Length; i++)
-        {
-            particleLasers[i].SetActive(false);
-            particleColliders[i].SetActive(false);
-        }
+            if (nrOfLasers >= 2)
+            {
+                //spawn the first and last laser
+                particleLasers[0].SetActive(true);
+                particleLasers[2].SetActive(true);
+            }
+            if (nrOfLasers == 3 || nrOfLasers == 1)
+            {
+                particleLasers[1].SetActive(true);//spawn the laser from middle
+            }
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(2f),cancellationToken:cts.Token);
+            
+            if (nrOfLasers >= 2)
+            {
+                //spawn the first and last laser collider
+                particleColliders[0].SetActive(true);
+                particleColliders[2].SetActive(true);
+            }
+            if (nrOfLasers == 3 || nrOfLasers == 1)
+            {
+                particleColliders[1].SetActive(true);
+            }
+            await UniTask.Delay(TimeSpan.FromSeconds(2f),cancellationToken:cts.Token); 
+            
+            for (int i = 0; i < particleLasers.Length; i++)
+            {
+                particleLasers[i].SetActive(false);
+                particleColliders[i].SetActive(false);
+            }
 
-        prepareToAttack = false;
-        Attack().AttachExternalCancellation(cts.Token);
+            prepareToAttack = false;
+            Attack();
+        });
     }
-    async UniTask SpawnMissle(int nrOfMissle)
+    
+    
+    private void SpawnMissle(int nrOfMissle)
     {
-        for (int i = 0; i < nrOfMissle; i++)
+        UniTask.Void(async () =>
         {
-            Instantiate(missle, particleLasers[1].transform.position, Quaternion.identity);
-        }
-        await UniTask.Delay(TimeSpan.FromSeconds(5f));
-        prepareToAttack = false;
-        Attack().AttachExternalCancellation(cts.Token);
+            for (int i = 0; i < nrOfMissle; i++)
+            {
+                Instantiate(missle, particleLasers[1].transform.position, Quaternion.identity);
+            }
+            await UniTask.Delay(TimeSpan.FromSeconds(5f),cancellationToken:cts.Token);
+            prepareToAttack = false;
+            Attack();
+        });
     }
-    async UniTask SpawnBoomerang()
+    
+    
+    private void SpawnBoomerang()
     {
-        Instantiate(boomerang, particleLasers[1].transform.position, Quaternion.identity).GetComponent<Boomerang>().Instantiate(player);
+        UniTask.Void(async () =>
+        {
+            Instantiate(boomerang, particleLasers[1].transform.position, Quaternion.identity).GetComponent<Boomerang>().Instantiate(player);
 
-        await UniTask.Delay(TimeSpan.FromSeconds(8f));
-        prepareToAttack = false;
-        Attack().AttachExternalCancellation(cts.Token);
+            await UniTask.Delay(TimeSpan.FromSeconds(8f),cancellationToken:cts.Token);
+            prepareToAttack = false;
+            Attack();
+        });
     }
     
     void Update()
@@ -173,8 +190,7 @@ public class BossBehaivour : MonoBehaviour
             }
             else
             {
-               StopAllCoroutines();
-               LoseAllHP();
+                LoseAllHP();
             }
         }
         _anim.SetTrigger("TakeDmg");
@@ -187,6 +203,8 @@ public class BossBehaivour : MonoBehaviour
         
         //Stop Ready To Attack
         cts.Cancel();
+        cts.Dispose();
+        cts = new CancellationTokenSource();
         prepareToAttack = false;
         
         MoveToInitialPosition();
@@ -205,12 +223,7 @@ public class BossBehaivour : MonoBehaviour
             }
             else
             {
-                bossGameplay.finishedWave = true;
-                StopAllCoroutines();
-                cts.Cancel();
-                prepareToAttack = false;
-                MoveToInitialPosition();
-                wave++;
+                LoseAllHP();
             }
         }
         
