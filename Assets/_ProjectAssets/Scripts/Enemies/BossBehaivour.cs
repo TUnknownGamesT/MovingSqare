@@ -112,7 +112,7 @@ public class BossBehaivour : MonoBehaviour
             {
                 particleColliders[1].SetActive(true);
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(2f),cancellationToken:cts.Token); 
+            await UniTask.Delay(TimeSpan.FromSeconds(2.7f),cancellationToken:cts.Token); 
             
             for (int i = 0; i < particleLasers.Length; i++)
             {
