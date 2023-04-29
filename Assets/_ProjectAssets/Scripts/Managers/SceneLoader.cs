@@ -6,16 +6,14 @@ using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
-    public RectTransform blackCircle;
+    public RawImage blackCircle;
+    public GameObject tranzition;
 
     private bool isLoading;
 
     private void Start()
     {
-        LeanTween.value(30, 0, 2f).setOnUpdate(value =>
-        {
-            blackCircle.localScale = Vector3.one * value;
-        }).setEaseInQuad();
+        //tranzition.SetActive(false);
     }
     
     public void ReloadGameScene()
@@ -23,9 +21,10 @@ public class SceneLoader : MonoBehaviour
         if (!isLoading)
         {
             isLoading = !isLoading;
-            LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
+            tranzition.SetActive(true);
+            LeanTween.value(0, 1, 2.5f).setOnUpdate(value =>
             {
-                blackCircle.localScale = Vector3.one * value;
+                blackCircle.color = new Vector4(0, 0, 0, value);
             }).setEaseInCubic().setOnComplete(() =>
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
@@ -55,9 +54,10 @@ public class SceneLoader : MonoBehaviour
     }
     private void StartGame(int sceneIndex)
     {
-        LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
+        tranzition.SetActive(true);
+        LeanTween.value(0, 1, 2.5f).setOnUpdate(value =>
         {
-            blackCircle.localScale = Vector3.one * value;
+            blackCircle.color = new Vector4(0, 0, 0, value);
         }).setEaseInCubic().setOnComplete(() => SceneManager.LoadScene(sceneIndex)).setDelay(2f);
     }
 
@@ -68,9 +68,10 @@ public class SceneLoader : MonoBehaviour
             GameManager.instance.ResetAlreadyOver();
             GameManager.instance.ResetAD();
             isLoading = !isLoading;
-            LeanTween.value(0, 30, 2.5f).setOnUpdate(value =>
+            tranzition.SetActive(true);
+            LeanTween.value(0, 1, 2.5f).setOnUpdate(value =>
             {
-                blackCircle.localScale = Vector3.one * value;
+                blackCircle.color = new Vector4(0, 0, 0, value);
             }).setEaseInCubic().setOnComplete(() =>SceneManager.LoadScene(0));
         }
         
