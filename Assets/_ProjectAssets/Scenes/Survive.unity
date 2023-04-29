@@ -669,6 +669,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3648714188573584923, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3648714189551688332, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1342,9 +1346,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282b33754d164d8478c5fb18c5a7cb2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1128460937 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3648714190532794962, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+--- !u!114 &1128460938 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3648714190532794961, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+  m_PrefabInstance: {fileID: 646571524}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1129637554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3648714188573584923, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
   m_PrefabInstance: {fileID: 646571524}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1133840115 stripped
@@ -1694,7 +1709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacc3b3775b8da64884c3aa0160c7eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blackCircle: {fileID: 1128460937}
+  blackCircle: {fileID: 1128460938}
+  tranzition: {fileID: 1129637554}
 --- !u!4 &2142500034
 Transform:
   m_ObjectHideFlags: 0
