@@ -25,16 +25,17 @@ public class Movement : MonoBehaviour
   {
     moveDir = _playerInput.actions["Move"].ReadValue<Vector2>();
     isMoving = Convert.ToBoolean(moveDir.magnitude);
-
+    //_rb.velocity = moveDir * speed * Time.deltaTime;
+    /*currentInputValue = Vector2.SmoothDamp(currentInputValue, moveDir,
+      ref smoothInputValue, 0.1f);
+    _rb.velocity = currentInputValue * speed * Time.fixedDeltaTime;*/
+    
   }
 
 
   private void FixedUpdate()
   {
-    _rb.velocity = moveDir * speed * Time.fixedDeltaTime;
-    /*currentInputValue = Vector2.SmoothDamp(currentInputValue, moveDir,
-      ref smoothInputValue, 0.1f);
-    _rb.velocity = currentInputValue * speed * Time.fixedDeltaTime;*/
+    _rb.MovePosition(_rb.position + moveDir*speed*Time.deltaTime);
   }
   
 }

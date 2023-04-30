@@ -566,6 +566,12 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: d802015de14ab81418f5a3abd8b2d0fd, type: 3}
   - name: PlayerDeath
     audioClip: {fileID: 8300000, guid: 68afee42477fcc84ba0c17f01dcb6acc, type: 3}
+  ambientSounds:
+  - {fileID: 8300000, guid: 57beecd6e41494d46b353b868298b0cc, type: 3}
+  - {fileID: 8300000, guid: 964b09234311ff147a223ae896570329, type: 3}
+  - {fileID: 8300000, guid: d2ecbca003b5ef64e823fd37072c5550, type: 3}
+  - {fileID: 8300000, guid: 18926825aac28fd49a96bb8ed6af2d94, type: 3}
+  - {fileID: 8300000, guid: 498b0de7c934e4649a6cb27f13f16d54, type: 3}
 --- !u!82 &631075694
 AudioSource:
   m_ObjectHideFlags: 0
@@ -576,7 +582,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 18926825aac28fd49a96bb8ed6af2d94, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.598
   m_Pitch: 1
@@ -765,6 +771,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1355826961}
+    - target: {fileID: 3648714189677063718, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2142500033}
+    - target: {fileID: 3648714189677063718, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReloadGameScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648714189867868676, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2142500033}
+    - target: {fileID: 3648714189867868676, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 3648714189897594600, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1424,7 +1446,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355826959}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1355826961
 Camera:
   m_ObjectHideFlags: 0
@@ -1563,7 +1585,7 @@ MonoBehaviour:
   uiManager: {fileID: 922029890}
   spawnManager: {fileID: 655162601}
   items: {fileID: 11400000, guid: b7ea795655413406ea507c2ff8ac869a, type: 2}
-  difficultySpeed: 7
+  difficultySpeed: 10
   extraMoneyIncrease: 15
 --- !u!1 &1721086442
 GameObject:
