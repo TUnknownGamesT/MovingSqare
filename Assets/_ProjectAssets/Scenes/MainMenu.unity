@@ -777,7 +777,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 3094.7998, y: 3094.7998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &429007195
 CanvasRenderer:
@@ -800,14 +800,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 75901ba6b57f94f089d8e0deebd0ecb6, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1198,7 +1198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4841140330262006930, guid: 223ef801a9a3b4a7c9fe155744179478, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 15
+      value: 14.9999695
       objectReference: {fileID: 0}
     - target: {fileID: 4841140330262006930, guid: 223ef801a9a3b4a7c9fe155744179478, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1410,7 +1410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &624390148
 Transform:
   m_ObjectHideFlags: 0

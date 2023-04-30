@@ -105,7 +105,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Touch");
+        playerLife.Damage(1);
     }
 
 }

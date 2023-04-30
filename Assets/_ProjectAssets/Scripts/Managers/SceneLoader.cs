@@ -22,7 +22,7 @@ public class SceneLoader : MonoBehaviour
         {
             isLoading = !isLoading;
             tranzition.SetActive(true);
-            LeanTween.value(0, 1, 2.5f).setOnUpdate(value =>
+            LeanTween.value(0, 1, 1f).setOnUpdate(value =>
             {
                 blackCircle.color = new Vector4(0, 0, 0, value);
             }).setEaseInCubic().setOnComplete(() =>
@@ -55,10 +55,10 @@ public class SceneLoader : MonoBehaviour
     private void StartGame(int sceneIndex)
     {
         tranzition.SetActive(true);
-        LeanTween.value(0, 1, 2.5f).setOnUpdate(value =>
+        LeanTween.value(0, 1, 1f).setOnUpdate(value =>
         {
             blackCircle.color = new Vector4(0, 0, 0, value);
-        }).setEaseInCubic().setOnComplete(() => SceneManager.LoadScene(sceneIndex)).setDelay(2f);
+        }).setEaseInCubic().setOnComplete(() => SceneManager.LoadScene(sceneIndex)).setDelay(1f);
     }
 
     public  void LoadMainMenu()
@@ -66,10 +66,10 @@ public class SceneLoader : MonoBehaviour
         if (!isLoading)
         {
             GameManager.instance.ResetAlreadyOver();
-            GameManager.instance.ResetAD();
+            GameManager.instance.ResetAd();
             isLoading = !isLoading;
             tranzition.SetActive(true);
-            LeanTween.value(0, 1, 2.5f).setOnUpdate(value =>
+            LeanTween.value(0, 1, 1f).setOnUpdate(value =>
             {
                 blackCircle.color = new Vector4(0, 0, 0, value);
             }).setEaseInCubic().setOnComplete(() =>SceneManager.LoadScene(0));

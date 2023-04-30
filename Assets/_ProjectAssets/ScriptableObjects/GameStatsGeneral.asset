@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f3eec44b6e61d4c939970589a87a9c, type: 3}
   m_Name: GameStatsGeneral
   m_EditorClassIdentifier: 
-  enemySizeRange: {x: 0.6, y: 0.8}
-  enemySpeedRange: {x: 2, y: 3}
+  enemySizeRange: {x: 0.5, y: 0.6}
+  enemySpeedRange: {x: 1, y: 3}
   spawnPowerUpsTime: 7
   spawnMoneyTime: 5
   spawnEnemyTime: 1
