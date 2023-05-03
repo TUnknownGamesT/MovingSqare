@@ -32,9 +32,11 @@ public class UIManagerGameRoom : MonoBehaviour
     public RawImage joyStick;
     public GameObject movingZone;
     public TextMeshProUGUI money;
+    public GameObject moneyParent;
     public GameObject revive;
     public RectTransform x2Money;
     public List<GameObject> playerLives;
+    public GameObject livesParent;
 
     private bool gameOver;
     private int index = 0;
@@ -83,7 +85,7 @@ public class UIManagerGameRoom : MonoBehaviour
         var worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 
         movingZone.transform.localScale = new Vector2((float)worldScreenWidth / width,
-            (float)worldScreenHeight / height*0.75f);
+            (float)worldScreenHeight / height);
 
     }
 
@@ -92,6 +94,12 @@ public class UIManagerGameRoom : MonoBehaviour
         int amountOfMoney = Int32.Parse(money.text);
         amountOfMoney += amount;
         money.text = amountOfMoney.ToString();
+
+        LeanTween.value(1, 0.3f, 0.7f).setOnUpdate(value =>
+        {
+            moneyParent.transform.localScale = Vector3.one * value;
+        }).setEasePunch();
+
     }
     
     public void LoseState()
@@ -163,18 +171,23 @@ public class UIManagerGameRoom : MonoBehaviour
     {
         gameOver = true;
     }
-
+    
     public void IncreaseLife()
     {
         index++;
         playerLives[index].SetActive(true);
+        
+        LeanTween.value(1, 0.5f, 0.7f).setOnUpdate(value =>
+        {
+            livesParent.transform.localScale = Vector3.one * value;
+        }).setEasePunch();
+        
     }
 
     public void DecreaseLife()
     {
         playerLives[index].SetActive(false);
         index--;
-        
     }
     
     

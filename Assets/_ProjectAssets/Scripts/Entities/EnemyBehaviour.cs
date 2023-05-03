@@ -38,7 +38,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy") ||
             col.gameObject.CompareTag("Player"))
         {
-            SoundManager.instance.EnemyCollisionSound();
+            SoundManager.instance.PlaySoundEffect(Constants.Sounds.DestroyEnemy);
             Destroy(gameObject);
             Instantiate(deadEffect, new Vector3(col.contacts[0].point.x,
                 col.contacts[0].point.y,-8) ,Quaternion.identity);

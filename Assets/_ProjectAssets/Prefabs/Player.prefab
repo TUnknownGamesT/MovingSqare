@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLife: {fileID: 178476164381607097}
   movement: {fileID: 178476164381607092}
+  cameraShaking: {fileID: 0}
 --- !u!114 &178476164381607092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a55c6cbd0f63264cab6c40ce4843e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3.5
   moveDir: {x: 0, y: 0}
 --- !u!61 &178476164381607094
 BoxCollider2D:

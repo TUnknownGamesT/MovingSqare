@@ -63,7 +63,7 @@ public class Circle : EnemyBehaviour,IEnemyStages
         if (col.gameObject.CompareTag("Enemy") ||
             col.gameObject.CompareTag("Player"))
         {
-            SoundManager.instance.EnemyCollisionSound();
+            SoundManager.instance.PlaySoundEffect(Constants.Sounds.DestroyEnemy);
             cts.Cancel();
             Destroy(gameObject);
             Instantiate(deadEffect, new Vector3(col.contacts[0].point.x,
