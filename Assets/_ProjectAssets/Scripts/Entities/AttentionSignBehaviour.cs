@@ -49,6 +49,13 @@ public class AttentionSignBehaviour :MonoBehaviour, IMoveAlongAnAxe
                     new Vector2(target.position.x,localTransform.position.y), platformSpeed*Time.deltaTime);
                 break;
             }
+            
+            case Directions.S:
+            {
+                localTransform.position = Vector2.MoveTowards(transform.position,
+                    new Vector2(target.position.x,localTransform.position.y), platformSpeed*Time.deltaTime);
+                break;
+            }
         }
     }
 

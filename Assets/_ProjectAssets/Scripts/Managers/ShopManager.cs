@@ -101,12 +101,12 @@ public class ShopManager : MonoBehaviour
         if (shopElements[index].upgradeStage == 3)
         {
             _details.text = $"{shopElements[index].effects[2].name} :" +
-                            $" {shopElements[index].effects[2].effect}";
+                            $" {shopElements[index].effects[2].shopDescription}";
         }
         else
         {
             _details.text = $"{shopElements[index].effects[shopElements[index].upgradeStage].name} :" +
-                            $" {shopElements[index].effects[shopElements[index].upgradeStage].effect}";
+                            $" {shopElements[index].effects[shopElements[index].upgradeStage].shopDescription}";
         }
         
        

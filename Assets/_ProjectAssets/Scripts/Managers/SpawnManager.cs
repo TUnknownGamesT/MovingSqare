@@ -36,12 +36,18 @@ public class SpawnManager : MonoBehaviour
     [HideInInspector]
     public float hexagonStage2;
 
-    [Header("V Values")] public float maxV;
+    [Header("V Values")]
+    public float maxV;
     public float minV;
-    [Header("W Values")] public float maxW;
+    [Header("W Values")] 
+    public float maxW;
     public float minW;
-    [Header("E Values")] public float maxE;
+    [Header("E Values")]
+    public float maxE;
     public float minE;
+    [Header("S Values")]
+    public float maxS;
+    public float minS;
 
     [Header("Money Spawner Zone")] public float maxX;
     public float minX;
@@ -143,8 +149,8 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(spawnEnemy);
 
-        GameObject objectToSpawn = spawnableObjects[Random.Range(0, 3)];
-        Transform spawnPoint = spawningPoints[Random.Range(0, 3)];
+        GameObject objectToSpawn = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
+        Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
 
         objectToSpawn.GetComponent<EnemyBehaviour>().speed = Random.Range(enemySpeedRange.x , enemySpeedRange.y);
 
@@ -206,6 +212,10 @@ public class SpawnManager : MonoBehaviour
             case "W":
                 positionToSpawn = new Vector2(Random.Range(minW, maxW), 6.14f);
                 attentionSignBehaviour.enemyDirection = Constants.Directions.W;
+                break;
+            case "S":
+                positionToSpawn = new Vector2(Random.Range(minS, maxS), -6.72f);
+                attentionSignBehaviour.enemyDirection = Constants.Directions.S;
                 break;
             default:
                 Debug.LogError("Error in Enemy Direction");

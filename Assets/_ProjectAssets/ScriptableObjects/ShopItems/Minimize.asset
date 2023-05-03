@@ -20,9 +20,12 @@ MonoBehaviour:
   - name: size
     price: 400
     effect: -0.01
+    shopDescription: -15%
   - name: size
     price: 500
     effect: -0.02
+    shopDescription: -25%
   - name: size
     price: 600
     effect: -0.03
+    shopDescription: -35%

@@ -20,3 +20,4 @@ MonoBehaviour:
   - name: speed
     price: 300
     effect: +0.4
+    shopDescription: +10%

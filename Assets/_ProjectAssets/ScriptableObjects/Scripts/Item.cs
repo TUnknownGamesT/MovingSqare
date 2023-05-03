@@ -17,6 +17,7 @@ public class Effects
     public string name;
     public int price;
     public string effect;
+    public string shopDescription;
 }
 
 
