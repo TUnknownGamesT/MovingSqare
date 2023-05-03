@@ -19,10 +19,13 @@ MonoBehaviour:
   effects:
   - name: speed
     price: 300
-    effect: +0.5
+    effect: +0.001
+    shopDescription: +10%
   - name: speed
     price: 500
-    effect: +1
+    effect: +0.002
+    shopDescription: +20%
   - name: speed
     price: 800
-    effect: +1.5
+    effect: +0.003
+    shopDescription: +30%

@@ -17,6 +17,7 @@ MonoBehaviour:
   unlocked: 1
   type: 0
   effects:
-  - name: nothing
+  - name: effect
     price: 0
     effect: 0
+    shopDescription: does nothing

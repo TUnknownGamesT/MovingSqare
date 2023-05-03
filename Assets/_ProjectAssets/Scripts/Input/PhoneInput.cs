@@ -38,9 +38,9 @@ public partial class @PhoneInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Touching"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""1d5e93c6-6665-4632-99a6-e0bf443a1434"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -61,8 +61,8 @@ public partial class @PhoneInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""31498942-6d44-4c49-bd8b-9a78fe64b33f"",
-                    ""path"": ""<Touchscreen>/primaryTouch/position"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""path"": ""<Touchscreen>/primaryTouch/indirectTouch"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Touching"",

@@ -18,7 +18,8 @@ public class Constants
     {
         E,
         V,
-        W
+        W,
+        S
     }
     
     public enum Sounds

@@ -37,41 +37,17 @@ public class ContentVisualBehaviour : MonoBehaviour
         pos = new float[transform.childCount];
         float distance = 1f / (pos.Length - 1f);
 
-        for (int i = 0; i < pos.Length; i++)
-            pos[i] = distance * i;
+         for (int i = 0; i < pos.Length; i++)
+             pos[i] = distance * i;
+        
+        
+        scrollPos = scrollbar.GetComponent<Scrollbar>().value;
 
-        if (_isTouching)
+         for (int i = 0; i < pos.Length; i++)
         {
-             scrollPos = scrollbar.GetComponent<Scrollbar>().value;
-        }
-        else
-        {
-            for (int i = 0; i < pos.Length; i++)
+            if (scrollPos < pos[i] + (distance / 0.5f) && scrollPos > pos[i] - (distance / 0.5f))
             {
-                if (scrollPos < pos[i] + (distance / 1.7) && scrollPos > pos[i] - (distance / 1.7))
-                {
-                    scrollbar.GetComponent<Scrollbar>().value =
-                        Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.7f);
-                }
-            }
-        }
-        
-        
-        for (int i = 0; i < pos.Length; i++)
-        {
-            if (scrollPos < pos[i] + (distance / 1.7) && scrollPos > pos[i] - (distance / 1.7))
-            {
-                transform.GetChild(i).localScale =
-                    Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.7f);
                 ShopManager.instance.SetDetails(i);
-
-                for(int j = 0;j<pos.Length;j++)
-                {
-                    if(i!=j)
-                        transform.GetChild(j).localScale = 
-                            Vector2.Lerp(transform.GetChild(j).localScale, new Vector2(0.8f, 0.8f), 0.1f);
-                }
-                
             }
         }
     }
