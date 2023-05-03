@@ -61,27 +61,21 @@ public class SoundManager : MonoBehaviour
         soundOn = PlayerPrefs.GetInt("sound") == 1;
     }
 
-    public void EnemyCollisionSound()
+    public void PlaySoundEffect(Constants.Sounds soundName)
     {
         if (soundOn)
         {
-            audioSource.PlayOneShot(soundClipsList[0].audioClip);
+          AudioClip clip = soundClipsList.Find(x => x.name == soundName).audioClip;
+          audioSource.PlayOneShot(clip);
         }
-    }
-
-    public void PickCoinSound()
-    {
-        if (soundOn)
-        {
-           audioSource.PlayOneShot(soundClipsList[1].audioClip);   
-        }
+        
     }
 
     public void PlayerDeathSound()
     {
         if (soundOn)
         {
-            audioSource.PlayOneShot(soundClipsList[2].audioClip);
+            PlaySoundEffect(Constants.Sounds.PlayerDeath);
         }
     }
     
