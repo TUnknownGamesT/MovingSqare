@@ -48,10 +48,10 @@ public class ContentVisualBehaviour : MonoBehaviour
         {
             for (int i = 0; i < pos.Length; i++)
             {
-                if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - (distance / 2))
+                if (scrollPos < pos[i] + (distance / 1.7) && scrollPos > pos[i] - (distance / 1.7))
                 {
                     scrollbar.GetComponent<Scrollbar>().value =
-                        Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.1f);
+                        Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.7f);
                 }
             }
         }
@@ -59,10 +59,10 @@ public class ContentVisualBehaviour : MonoBehaviour
         
         for (int i = 0; i < pos.Length; i++)
         {
-            if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - (distance / 2))
+            if (scrollPos < pos[i] + (distance / 1.7) && scrollPos > pos[i] - (distance / 1.7))
             {
                 transform.GetChild(i).localScale =
-                    Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
+                    Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.7f);
                 ShopManager.instance.SetDetails(i);
 
                 for(int j = 0;j<pos.Length;j++)

@@ -7,10 +7,10 @@ public class Constants
 {
     public static float platformSpeed = 2f;
 
-    [Serializable]
+    [System.Serializable]
     public class SoundClips
     {
-        public string name;
+        public Sounds name;
         public AudioClip audioClip;
     }
     
@@ -19,5 +19,14 @@ public class Constants
         E,
         V,
         W
+    }
+    
+    public enum Sounds
+    {
+        DestroyEnemy,
+        PickCoin,
+        PlayerDeath,
+        PickLife,
+        PlayerGetHit
     }
 }

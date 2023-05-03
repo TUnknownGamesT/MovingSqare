@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 
     public PlayerLife playerLife;
     public Movement movement;
+    public CameraShaking cameraShaking;
 
 
     private void OnEnable()
@@ -85,6 +86,8 @@ public class PlayerManager : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy"))
         {
             playerLife.Damage(1);
+            SoundManager.instance.PlaySoundEffect(Constants.Sounds.PlayerGetHit);
+            cameraShaking.Shake();
         }
 
         if (col.gameObject.CompareTag("PowerUp"))
@@ -99,13 +102,17 @@ public class PlayerManager : MonoBehaviour
 
         if (col.gameObject.CompareTag("Projectile"))
         {
+            SoundManager.instance.PlaySoundEffect(Constants.Sounds.PlayerGetHit);
             playerLife.Damage(1);
+            cameraShaking.Shake();
         }
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Touch");
+        SoundManager.instance.PlaySoundEffect(Constants.Sounds.PlayerGetHit);
+        playerLife.Damage(1);
+        cameraShaking.Shake();
     }
 
 }

@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         BossGameplay.OnBossAppear += StopCoroutine;
         BossGameplay.OnBossDisappear += StartCoroutine;
         AdsManager.onAdFinish += ResetAlreadyOver;
+        AdsManager.onAdFinish += SetViewAdTrue;
     }
     
     
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
         BossGameplay.OnBossAppear -= StopCoroutine;
         BossGameplay.OnBossDisappear -= StartCoroutine;
         AdsManager.onAdFinish -= ResetAlreadyOver;
+        AdsManager.onAdFinish -= SetViewAdTrue;
     }
 
     private void Start()
@@ -90,11 +92,10 @@ public class GameManager : MonoBehaviour
             if (!askedAd)
             {
                 uiManager.AdState();
-                askedAd = !askedAd;
             }
             else
             {
-                askedAd = !askedAd;
+                ResetAd();
                 uiManager.LoseState();
             }
             alreadyOver = !alreadyOver;
@@ -106,9 +107,15 @@ public class GameManager : MonoBehaviour
         alreadyOver = !alreadyOver;
     }
 
-    public void ResetAD()
+    public void SetViewAdTrue()
     {
-        askedAd = !askedAd;
+        askedAd = true;
+    }
+
+    public void ResetAd()
+    {
+        if (askedAd)
+            askedAd = false;
     }
 
     private void StopCoroutine()

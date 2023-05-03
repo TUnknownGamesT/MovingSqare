@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
@@ -24,7 +26,8 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource audioSource;
     public List<Constants.SoundClips> soundClipsList;
-
+    public List<AudioClip> ambientSounds;
+    
 
     private void OnEnable()
     {
@@ -40,49 +43,39 @@ public class SoundManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         AudioSetup();
+        
     }
     private void AudioSetup()
     {
         if (PlayerPrefs.GetInt("music") == 1)
         {
             musicOn = true;
-            this.GetComponent<AudioSource>().Play();
+            audioSource.clip = ambientSounds[Random.Range(0, ambientSounds.Count - 1)];
+            GetComponent<AudioSource>().Play();
         }
         else
         {
             musicOn = false;
         }
-        if (PlayerPrefs.GetInt("sound") == 1)
-        {
-            soundOn = true;
-        }
-        else
-        {
-            soundOn = false;
-        }
+
+        soundOn = PlayerPrefs.GetInt("sound") == 1;
     }
 
-    public void EnemyCollisionSound()
+    public void PlaySoundEffect(Constants.Sounds soundName)
     {
         if (soundOn)
         {
-            audioSource.PlayOneShot(soundClipsList[0].audioClip);
+          AudioClip clip = soundClipsList.Find(x => x.name == soundName).audioClip;
+          audioSource.PlayOneShot(clip);
         }
-    }
-
-    public void PickCoinSound()
-    {
-        if (soundOn)
-        {
-           audioSource.PlayOneShot(soundClipsList[1].audioClip);   
-        }
+        
     }
 
     public void PlayerDeathSound()
     {
         if (soundOn)
         {
-            audioSource.PlayOneShot(soundClipsList[2].audioClip);
+            PlaySoundEffect(Constants.Sounds.PlayerDeath);
         }
     }
     
