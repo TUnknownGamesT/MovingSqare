@@ -20,9 +20,12 @@ MonoBehaviour:
   - name: heal
     price: 500
     effect: +1
+    shopDescription: +1 life
   - name: heal
     price: 700
     effect: +2
+    shopDescription: +2 life
   - name: heal
     price: 1000
     effect: +3
+    shopDescription: +2 life

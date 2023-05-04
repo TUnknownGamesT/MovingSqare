@@ -2414,7 +2414,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2128394304}
   m_HandleRect: {fileID: 2128394303}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2484,7 +2484,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024170798}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1024170800
 Camera:
   m_ObjectHideFlags: 0
@@ -2730,7 +2730,7 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 10.28
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -2762,7 +2762,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 46.74211, y: 11.685524, z: 42.0679, w: 12.854126}
+  m_margin: {x: 143.26819, y: 26.164421, z: 90.3309, w: 25.724236}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3701,7 +3701,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -0.000015258789, y: 883.48016}
-  m_SizeDelta: {x: -428.05682, y: 1766.9}
+  m_SizeDelta: {x: -608.00006, y: 1766.9}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1338459199
 MonoBehaviour:

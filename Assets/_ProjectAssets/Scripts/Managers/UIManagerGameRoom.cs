@@ -29,7 +29,6 @@ public class UIManagerGameRoom : MonoBehaviour
     public TextMeshProUGUI highScore;
     public TextMeshProUGUI moneyCollected;
     public CanvasGroup loseState;
-    public RawImage joyStick;
     public GameObject movingZone;
     public TextMeshProUGUI money;
     public GameObject moneyParent;
@@ -104,7 +103,6 @@ public class UIManagerGameRoom : MonoBehaviour
     
     public void LoseState()
     {
-        FadeInFadeOutJoystick(1,0);
         UpdateScoreUI();
         
         
@@ -115,12 +113,11 @@ public class UIManagerGameRoom : MonoBehaviour
         {
             loseState.alpha = value;
 
-        }).setEaseInQuad().setOnComplete(()=>joyStick.gameObject.SetActive(false));
+        }).setEaseInQuad();
     }
     
     public void AdState()
     {
-        FadeInFadeOutJoystick(1,0);
         UpdateScoreUI();
         AdListener();
 
@@ -129,19 +126,9 @@ public class UIManagerGameRoom : MonoBehaviour
         LeanTween.value(0, 1, 1f).setOnUpdate(value =>
         {
             loseState.alpha = value;
-        }).setEaseInQuad().setOnComplete(()=>joyStick.gameObject.SetActive(false));
+        }).setEaseInQuad();
     }
-
-    public void FadeInFadeOutJoystick(float startValue, float endValue)
-    {
-        LeanTween.value(startValue, endValue, 1f).setOnUpdate(value =>
-        {
-            Color c =  joyStick.color;
-            c.a = value;
-            joyStick.color = c;
-            
-        }).setEaseInQuad().setOnComplete(()=>joyStick.gameObject.SetActive(false));
-    }
+    
 
     private void UpdateScoreUI()
     {
@@ -158,13 +145,12 @@ public class UIManagerGameRoom : MonoBehaviour
 
     public void ResetMainMenu()
     {
-        FadeInFadeOutJoystick(0,1);
         revive.GetComponent<Button>().onClick.RemoveAllListeners();
         LeanTween.value(1, 0, 1f).setOnUpdate(value =>
         {
             loseState.alpha = value;
 
-        }).setEaseInQuad().setOnComplete(()=>joyStick.gameObject.SetActive(true));
+        }).setEaseInQuad();
     }
     
     private void SetGameOver()
