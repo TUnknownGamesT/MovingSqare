@@ -10215,7 +10215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5529689795805235533, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5529689795805235533, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20750,7 +20750,7 @@ MonoBehaviour:
   portal: {fileID: 3815842416876600653}
   bossWaves:
   - bossHP: 1
-    durationOfWave: 4
+    durationOfWave: 25
   - bossHP: 1
     durationOfWave: 4
   - bossHP: 1
@@ -20804,7 +20804,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1083632471
 MonoBehaviour:
@@ -41390,6 +41390,18 @@ PrefabInstance:
     - target: {fileID: 7534325334952605316, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
       propertyPath: m_Name
       value: SpawnManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
+      propertyPath: spawnLines
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
+      propertyPath: fullScreenLine
+      value: 
+      objectReference: {fileID: 7159293786856718687, guid: 928d9da3d80284f4793091c4ec7b021a, type: 3}
+    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
+      propertyPath: linesSimultaneusly
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7534325334952605323, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
       propertyPath: m_RootOrder

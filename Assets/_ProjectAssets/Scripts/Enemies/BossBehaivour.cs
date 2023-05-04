@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class BossBehaivour : MonoBehaviour
 {
     public int wave,hp;
-    public GameObject  missle , boomerang;
+    public GameObject hpPanel , missle , boomerang;
     public Transform[] miniBossPos;
     public Transform[] flankPos;
     public GameObject[] particleLasers;
@@ -45,6 +45,11 @@ public class BossBehaivour : MonoBehaviour
     public void SetBossStatus(int hp)
     {
         this.hp = hp;
+
+        for(int i =0; i < hp; i++)
+        {
+            hpPanel.transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
     
 
@@ -112,14 +117,17 @@ public class BossBehaivour : MonoBehaviour
             {
                 particleColliders[1].SetActive(true);
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(2.7f),cancellationToken:cts.Token); 
+            await UniTask.Delay(TimeSpan.FromSeconds(2f),cancellationToken:cts.Token); 
             
             for (int i = 0; i < particleLasers.Length; i++)
             {
-                particleLasers[i].SetActive(false);
                 particleColliders[i].SetActive(false);
             }
-
+            await UniTask.Delay(TimeSpan.FromSeconds(0.7f), cancellationToken: cts.Token);
+            for (int i = 0; i < particleLasers.Length; i++)
+            {
+                particleLasers[i].SetActive(false);
+            }
             prepareToAttack = false;
             Attack();
         });
@@ -161,26 +169,15 @@ public class BossBehaivour : MonoBehaviour
         }
     }
     
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "projectile")
-        {
-            Debug.Log("ive got hit my little bitch");
-        }
-        else
-        {
-            Debug.Log("my tag is : " + collision.gameObject.tag);
-        }
-    }
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("particle "+other.transform.parent.gameObject.name);
         Destroy(other.transform.parent.gameObject);
         TakeDmg(1);
     }
    
     void TakeDmg(int value)
     {
+        hpPanel.transform.GetChild(hp-1).gameObject.SetActive(false);
         hp -= value;
         if (hp < 1)
         {
@@ -242,6 +239,6 @@ public class BossBehaivour : MonoBehaviour
     void Move()
     {
         float step = 1f * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 4,-2), step);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 3.5f,-2), step);
     }
 }
