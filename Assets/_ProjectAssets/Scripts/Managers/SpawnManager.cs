@@ -20,12 +20,15 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> powerUps;
     public GameObject enemyAlertSignPrefab;
     public GameObject coinPrefab;
+    public GameObject fullScreenLine;
     public GameStats gameStats;
     
     [HideInInspector]
     public float spawnEnemy;
     public float spawnPowerUps;
     public float spawnMoney;
+    public float spawnLines;
+    public int linesSimultaneusly;
     public Vector2 enemySizeRange;
     public Vector2 enemySpeedRange;
     
@@ -49,7 +52,8 @@ public class SpawnManager : MonoBehaviour
     public float maxS;
     public float minS;
 
-    [Header("Money Spawner Zone")] public float maxX;
+    [Header("Money Spawner Zone")]
+    public float maxX;
     public float minX;
     public float maxY;
     public float minY;
@@ -77,6 +81,7 @@ public class SpawnManager : MonoBehaviour
     {
         InitStats();
         InitPowerUps();
+        StartCoroutine(SpawnLines());
     }
 
     private void InitStats()
@@ -129,6 +134,24 @@ public class SpawnManager : MonoBehaviour
         Debug.Log("Start Spawning");
         
     }
+
+
+    #region Spawn fullScreenLines
+
+    private IEnumerator SpawnLines()
+    {
+        yield return new WaitForSeconds(spawnLines);
+        for (int i = 0; i < linesSimultaneusly; i++)
+        {
+            Instantiate(fullScreenLine, new Vector2(Random.Range(minX, maxX)
+                , Random.Range(minY, maxY)), Quaternion.Euler(0, 0, Random.RandomRange(0, 180)));
+        }
+        StartCoroutine(SpawnLines());
+    }
+
+    #endregion
+
+
 
     #region Spawn Money
 
