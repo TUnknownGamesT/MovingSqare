@@ -60,14 +60,16 @@ public class PlayerManager : MonoBehaviour
 
             default:
             {
-                Debug.LogError("Effect from player not defined in switch");
+                Debug.Log("Effect from player not defined in switch");
                 return;
             }
         }
     }
     
+    
     private void Revive()
     {
+        transform.position = Vector3.zero;
         playerLife.AddLife(1);
         GetComponent<BoxCollider2D>().enabled = false;
         LeanTween.value(1, 0.5f, 0.3f).setOnUpdate(value =>
@@ -94,17 +96,23 @@ public class PlayerManager : MonoBehaviour
         {
             col.gameObject.GetComponent<PowerUpBehaviour>().Effect();
         }
+
+       
     }
     
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-
         if (col.gameObject.CompareTag("Projectile"))
         {
             SoundManager.instance.PlaySoundEffect(Constants.Sounds.PlayerGetHit);
             playerLife.Damage(1);
             cameraShaking.Shake();
+        }
+        
+        if (col.gameObject.CompareTag("Obstacle"))
+        {
+            playerLife.Damage(1);
         }
     }
 
@@ -115,4 +123,8 @@ public class PlayerManager : MonoBehaviour
         cameraShaking.Shake();
     }
 
+    private void OnBecameInvisible()
+    {
+        playerLife.Damage(playerLife.Life);
+    }
 }

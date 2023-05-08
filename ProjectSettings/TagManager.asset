@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - PowerUp
   - Projectile
+  - Obstacle
+  - SpawnManager
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Player
   - Projectile
   - DeadZone
-  - 
+  - Obstacle
   - 
   - 
   - 

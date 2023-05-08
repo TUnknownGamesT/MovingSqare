@@ -10348,7 +10348,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.82096577, y: -9.663943}
+  m_Offset: {x: 0.82096577, y: -5.6492534}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10359,7 +10359,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 23.471014, y: 1.0000019}
+  m_Size: {x: 23.471014, y: 0.9569807}
   m_EdgeRadius: 0
 --- !u!61 &501094392
 BoxCollider2D:
@@ -10374,7 +10374,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 11.669909, y: -1.0422425}
+  m_Offset: {x: 11.669909, y: 3.8811224}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10385,7 +10385,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 17.127743}
+  m_Size: {x: 1, y: 18.012798}
   m_EdgeRadius: 0
 --- !u!61 &501094393
 BoxCollider2D:
@@ -10400,7 +10400,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21684885, y: 7.3407483}
+  m_Offset: {x: 0.21684837, y: 13.924112}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10411,7 +10411,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 22.063084, y: 0.7741308}
+  m_Size: {x: 22.063084, y: 1.856327}
   m_EdgeRadius: 0
 --- !u!61 &501094394
 BoxCollider2D:
@@ -10426,7 +10426,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -10.201758, y: -1.1600957}
+  m_Offset: {x: -10.201758, y: 3.7289345}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10437,7 +10437,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1505795, y: 16.361069}
+  m_Size: {x: 1.1505795, y: 17.404978}
   m_EdgeRadius: 0
 --- !u!4 &501094395
 Transform:
@@ -20750,11 +20750,11 @@ MonoBehaviour:
   portal: {fileID: 3815842416876600653}
   bossWaves:
   - bossHP: 1
-    durationOfWave: 25
-  - bossHP: 1
-    durationOfWave: 4
-  - bossHP: 1
-    durationOfWave: 4
+    durationOfWave: 30
+  - bossHP: 2
+    durationOfWave: 50
+  - bossHP: 3
+    durationOfWave: 70
   finishedWave: 0
 --- !u!1 &1083632468
 GameObject:
@@ -30727,7 +30727,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355826959}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1355826961
 Camera:
   m_ObjectHideFlags: 0
@@ -35823,7 +35823,7 @@ MonoBehaviour:
   spawnManager: {fileID: 655162601}
   items: {fileID: 11400000, guid: b7ea795655413406ea507c2ff8ac869a, type: 2}
   difficultySpeed: 7
-  extraMoneyIncrease: 15
+  extraMoneyIncrease: 5
 --- !u!114 &1754564211 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6071644400648265548, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
@@ -41390,18 +41390,6 @@ PrefabInstance:
     - target: {fileID: 7534325334952605316, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
       propertyPath: m_Name
       value: SpawnManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: spawnLines
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: fullScreenLine
-      value: 
-      objectReference: {fileID: 7159293786856718687, guid: 928d9da3d80284f4793091c4ec7b021a, type: 3}
-    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: linesSimultaneusly
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7534325334952605323, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
       propertyPath: m_RootOrder

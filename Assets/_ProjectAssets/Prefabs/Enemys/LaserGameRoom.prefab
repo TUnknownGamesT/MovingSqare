@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7159293786856718656}
   - component: {fileID: 7159293786856718657}
   - component: {fileID: 7159293786856718686}
-  m_Layer: 3
-  m_Name: fullScreenLine
-  m_TagString: Enemy
+  m_Layer: 10
+  m_Name: LaserGameRoom
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.05175078}
