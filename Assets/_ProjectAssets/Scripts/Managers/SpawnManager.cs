@@ -23,7 +23,6 @@ public class SpawnManager : MonoBehaviour
     public GameObject fullScreenLine;
     public GameStats gameStats;
     
-    [HideInInspector]
     public float spawnEnemy;
     public float spawnPowerUps;
     public float spawnMoney;
@@ -31,7 +30,13 @@ public class SpawnManager : MonoBehaviour
     public int linesSimultaneusly;
     public Vector2 enemySizeRange;
     public Vector2 enemySpeedRange;
-    
+    public float spawnObstacleTime;
+
+
+    [Header("Obstacles")] 
+    public List<GameObject> obstacles;
+    public Transform obstaclePoint;
+
     [HideInInspector]
     public float squareStage2;
     [HideInInspector]
@@ -81,7 +86,6 @@ public class SpawnManager : MonoBehaviour
     {
         InitStats();
         InitPowerUps();
-        StartCoroutine(SpawnLines());
     }
 
     private void InitStats()
@@ -115,7 +119,6 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-
     public void StopSpawning()
     {
         StopAllCoroutines();
@@ -125,6 +128,8 @@ public class SpawnManager : MonoBehaviour
     {
         StartCoroutine(SpawnMoney());
         StartCoroutine(SpawnEnemy());
+        StartCoroutine(SpawnLines());
+        StartCoroutine(SpawnObstacle());
 
         if (availablePowerUps.Count != 0)
         {
@@ -136,6 +141,18 @@ public class SpawnManager : MonoBehaviour
     }
 
 
+    #region SpawnObstacle
+
+    IEnumerator SpawnObstacle()
+    {
+        yield return new WaitForSeconds(spawnObstacleTime);
+        
+        Instantiate(obstacles[Random.Range(0, obstacles.Count)], obstaclePoint.position, Quaternion.identity);
+        StopSpawning();
+    }
+
+    #endregion
+    
     #region Spawn fullScreenLines
 
     private IEnumerator SpawnLines()
@@ -150,8 +167,6 @@ public class SpawnManager : MonoBehaviour
     }
 
     #endregion
-
-
 
     #region Spawn Money
 
