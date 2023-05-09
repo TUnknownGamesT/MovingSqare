@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private  Transform player;
     private bool alreadyOver;
     private static bool askedAd;
-    private int moneyMultiplayer=1;
+    private float moneyMultiplayer=10;
     private int index;
 
     public Transform Player => player;
@@ -73,8 +73,8 @@ public class GameManager : MonoBehaviour
     IEnumerator InitGame()
     {
         //Init Money
-        CoinsBehaviour.amount = moneyMultiplayer;
-        uiManager.SetMoneySign(moneyMultiplayer);
+        CoinsBehaviour.amount = (int)moneyMultiplayer;
+        uiManager.SetMoneySign((int)moneyMultiplayer);
 
         yield return new WaitForSeconds(2f);
         spawnManager.StartSpawning();
@@ -132,9 +132,10 @@ public class GameManager : MonoBehaviour
     private IEnumerator IncreaseMoneyValue()
     {
         yield return new WaitForSeconds(extraMoneyIncrease);
-        moneyMultiplayer *= 2;
-        CoinsBehaviour.amount = moneyMultiplayer;
-        uiManager.SetMoneySign(moneyMultiplayer);
+
+        moneyMultiplayer += Mathf.Ceil(moneyMultiplayer/10);
+        CoinsBehaviour.amount = (int)moneyMultiplayer;
+        uiManager.SetMoneySign((int)moneyMultiplayer);
 
         StartCoroutine(IncreaseMoneyValue());
     }

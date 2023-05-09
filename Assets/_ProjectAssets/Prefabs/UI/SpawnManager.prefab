@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 7534325334952605322}
   m_Layer: 0
   m_Name: SpawnManager
-  m_TagString: Untagged
+  m_TagString: SpawnManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,6 +189,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 735233348}
+  - {fileID: 2205941659566414143}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -219,12 +220,21 @@ MonoBehaviour:
   - {fileID: 8914157103130330078, guid: 76105902883d4f246ad8586919eccac7, type: 3}
   enemyAlertSignPrefab: {fileID: 7786718456191243107, guid: e29cc032366c1044495bb74baaacdfd9, type: 3}
   coinPrefab: {fileID: 141189488381344411, guid: 652c2241b038b0645b53c3361c825e58, type: 3}
+  fullScreenLine: {fileID: 7159293786856718687, guid: 928d9da3d80284f4793091c4ec7b021a, type: 3}
   gameStats: {fileID: 11400000, guid: 2631bcfccffd7cd48a5dc567a3780c03, type: 2}
-  spawnEnemy: 1
+  spawnEnemy: 0.7
   spawnPowerUps: 10
   spawnMoney: 7
-  enemySizeRange: {x: 0.6, y: 1}
-  enemySpeedRange: {x: 2, y: 5}
+  spawnLines: 10
+  linesSimultaneusly: 5
+  enemySizeRange: {x: 1, y: 1.5}
+  enemySpeedRange: {x: 4, y: 7}
+  spawnObstacleTime: 10
+  obstacles:
+  - {fileID: 1732302991895733257, guid: 819d5cd450c0f824a9fae4a61e4b959b, type: 3}
+  - {fileID: 1358882163754856492, guid: 24202f188fdeeb24fa93d5085c2b9bd5, type: 3}
+  - {fileID: 6002696944148089562, guid: d7909a9eb0a2a344380736d213ad1e3d, type: 3}
+  obstaclePoint: {fileID: 2205941659566414143}
   squareStage2: 0
   circleStage2: 0
   hexagonStage2: 0
@@ -240,3 +250,34 @@ MonoBehaviour:
   minX: -1.59
   maxY: 4.35
   minY: -2.04
+--- !u!1 &8735849737955754523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2205941659566414143}
+  m_Layer: 0
+  m_Name: SpawnObstaclePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2205941659566414143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735849737955754523}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.64, y: 14.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7534325334952605323}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

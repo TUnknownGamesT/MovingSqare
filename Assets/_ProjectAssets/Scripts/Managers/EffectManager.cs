@@ -14,7 +14,7 @@ public class EffectManager : MonoBehaviour
         _globalVolume = GetComponent<Volume>();
         _globalVolume.profile.TryGet(out _vignette);
     }
-
+     
     public static void DamageEffect()
     {
         LeanTween.value(0, 1, 0.1f).setOnUpdate(value=>

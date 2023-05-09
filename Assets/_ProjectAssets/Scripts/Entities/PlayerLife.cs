@@ -10,6 +10,11 @@ public class PlayerLife : MonoBehaviour
     
     private int life=1;
 
+    public int Life
+    {
+        get => life;
+    }
+    
     public void AddLife(int amount)
     {
         if (life + amount > 3)

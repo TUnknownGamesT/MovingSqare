@@ -39,6 +39,7 @@ public class UIManagerGameRoom : MonoBehaviour
 
     private bool gameOver;
     private int index = 0;
+    private int timeToIncreaseMoneyValue;
     
     private void OnEnable()
     {
@@ -62,7 +63,7 @@ public class UIManagerGameRoom : MonoBehaviour
     
     public void SetMoneySign(int amount)
     {
-        x2Money.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"X{amount}";
+        x2Money.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"+{amount}";
         LeanTween.scale(x2Money, new Vector3(1.5f, 1.5f, 1.5f), 1f).setEaseInBounce()
             .setOnComplete(() =>
             {
@@ -150,7 +151,7 @@ public class UIManagerGameRoom : MonoBehaviour
         {
             loseState.alpha = value;
 
-        }).setEaseInQuad();
+        }).setEaseInQuad().setOnComplete( ()=> loseState.gameObject.SetActive(false));
     }
     
     private void SetGameOver()
