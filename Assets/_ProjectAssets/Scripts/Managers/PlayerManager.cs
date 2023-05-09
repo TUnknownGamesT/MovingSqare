@@ -87,6 +87,7 @@ public class PlayerManager : MonoBehaviour
 
         if (col.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log(col.collider.gameObject.name);
             playerLife.Damage(1);
             SoundManager.instance.PlaySoundEffect(Constants.Sounds.PlayerGetHit);
             cameraShaking.Shake();
@@ -105,6 +106,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Projectile"))
         {
+            Debug.Log(col.gameObject.name);
             SoundManager.instance.PlaySoundEffect(Constants.Sounds.PlayerGetHit);
             playerLife.Damage(1);
             cameraShaking.Shake();
@@ -112,12 +114,14 @@ public class PlayerManager : MonoBehaviour
         
         if (col.gameObject.CompareTag("Obstacle"))
         {
+            Debug.Log(col.gameObject.name);
             playerLife.Damage(1);
         }
     }
 
     private void OnParticleCollision(GameObject other)
     {
+        Debug.Log(other.name);
         SoundManager.instance.PlaySoundEffect(Constants.Sounds.PlayerGetHit);
         playerLife.Damage(1);
         cameraShaking.Shake();
