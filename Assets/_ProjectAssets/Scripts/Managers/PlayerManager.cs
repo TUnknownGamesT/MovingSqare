@@ -129,6 +129,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnBecameInvisible()
     {
+        Debug.Log("wtf");
         playerLife.Damage(playerLife.Life);
     }
 }
