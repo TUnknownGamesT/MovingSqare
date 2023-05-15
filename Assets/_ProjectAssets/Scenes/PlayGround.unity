@@ -1065,12 +1065,13 @@ MonoBehaviour:
   soundOn: 0
   musicOn: 0
   soundClipsList:
-  - name: DestroyEnemy
+  - name: 0
     audioClip: {fileID: 8300000, guid: 91a59ee861c5c714a936e2cb9717eba2, type: 3}
-  - name: PickCoint
+  - name: 0
     audioClip: {fileID: 8300000, guid: d802015de14ab81418f5a3abd8b2d0fd, type: 3}
-  - name: PlayerDeath
+  - name: 0
     audioClip: {fileID: 8300000, guid: 68afee42477fcc84ba0c17f01dcb6acc, type: 3}
+  ambientSounds: []
 --- !u!82 &631075694
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1258,6 +1259,22 @@ MonoBehaviour:
   - {fileID: 2023566006283250090, guid: 2732291cf6bb83744a4d0f2b73c1e981, type: 3}
   powerUps: []
   enemyAlertSignPrefab: {fileID: 7786718456191243107, guid: e29cc032366c1044495bb74baaacdfd9, type: 3}
+  coinPrefab: {fileID: 0}
+  fullScreenLine: {fileID: 0}
+  gameStats: {fileID: 0}
+  spawnEnemy: 0
+  spawnPowerUps: 0
+  spawnMoney: 0
+  spawnLines: 0
+  linesSimultaneusly: 0
+  enemySizeRange: {x: 0, y: 0}
+  enemySpeedRange: {x: 0, y: 0}
+  spawnObstacleTime: 0
+  obstacles:
+  - {fileID: 6575078767282077981, guid: 384dc65703f0144249b04c4692d4b24c, type: 3}
+  - {fileID: 6399405610291231052, guid: 51dce7b833973437da4cc10c0c2f4f02, type: 3}
+  - {fileID: 843863818072900001, guid: 24202f188fdeeb24fa93d5085c2b9bd5, type: 3}
+  obstaclePoint: {fileID: 0}
   squareStage2: 0
   circleStage2: 0
   hexagonStage2: 0
@@ -1267,14 +1284,12 @@ MonoBehaviour:
   minW: -3.23
   maxE: 4.38
   minE: -3.07
+  maxS: 0
+  minS: 0
   maxX: 1.54
   minX: -1.59
   maxY: 4.35
   minY: -2.04
-  timeBetweenSpawnPowerUps: 0
-  timeBetweenSpawnEnemy: 2
-  timeBetweenSpawnMoney: 3
-  coinPrefab: {fileID: 0}
 --- !u!224 &713992442 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4841140330262006930, guid: 223ef801a9a3b4a7c9fe155744179478, type: 3}
@@ -1643,14 +1658,13 @@ MonoBehaviour:
   highScore: {fileID: 1948001160}
   moneyCollected: {fileID: 1563786758}
   loseState: {fileID: 133185066}
-  joyStick: {fileID: 849206947}
   movingZone: {fileID: 859896079}
   money: {fileID: 2058110044}
-  firstButton: {fileID: 1741249683}
-  secondButton: {fileID: 2070532277}
-  sceneLoader: {fileID: 2142500033}
+  moneyParent: {fileID: 0}
+  revive: {fileID: 0}
   x2Money: {fileID: 1570285610}
   playerLives: []
+  livesParent: {fileID: 0}
 --- !u!1 &942800302 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5666854345934685837, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
@@ -2099,7 +2113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5529689795805235530, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5529689795805235533, guid: c3df683487cfb43a7bf71bf1ecac2ea9, type: 3}
       propertyPath: m_RootOrder
@@ -2612,7 +2626,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 0c19f9591a80c486da5873753c192fc8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2718,9 +2732,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -4194,6 +4208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackCircle: {fileID: 1355540705}
+  tranzition: {fileID: 0}
 --- !u!4 &2142500034
 Transform:
   m_ObjectHideFlags: 0

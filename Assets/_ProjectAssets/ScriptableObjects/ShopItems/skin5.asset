@@ -17,7 +17,7 @@ MonoBehaviour:
   unlocked: 0
   type: 0
   effects:
-  - name: 
+  - name: heal
     price: 100
-    effect: 
-    shopDescription: 
+    effect: +2
+    shopDescription: start with 3 lives
