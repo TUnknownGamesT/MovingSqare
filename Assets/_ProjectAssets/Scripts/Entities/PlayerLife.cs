@@ -30,6 +30,7 @@ public class PlayerLife : MonoBehaviour
 
     public void Damage(int damage)
     {
+        Debug.Log("i took dmg");
         if (life - damage < 0)
             return;
         

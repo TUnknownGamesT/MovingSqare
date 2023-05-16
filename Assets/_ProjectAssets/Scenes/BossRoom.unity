@@ -40955,6 +40955,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 178476164381607089, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0bb8829d2644e4585b194ead8e09b5b9, type: 3}
     - target: {fileID: 178476164381607090, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -41387,10 +41391,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 959231091}
     m_Modifications:
+    - target: {fileID: 1721086443, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995466819, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7534325334952605316, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
       propertyPath: m_Name
       value: SpawnManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
+      propertyPath: obstacles.Array.data[0]
+      value: 
+      objectReference: {fileID: 6575078767282077981, guid: 384dc65703f0144249b04c4692d4b24c, type: 3}
+    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
+      propertyPath: obstacles.Array.data[1]
+      value: 
+      objectReference: {fileID: 6399405610291231052, guid: 51dce7b833973437da4cc10c0c2f4f02, type: 3}
+    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
+      propertyPath: obstacles.Array.data[2]
+      value: 
+      objectReference: {fileID: 843863818072900001, guid: 24202f188fdeeb24fa93d5085c2b9bd5, type: 3}
     - target: {fileID: 7534325334952605323, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
       propertyPath: m_RootOrder
       value: 0

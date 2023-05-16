@@ -10,7 +10,6 @@ public class FullScreenLine : MonoBehaviour
     [SerializeField]
     private float minTimeToLive, maxTimeToLive;
     private Color color;
-
     private int id;
     // Start is called before the first frame update
     void Awake()
@@ -29,7 +28,6 @@ public class FullScreenLine : MonoBehaviour
                     transform.GetComponent<SpriteRenderer>().color = color;
                 }
             ).setDelay(0.3f).setOnComplete(() =>
-
                 //here it becomes invisible again
                id=  LeanTween.value(0.6f, 0.3f, 0.5f).setOnUpdate(value =>
                     {
@@ -55,7 +53,8 @@ public class FullScreenLine : MonoBehaviour
     public IEnumerator Die()
     {
         yield return new WaitForSeconds(Random.RandomRange(minTimeToLive,maxTimeToLive-minTimeToLive));
-       id =  LeanTween.value(1f, 0f, 0.3f).setOnUpdate(value =>
+        transform.GetComponent<BoxCollider2D>().enabled = false;
+        id =  LeanTween.value(1f, 0f, 0.3f).setOnUpdate(value =>
         {
             color.a = value;
             transform.GetComponent<SpriteRenderer>().color = color;
