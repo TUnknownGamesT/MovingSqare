@@ -35,8 +35,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(col.gameObject.name == "Dead Zone")
             Destroy(gameObject);
 
-        if (col.gameObject.CompareTag("Enemy") ||
-            col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
             SoundManager.instance.PlaySoundEffect(Constants.Sounds.DestroyEnemy);
             Destroy(gameObject);

@@ -127,9 +127,12 @@ public class PlayerManager : MonoBehaviour
         cameraShaking.Shake();
     }
 
+    #if !UNITY_EDITOR
     private void OnBecameInvisible()
     {
         Debug.Log("wtf");
         playerLife.Damage(playerLife.Life);
     }
+    
+    #endif
 }
