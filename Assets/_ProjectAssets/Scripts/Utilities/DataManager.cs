@@ -9,13 +9,11 @@ public class DataManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.onGameOver += SaveMoney;
         GameManager.onGameOver += SaveHighScore;
     }
 
     private void OnDisable()
     {
-        GameManager.onGameOver -= SaveMoney;
         GameManager.onGameOver -= SaveHighScore;
     }
 
