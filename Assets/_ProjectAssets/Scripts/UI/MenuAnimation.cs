@@ -34,7 +34,7 @@ public class MenuAnimation : MonoBehaviour
         {
             buttonsFill[i].fillAmount = 0;
             int index = i;
-            LeanTween.value(0, 1, 1.5f).setOnUpdate(value => {
+            LeanTween.value(0, 1, 1f).setOnUpdate(value => {
                 buttonsFill[index].fillAmount = value;
             });
         }
@@ -42,7 +42,7 @@ public class MenuAnimation : MonoBehaviour
         {
             textFade[i].color = new Color32(255, 255, 255, 1);
             int index = i;
-            LeanTween.value(0, 1, 1.5f).setOnUpdate(value =>
+            LeanTween.value(0, 1, 1f).setOnUpdate(value =>
             {
                 Color c = textFade[index].color;
                 c.a = value;
@@ -58,7 +58,7 @@ public class MenuAnimation : MonoBehaviour
         {
             buttonsFill[i].fillAmount = 0;
             int index = i;
-            LeanTween.value(1, 0, 1.5f).setOnUpdate(value => {
+            LeanTween.value(1, 0, 1f).setOnUpdate(value => {
                 buttonsFill[index].fillAmount = value;
             });
         }
@@ -66,7 +66,7 @@ public class MenuAnimation : MonoBehaviour
         {
             textFade[i].color = new Color32(255, 255, 255, 1);
             int index = i;
-            LeanTween.value(1, 0, 1.5f).setOnUpdate(value =>
+            LeanTween.value(1, 0, 1f).setOnUpdate(value =>
             {
                 Color c = textFade[index].color;
                 c.a = value;
