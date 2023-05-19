@@ -47,7 +47,10 @@ public class GameManager : MonoBehaviour
     {
         BossGameplay.OnBossAppear += StopCoroutine;
         BossGameplay.OnBossDisappear += StartCoroutine;
+        onGameOver += StopCoroutine;
+        
         AdsManager.onAdFinish += ResetAlreadyOver;
+        AdsManager.onAdFinish += StartCoroutine;
         AdsManager.onAdFinish += SetViewAdTrue;
     }
     
@@ -56,6 +59,9 @@ public class GameManager : MonoBehaviour
     {
         BossGameplay.OnBossAppear -= StopCoroutine;
         BossGameplay.OnBossDisappear -= StartCoroutine;
+        onGameOver -= StopCoroutine;
+        
+        AdsManager.onAdFinish -= StartCoroutine;
         AdsManager.onAdFinish -= ResetAlreadyOver;
         AdsManager.onAdFinish -= SetViewAdTrue;
     }

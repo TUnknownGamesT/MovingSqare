@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mono.CompilerServices.SymbolWriter;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -40,7 +41,7 @@ public class PlayerManager : MonoBehaviour
             
             case "size":
             {
-                transform.localScale += Vector3.one * float.Parse(item.effects[0].effect);
+                transform.localScale -= CalculatePercentage(float.Parse(item.effects[0].effect))*Vector3.one;
                 float scale =  GetComponent<TrailRenderer>().widthMultiplier - 0.12f*PlayerPrefs.GetInt(item.effects[0].name);
                 GetComponent<TrailRenderer>().widthMultiplier = scale;
                 break;
@@ -84,7 +85,7 @@ public class PlayerManager : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D col)
     {
-
+        
         if (col.gameObject.CompareTag("Enemy"))
         {
             Debug.Log(col.collider.gameObject.name);
@@ -104,6 +105,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        
         if (col.gameObject.CompareTag("Projectile"))
         {
             Debug.Log(col.gameObject.name);
@@ -127,9 +129,18 @@ public class PlayerManager : MonoBehaviour
         cameraShaking.Shake();
     }
 
+    private float CalculatePercentage(float effect)
+    {
+        float soum = transform.localScale.x * effect;
+        return soum / 100;
+    }
+
+#if !UNITY_EDITOR
     private void OnBecameInvisible()
     {
         Debug.Log("wtf");
         playerLife.Damage(playerLife.Life);
     }
+    
+#endif
 }

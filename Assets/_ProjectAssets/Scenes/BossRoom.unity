@@ -10374,7 +10374,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 11.669909, y: 3.8811224}
+  m_Offset: {x: 11.669909, y: 7.0555744}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10385,7 +10385,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 18.012798}
+  m_Size: {x: 1, y: 24.361698}
   m_EdgeRadius: 0
 --- !u!61 &501094393
 BoxCollider2D:
@@ -10400,7 +10400,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21684837, y: 13.924112}
+  m_Offset: {x: 0.21684837, y: 20.61488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10411,7 +10411,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 22.063084, y: 1.856327}
+  m_Size: {x: 22.063084, y: 2.3447056}
   m_EdgeRadius: 0
 --- !u!61 &501094394
 BoxCollider2D:
@@ -10426,7 +10426,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -10.201758, y: 3.7289345}
+  m_Offset: {x: -10.201758, y: 6.7324524}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10437,7 +10437,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1505795, y: 17.404978}
+  m_Size: {x: 1.1505795, y: 23.412018}
   m_EdgeRadius: 0
 --- !u!4 &501094395
 Transform:
@@ -20750,9 +20750,9 @@ MonoBehaviour:
   portal: {fileID: 3815842416876600653}
   bossWaves:
   - bossHP: 1
-    durationOfWave: 30
+    durationOfWave: 0
   - bossHP: 2
-    durationOfWave: 50
+    durationOfWave: 30
   - bossHP: 3
     durationOfWave: 70
   finishedWave: 0
@@ -35822,7 +35822,7 @@ MonoBehaviour:
   uiManager: {fileID: 922029890}
   spawnManager: {fileID: 655162601}
   items: {fileID: 11400000, guid: b7ea795655413406ea507c2ff8ac869a, type: 2}
-  difficultySpeed: 7
+  difficultySpeed: 15
   extraMoneyIncrease: 5
 --- !u!114 &1754564211 stripped
 MonoBehaviour:
@@ -40955,10 +40955,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 178476164381607089, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0bb8829d2644e4585b194ead8e09b5b9, type: 3}
     - target: {fileID: 178476164381607090, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -40973,11 +40969,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 178476164381607090, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.012
       objectReference: {fileID: 0}
     - target: {fileID: 178476164381607090, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.017
       objectReference: {fileID: 0}
     - target: {fileID: 178476164381607090, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41124,10 +41120,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2142500033}
+    - target: {fileID: 3648714189677063718, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 597441479}
     - target: {fileID: 3648714189867868676, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2142500033}
+    - target: {fileID: 3648714189867868676, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 597441479}
     - target: {fileID: 3648714189897594600, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -41391,30 +41395,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 959231091}
     m_Modifications:
-    - target: {fileID: 1721086443, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1995466819, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7534325334952605316, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
       propertyPath: m_Name
       value: SpawnManager
       objectReference: {fileID: 0}
     - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: obstacles.Array.data[0]
-      value: 
-      objectReference: {fileID: 6575078767282077981, guid: 384dc65703f0144249b04c4692d4b24c, type: 3}
+      propertyPath: spawnObstacleTime
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: obstacles.Array.data[1]
-      value: 
-      objectReference: {fileID: 6399405610291231052, guid: 51dce7b833973437da4cc10c0c2f4f02, type: 3}
-    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: obstacles.Array.data[2]
-      value: 
-      objectReference: {fileID: 843863818072900001, guid: 24202f188fdeeb24fa93d5085c2b9bd5, type: 3}
+      propertyPath: linesSimultaneusly
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7534325334952605323, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
       propertyPath: m_RootOrder
       value: 0

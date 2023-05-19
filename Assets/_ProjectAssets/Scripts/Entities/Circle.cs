@@ -60,8 +60,7 @@ public class Circle : EnemyBehaviour,IEnemyStages
             cts.Cancel();
         }
 
-        if (col.gameObject.CompareTag("Enemy") ||
-            col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
             SoundManager.instance.PlaySoundEffect(Constants.Sounds.DestroyEnemy);
             cts.Cancel();

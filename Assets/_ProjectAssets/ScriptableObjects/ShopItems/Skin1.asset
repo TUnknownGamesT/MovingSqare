@@ -19,5 +19,5 @@ MonoBehaviour:
   effects:
   - name: size
     price: 100
-    effect: -0.01
-    shopDescription: -15%
+    effect: 10
+    shopDescription: -10%
