@@ -84,7 +84,7 @@ public class PlayerManager : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D col)
     {
-
+        
         if (col.gameObject.CompareTag("Enemy"))
         {
             Debug.Log(col.collider.gameObject.name);
@@ -104,6 +104,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        
         if (col.gameObject.CompareTag("Projectile"))
         {
             Debug.Log(col.gameObject.name);

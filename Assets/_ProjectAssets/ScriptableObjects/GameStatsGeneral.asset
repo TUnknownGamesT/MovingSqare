@@ -15,5 +15,5 @@ MonoBehaviour:
   enemySizeRange: {x: 0.5, y: 0.6}
   enemySpeedRange: {x: 1, y: 3}
   spawnPowerUpsTime: 7
-  spawnMoneyTime: 5
+  spawnMoneyTime: 4
   spawnEnemyTime: 1

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1135871336998019863}
   - component: {fileID: 1135871336998019864}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Boomerang
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 1135871337039600456}
   - component: {fileID: 1135871337039600457}
   - component: {fileID: 1135871337039600458}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: particle trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4877,7 +4877,7 @@ GameObject:
   - component: {fileID: 1135871338486818888}
   - component: {fileID: 1135871338486818894}
   - component: {fileID: 1135871338486818895}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Absorb
   m_TagString: Untagged
   m_Icon: {fileID: 0}

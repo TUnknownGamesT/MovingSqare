@@ -25,7 +25,6 @@ public class Movement : MonoBehaviour
     _rb = GetComponent<Rigidbody2D>();
   }
 
- 
 
   private void Update()
   {
@@ -47,7 +46,6 @@ public class Movement : MonoBehaviour
     
   }
   
-
   /*private void FixedUpdate()
   {
     _rb.MovePosition(_rb.position + moveDir*speed*Time.deltaTime);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
@@ -26,8 +27,13 @@ public class SpawnManager : MonoBehaviour
     public float spawnEnemy;
     public float spawnPowerUps;
     public float spawnMoney;
+    
+    [Header("Spawn lasers")]
     public float spawnLines;
     public int linesSimultaneusly;
+    public float linesLife;
+    
+    [Header("Enemies Range")]
     public Vector2 enemySizeRange;
     public Vector2 enemySpeedRange;
     public float spawnObstacleTime;
@@ -68,18 +74,23 @@ public class SpawnManager : MonoBehaviour
     private Vector2 positionToSpawn;
     private AttentionSignBehaviour attentionSignBehaviour;
     private List<GameObject> availablePowerUps;
+    List<FullScreenLine> fullScreenLineObjects = new();
 
 
     private void OnEnable()
     {
         BossGameplay.OnBossAppear += StopSpawning;
         BossGameplay.OnBossDisappear += StartSpawning;
+        GameManager.onGameOver += StopSpawning;
+        AdsManager.onAdFinish += StartSpawning;
     }
 
     private void OnDisable()
     {
         BossGameplay.OnBossAppear -= StopSpawning;
         BossGameplay.OnBossDisappear -= StartSpawning;
+        GameManager.onGameOver -= StopSpawning;
+        AdsManager.onAdFinish -= StartSpawning;
     }
 
     private void Start()
@@ -122,6 +133,12 @@ public class SpawnManager : MonoBehaviour
     public void StopSpawning()
     {
         StopAllCoroutines();
+
+        foreach (var fullScreenLine in fullScreenLineObjects)
+        {
+            fullScreenLine.DestroyLaser();
+        }
+        fullScreenLineObjects.Clear();
     }
 
     public void StartSpawning()
@@ -158,11 +175,31 @@ public class SpawnManager : MonoBehaviour
     private IEnumerator SpawnLines()
     {
         yield return new WaitForSeconds(spawnLines);
+
         for (int i = 0; i < linesSimultaneusly; i++)
         {
-            Instantiate(fullScreenLine, new Vector2(Random.Range(minX, maxX)
-                , Random.Range(minY, maxY)), Quaternion.Euler(0, 0, Random.RandomRange(0, 180)));
+          fullScreenLineObjects.Add(Instantiate(fullScreenLine, new Vector2(Random.Range(minX, maxX)
+              , Random.Range(minY, maxY)), Quaternion.Euler(0, 0, Random.RandomRange(0, 180))).GetComponent<FullScreenLine>());
+          
+          yield return new WaitForSeconds(0.5f);
         }
+
+        yield return new WaitForSeconds(1.5f);
+
+        foreach (var line in fullScreenLineObjects)
+        {
+            line.Activate();            
+        }
+
+        yield return new WaitForSeconds(linesLife);
+
+        foreach (var line in fullScreenLineObjects)
+        {
+            line.DestroyLaser();
+        }
+
+        fullScreenLineObjects.Clear();
+        
         StartCoroutine(SpawnLines());
     }
 

@@ -225,11 +225,12 @@ MonoBehaviour:
   spawnEnemy: 0.7
   spawnPowerUps: 10
   spawnMoney: 7
-  spawnLines: 7
+  spawnLines: 2
   linesSimultaneusly: 5
+  linesLife: 1.5
   enemySizeRange: {x: 1, y: 1.5}
   enemySpeedRange: {x: 4, y: 7}
-  spawnObstacleTime: 10
+  spawnObstacleTime: 20
   obstacles:
   - {fileID: 6575078767282077981, guid: 384dc65703f0144249b04c4692d4b24c, type: 3}
   - {fileID: 6399405610291231052, guid: 51dce7b833973437da4cc10c0c2f4f02, type: 3}

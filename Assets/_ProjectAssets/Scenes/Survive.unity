@@ -196,14 +196,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: spawnObstacleTime
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7534325334952605322, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
-      propertyPath: linesSimultaneusly
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7534325334952605323, guid: 420bc8bfabcc8c140a516953adf84a80, type: 3}
       propertyPath: m_RootOrder
       value: 5
