@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mono.CompilerServices.SymbolWriter;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -40,7 +41,7 @@ public class PlayerManager : MonoBehaviour
             
             case "size":
             {
-                transform.localScale += Vector3.one * float.Parse(item.effects[0].effect);
+                transform.localScale -= CalculatePercentage(float.Parse(item.effects[0].effect))*Vector3.one;
                 float scale =  GetComponent<TrailRenderer>().widthMultiplier - 0.12f*PlayerPrefs.GetInt(item.effects[0].name);
                 GetComponent<TrailRenderer>().widthMultiplier = scale;
                 break;
@@ -128,12 +129,18 @@ public class PlayerManager : MonoBehaviour
         cameraShaking.Shake();
     }
 
-    #if !UNITY_EDITOR
+    private float CalculatePercentage(float effect)
+    {
+        float soum = transform.localScale.x * effect;
+        return soum / 100;
+    }
+
+#if !UNITY_EDITOR
     private void OnBecameInvisible()
     {
         Debug.Log("wtf");
         playerLife.Damage(playerLife.Life);
     }
     
-    #endif
+#endif
 }

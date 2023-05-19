@@ -16,4 +16,4 @@ MonoBehaviour:
   enemySpeedRange: {x: 1, y: 3}
   spawnPowerUpsTime: 7
   spawnMoneyTime: 4
-  spawnEnemyTime: 1
+  spawnEnemyTime: 1.5

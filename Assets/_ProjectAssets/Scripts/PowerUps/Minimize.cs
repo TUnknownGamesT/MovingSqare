@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Rendering;
+
 
 public class Minimize :  PowerUpBehaviour
 {
@@ -15,7 +12,9 @@ public class Minimize :  PowerUpBehaviour
         TrailRenderer trailRenderer = player.GetComponent<TrailRenderer>();
 
 
-        LeanTween.value(player.localScale.x, player.localScale.x + item.GetEffect(item.effects[0].name), 0.2f)
+        LeanTween.value(player.localScale.x,
+                player.localScale.x - CalculatePercentage(item.GetEffect(item.effects[0].name),player.localScale.x), 
+                0.2f)
             .setOnUpdate(value =>
             {
                 player.localScale = Vector3.one * value;
@@ -32,13 +31,16 @@ public class Minimize :  PowerUpBehaviour
         
     }
     
+    
     private IEnumerator DestroyMinimiseEffect()
     {
         yield return new WaitForSeconds(effectTime);
         Transform player=  GameManager.instance.Player;
         TrailRenderer trailRenderer = player.GetComponent<TrailRenderer>();
         
-        LeanTween.value(player.localScale.x, player.localScale.x - item.GetEffect(item.effects[0].name), 0.2f)
+        LeanTween.value(player.localScale.x,
+                player.localScale.x + CalculatePercentage(item.GetEffect(item.effects[0].name),player.localScale.x),
+                0.2f)
             .setOnUpdate(value =>
             {
                 player.localScale = Vector3.one * value;
@@ -50,6 +52,12 @@ public class Minimize :  PowerUpBehaviour
         
         Destroy(gameObject);
         
+    }
+    
+    private float CalculatePercentage(float percentage,float max)
+    {
+        float soum = max * percentage;
+        return soum / 100;
     }
 
     

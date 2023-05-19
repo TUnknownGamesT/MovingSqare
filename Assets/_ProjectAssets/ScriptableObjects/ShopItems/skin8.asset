@@ -18,6 +18,6 @@ MonoBehaviour:
   type: 0
   effects:
   - name: size
-    price: 100
-    effect: -0.015
+    price: 500
+    effect: 20
     shopDescription: -20%
