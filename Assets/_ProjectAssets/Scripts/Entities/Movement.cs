@@ -25,13 +25,9 @@ public class Movement : MonoBehaviour
     _rb = GetComponent<Rigidbody2D>();
   }
 
-
-  private void Update()
+  
+  public void Update()
   {
-    /*moveDir = _playerInput.actions["Move"].ReadValue<Vector2>();
-
-    isMoving = Convert.ToBoolean(moveDir.magnitude);*/
-
     if (Input.touchCount > 0)
     {
       touch = Input.GetTouch(0);
@@ -40,15 +36,19 @@ public class Movement : MonoBehaviour
       {
         transform.position = new Vector2(
           transform.position.x + touch.deltaPosition.x * speed,
-            transform.position.y + touch.deltaPosition.y * speed);
+          transform.position.y + touch.deltaPosition.y * speed);
       }
     }
-    
+
   }
   
-  /*private void FixedUpdate()
+  private void FixedUpdate()
   {
-    _rb.MovePosition(_rb.position + moveDir*speed*Time.deltaTime);
-  }*/
+     /*moveDir = _playerInput.actions["Move"].ReadValue<Vector2>();
+
+    isMoving = Convert.ToBoolean(moveDir.magnitude);
+    
+    _rb.MovePosition(_rb.position + moveDir*speed*Time.deltaTime);*/
+  }
   
 }
