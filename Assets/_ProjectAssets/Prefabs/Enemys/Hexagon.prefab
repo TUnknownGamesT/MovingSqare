@@ -24374,7 +24374,7 @@ Transform:
   m_GameObject: {fileID: 2203469339562770796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.7952212, y: 0.8495288, z: 0}
-  m_LocalScale: {x: 0.5296602, y: 0.5296602, z: 0}
+  m_LocalScale: {x: 0.54996955, y: 0.54996955, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 865030166}
@@ -24500,9 +24500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5fddc638817e6848b9cf4b1a9134692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.0526252
+  speed: 1.7881248
   deadEffect: {fileID: 938355462728799340, guid: 5104cb0027b01e844b6a7c790b66bb6a, type: 3}
-  stage: 0
+  stage: 1
   particleSystem:
   - {fileID: 865030165}
   - {fileID: 6160152875518344374}
