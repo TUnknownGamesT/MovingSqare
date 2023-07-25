@@ -16,6 +16,8 @@ public enum PowerUps
 
 public class SpawnManager : MonoBehaviour
 {
+     [Range(0f, 10f)]
+    public float currentLvl = 1f;
     public List<Transform> spawningPoints;
     public List<GameObject> spawnableObjects;
     public List<GameObject> powerUps;
@@ -24,14 +26,14 @@ public class SpawnManager : MonoBehaviour
     public GameObject fullScreenLine;
     public GameStats gameStats;
     
-    public float spawnEnemy;
-    public float spawnPowerUps;
+    public float spawnEnemyTimeDelay;
+    public float spawnPowerUpsTimeDelay;
     public float spawnMoney;
     
     [Header("Spawn lasers")]
-    public float spawnLines;
+    public float spawnLinesTimeDelay;
     public int linesSimultaneusly;
-    public float linesLife;
+    public float linesLifeTime;
     
     [Header("Enemies Range")]
     public Vector2 enemySizeRange;
@@ -83,6 +85,7 @@ public class SpawnManager : MonoBehaviour
         BossGameplay.OnBossDisappear += StartSpawning;
         GameManager.onGameOver += StopSpawning;
         AdsManager.onAdFinish += StartSpawning;
+        StartCoroutine(LvlUp()); //Pls make it look better
     }
 
     private void OnDisable()
@@ -101,9 +104,9 @@ public class SpawnManager : MonoBehaviour
 
     private void InitStats()
     {
-        spawnPowerUps = gameStats.spawnPowerUpsTime;
+        spawnPowerUpsTimeDelay = gameStats.spawnPowerUpsTime;
         spawnMoney = gameStats.spawnMoneyTime;
-        spawnEnemy = gameStats.spawnEnemyTime;
+        spawnEnemyTimeDelay = gameStats.spawnEnemyTime;
 
         enemySizeRange = gameStats.enemySizeRange;
         enemySpeedRange = gameStats.enemySpeedRange;
@@ -156,6 +159,10 @@ public class SpawnManager : MonoBehaviour
         Debug.Log("Start Spawning");
         
     }
+    private IEnumerator LvlUp(){
+        yield return new WaitForSeconds(5f);
+        currentLvl+=0.5f;
+    }
 
 
     #region SpawnObstacle
@@ -174,7 +181,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnLines()
     {
-        yield return new WaitForSeconds(spawnLines);
+        yield return new WaitForSeconds(spawnLinesTimeDelay-currentLvl);
 
         for (int i = 0; i < linesSimultaneusly; i++)
         {
@@ -191,7 +198,7 @@ public class SpawnManager : MonoBehaviour
             line.Activate();            
         }
 
-        yield return new WaitForSeconds(linesLife);
+        yield return new WaitForSeconds(linesLifeTime);
 
         foreach (var line in fullScreenLineObjects)
         {
@@ -222,7 +229,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(spawnEnemy);
+        yield return new WaitForSeconds(spawnEnemyTimeDelay-currentLvl);
 
         GameObject objectToSpawn = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
         Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
@@ -234,11 +241,11 @@ public class SpawnManager : MonoBehaviour
         
         //Set direction, Target and Stage
         SetStage(objectToSpawn);
-        attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
-            .GetComponent<AttentionSignBehaviour>();
-        SetEnemyDirection(spawnPoint);
-        attentionSignBehaviour.target =
-            Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity).GetComponent<Transform>();
+        // attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
+        //     .GetComponent<AttentionSignBehaviour>();
+        // SetEnemyDirection(spawnPoint);
+        // attentionSignBehaviour.target =
+        //     Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity).GetComponent<Transform>();
 
         StartCoroutine(SpawnEnemy());
     }
@@ -304,7 +311,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUps()
     {
-        yield return new WaitForSeconds(spawnPowerUps);
+        yield return new WaitForSeconds(spawnPowerUpsTimeDelay);
         Instantiate(availablePowerUps[Random.Range(0, availablePowerUps.Count-1)], new Vector2(Random.Range(minX, maxX)
             , Random.Range(minY, maxY)), Quaternion.identity);
         StartCoroutine(SpawnPowerUps());
