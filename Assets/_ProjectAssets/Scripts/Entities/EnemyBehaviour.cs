@@ -9,9 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     public float speed;
     public GameObject deadEffect;
-    public Stages stage;
-    public List<GameObject> particleSystem;
-    
+
     private Rigidbody2D _rb;
 
     public virtual void Start()

@@ -33,9 +33,9 @@ public class SpawnManager : MonoBehaviour
     public int linesSimultaneusly;
     public float linesLife;
     
-    [Header("Enemies Range")]
-    public Vector2 enemySizeRange;
-    public Vector2 enemySpeedRange;
+    //[Header("Enemies Range")]
+    //public Vector2 enemySizeRange;
+    //public Vector2 enemySpeedRange;
     public float spawnObstacleTime;
 
 
@@ -105,8 +105,8 @@ public class SpawnManager : MonoBehaviour
         spawnMoney = gameStats.spawnMoneyTime;
         spawnEnemy = gameStats.spawnEnemyTime;
 
-        enemySizeRange = gameStats.enemySizeRange;
-        enemySpeedRange = gameStats.enemySpeedRange;
+        //enemySizeRange = gameStats.enemySizeRange;
+        //enemySpeedRange = gameStats.enemySpeedRange;
     }
 
     private void InitPowerUps()
@@ -227,13 +227,17 @@ public class SpawnManager : MonoBehaviour
         GameObject objectToSpawn = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
         Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
 
-        objectToSpawn.GetComponent<EnemyBehaviour>().speed = Random.Range(enemySpeedRange.x , enemySpeedRange.y);
+        #region SET_SIZE_SPEED_STAGE
+        //objectToSpawn.GetComponent<EnemyBehaviour>().speed = Random.Range(enemySpeedRange.x , enemySpeedRange.y);
 
-        float randomSize = Random.Range(enemySizeRange.x, enemySizeRange.y);
-        objectToSpawn.transform.localScale = new Vector2(randomSize, randomSize);
+        //float randomSize = Random.Range(enemySizeRange.x, enemySizeRange.y);
+        //objectToSpawn.transform.localScale = new Vector2(randomSize, randomSize);
         
-        //Set direction, Target and Stage
-        SetStage(objectToSpawn);
+        //SetStage(objectToSpawn);
+            #endregion  
+        
+        //Set direction and Target 
+        
         attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
             .GetComponent<AttentionSignBehaviour>();
         SetEnemyDirection(spawnPoint);
@@ -244,7 +248,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     // Set the stage of enemies
-    private void SetStage(GameObject objectToSpawn)
+  /*  private void SetStage(GameObject objectToSpawn)
     {
         switch (objectToSpawn.name)
         {
@@ -269,7 +273,7 @@ public class SpawnManager : MonoBehaviour
                 break;
             }
         }
-    }
+    }*/
     
     
     private void SetEnemyDirection(Transform spawnedPoint)

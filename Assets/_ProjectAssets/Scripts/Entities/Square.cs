@@ -3,35 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Square : EnemyBehaviour,IEnemyStages
+public class Square : EnemyBehaviour
 {
-    public override void Start()
-    {
-        base.Start();
-        Stage();
-    }
-    
-    public void Stage()
-    {
-        switch (stage)
-        {
-            case Stages.first:
-            {
-                return;
-            }
-
-            case Stages.second:
-            {
-                StartCoroutine(SpawnMiniCubes());
-                break;
-            }
-        }
-    }
-
-    IEnumerator SpawnMiniCubes()
-    {
-        yield return new WaitForSeconds(4.5f);
-        particleSystem[0].SetActive(true);
-    }
 }
 
