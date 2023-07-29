@@ -12,7 +12,13 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        money.text = PlayerPrefs.GetInt("Money").ToString();
+        int cash =PlayerPrefs.GetInt("Money");
+        if(cash<10000){
+            money.text =cash.ToString();
+        }else{
+            cash = cash/1000;
+            money.text = cash +"k";
+        }
         AudioSetup();
     }
 

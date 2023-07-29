@@ -100,7 +100,7 @@ public class MenuAnimation : MonoBehaviour
         LeanTween.value(from, to, 1f).setOnUpdate(value => {
             Vector3 temp = new Vector3(value, value, 1);
             main.transform.localScale = temp;
-            topBar.transform.localScale = temp;
+            //topBar.transform.localScale = temp;
         });
         
     }
