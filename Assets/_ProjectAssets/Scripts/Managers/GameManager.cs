@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         spawnManager.StartSpawning();
         
-        StartCoroutine(IncreaseDifficulty());
+        //StartCoroutine(IncreaseDifficulty());
         StartCoroutine(IncreaseMoneyValue());
     }
     
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
 
     private void StartCoroutine()
     {
-        StartCoroutine(IncreaseDifficulty());
+        //StartCoroutine(IncreaseDifficulty());
         StartCoroutine(IncreaseMoneyValue());
     }
     

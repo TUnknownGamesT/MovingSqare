@@ -16,8 +16,6 @@ public enum PowerUps
 
 public class SpawnManager : MonoBehaviour
 {
-     [Range(0f, 10f)]
-    public float currentLvl = 1f;
     public List<Transform> spawningPoints;
     public List<GameObject> spawnableObjects;
     public List<GameObject> powerUps;
@@ -26,18 +24,18 @@ public class SpawnManager : MonoBehaviour
     public GameObject fullScreenLine;
     public GameStats gameStats;
     
-    public float spawnEnemyTimeDelay;
-    public float spawnPowerUpsTimeDelay;
+    public float spawnEnemy;
+    public float spawnPowerUps;
     public float spawnMoney;
     
     [Header("Spawn lasers")]
-    public float spawnLinesTimeDelay;
+    public float spawnLines;
     public int linesSimultaneusly;
-    public float linesLifeTime;
+    public float linesLife;
     
-    [Header("Enemies Range")]
-    public Vector2 enemySizeRange;
-    public Vector2 enemySpeedRange;
+    //[Header("Enemies Range")]
+    //public Vector2 enemySizeRange;
+    //public Vector2 enemySpeedRange;
     public float spawnObstacleTime;
 
 
@@ -85,7 +83,6 @@ public class SpawnManager : MonoBehaviour
         BossGameplay.OnBossDisappear += StartSpawning;
         GameManager.onGameOver += StopSpawning;
         AdsManager.onAdFinish += StartSpawning;
-        StartCoroutine(LvlUp()); //Pls make it look better
     }
 
     private void OnDisable()
@@ -104,12 +101,12 @@ public class SpawnManager : MonoBehaviour
 
     private void InitStats()
     {
-        spawnPowerUpsTimeDelay = gameStats.spawnPowerUpsTime;
+        spawnPowerUps = gameStats.spawnPowerUpsTime;
         spawnMoney = gameStats.spawnMoneyTime;
-        spawnEnemyTimeDelay = gameStats.spawnEnemyTime;
+        spawnEnemy = gameStats.spawnEnemyTime;
 
-        enemySizeRange = gameStats.enemySizeRange;
-        enemySpeedRange = gameStats.enemySpeedRange;
+        //enemySizeRange = gameStats.enemySizeRange;
+        //enemySpeedRange = gameStats.enemySpeedRange;
     }
 
     private void InitPowerUps()
@@ -159,10 +156,6 @@ public class SpawnManager : MonoBehaviour
         Debug.Log("Start Spawning");
         
     }
-    private IEnumerator LvlUp(){
-        yield return new WaitForSeconds(5f);
-        currentLvl+=0.5f;
-    }
 
 
     #region SpawnObstacle
@@ -181,7 +174,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnLines()
     {
-        yield return new WaitForSeconds(spawnLinesTimeDelay-currentLvl);
+        yield return new WaitForSeconds(spawnLines);
 
         for (int i = 0; i < linesSimultaneusly; i++)
         {
@@ -198,7 +191,7 @@ public class SpawnManager : MonoBehaviour
             line.Activate();            
         }
 
-        yield return new WaitForSeconds(linesLifeTime);
+        yield return new WaitForSeconds(linesLife);
 
         foreach (var line in fullScreenLineObjects)
         {
@@ -229,29 +222,33 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(spawnEnemyTimeDelay-currentLvl);
+        yield return new WaitForSeconds(spawnEnemy);
 
         GameObject objectToSpawn = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
         Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
 
-        objectToSpawn.GetComponent<EnemyBehaviour>().speed = Random.Range(enemySpeedRange.x , enemySpeedRange.y);
+        #region SET_SIZE_SPEED_STAGE
+        //objectToSpawn.GetComponent<EnemyBehaviour>().speed = Random.Range(enemySpeedRange.x , enemySpeedRange.y);
 
-        float randomSize = Random.Range(enemySizeRange.x, enemySizeRange.y);
-        objectToSpawn.transform.localScale = new Vector2(randomSize, randomSize);
+        //float randomSize = Random.Range(enemySizeRange.x, enemySizeRange.y);
+        //objectToSpawn.transform.localScale = new Vector2(randomSize, randomSize);
         
-        //Set direction, Target and Stage
-        SetStage(objectToSpawn);
-        // attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
-        //     .GetComponent<AttentionSignBehaviour>();
-        // SetEnemyDirection(spawnPoint);
-        // attentionSignBehaviour.target =
-        //     Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity).GetComponent<Transform>();
+        //SetStage(objectToSpawn);
+            #endregion  
+        
+        //Set direction and Target 
+        
+        attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
+            .GetComponent<AttentionSignBehaviour>();
+        SetEnemyDirection(spawnPoint);
+        attentionSignBehaviour.target =
+            Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity).GetComponent<Transform>();
 
         StartCoroutine(SpawnEnemy());
     }
 
     // Set the stage of enemies
-    private void SetStage(GameObject objectToSpawn)
+  /*  private void SetStage(GameObject objectToSpawn)
     {
         switch (objectToSpawn.name)
         {
@@ -276,7 +273,7 @@ public class SpawnManager : MonoBehaviour
                 break;
             }
         }
-    }
+    }*/
     
     
     private void SetEnemyDirection(Transform spawnedPoint)
@@ -311,7 +308,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUps()
     {
-        yield return new WaitForSeconds(spawnPowerUpsTimeDelay);
+        yield return new WaitForSeconds(spawnPowerUps);
         Instantiate(availablePowerUps[Random.Range(0, availablePowerUps.Count-1)], new Vector2(Random.Range(minX, maxX)
             , Random.Range(minY, maxY)), Quaternion.identity);
         StartCoroutine(SpawnPowerUps());
