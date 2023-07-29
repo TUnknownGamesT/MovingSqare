@@ -174,7 +174,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnLines()
     {
-        yield return new WaitForSeconds(spawnLines);
+        yield return new WaitForSeconds(LevelManager.instance.lineTimeDelay);
 
         for (int i = 0; i < linesSimultaneusly; i++)
         {
@@ -222,7 +222,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(spawnEnemy);
+        yield return new WaitForSeconds(LevelManager.instance.enemyTimeDelay);
 
         GameObject objectToSpawn = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
         Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
