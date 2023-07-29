@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4218103849822282997}
   - component: {fileID: 6016065437979980742}
   - component: {fileID: 3443557317219941130}
-  - component: {fileID: 6465732215542367400}
-  - component: {fileID: 4022910179177377745}
+  - component: {fileID: 6684272570601815983}
+  - component: {fileID: -6693400877498854029}
+  - component: {fileID: 2495085447318010670}
   m_Layer: 12
   m_Name: Obstacle0
   m_TagString: Obstacle
@@ -77,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 55bc8d27549e54310b28a2696cf00934, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f51f78b8e60ef4764afb6e914fead9a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.23, y: 5.94}
+  m_Size: {x: 5, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -122,7 +123,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!68 &6465732215542367400
+--- !u!68 &6684272570601815983
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,25 +133,24 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.5, y: 4.9994364}
-  - {x: -0.3911338, y: 1.9258473}
-  - {x: -1.7290306, y: -0.114383176}
-  - {x: -1.7349498, y: -1.0628649}
-  - {x: 0.56288743, y: -1.0557501}
-  - {x: -0.4204988, y: -3.228258}
-  - {x: -0.43790054, y: -5.0033636}
-  - {x: -2.4911954, y: -4.997466}
+  - {x: -0.63275504, y: 3.980693}
+  - {x: -0.652833, y: 2.210304}
+  - {x: -0.65283346, y: 1.1266114}
+  - {x: 1.8976632, y: 1.1266115}
+  - {x: 1.905873, y: -4.010565}
+  - {x: 3.053859, y: -3.9162192}
+  - {x: 2.4908342, y: -4.0236764}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!68 &4022910179177377745
+--- !u!68 &-6693400877498854029
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,21 +160,42 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 2.5070229, y: 5.03475}
-  - {x: -1.5122199, y: 4.9823866}
-  - {x: 0.5056423, y: 1.9049454}
-  - {x: -0.7627632, y: -0.07079178}
-  - {x: 1.4239364, y: -0.09075242}
-  - {x: 1.4717836, y: -1.0669477}
-  - {x: 0.44483137, y: -3.314218}
-  - {x: 0.4746405, y: -5.0242405}
-  - {x: 2.5566108, y: -5.0522275}
+  - {x: -0.3839512, y: -3.9859717}
+  - {x: -0.38126114, y: -3.7478201}
+  - {x: -0.64174044, y: -3.7440917}
+  - {x: -0.6429377, y: -0.081917405}
+  - {x: 0.561765, y: -0.045081615}
+  - {x: 0.5445018, y: -3.990894}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &2495085447318010670
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575078767282077981}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -1.7879263, y: 4.0049453}
+  - {x: -1.7753714, y: -3.783951}
+  - {x: -2.027543, y: -3.7749665}
+  - {x: -2.005909, y: -3.9924686}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
