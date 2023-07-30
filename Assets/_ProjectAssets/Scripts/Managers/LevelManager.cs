@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField, Range(0f, 10f)]
-    private float currentLvl=10;
-    private float lvlUpTimeDelay=5;
+    [SerializeField, Range(0, 30)]
+    private int currentLvl=1;
+    private float lvlUpTimeDelay=15;
     public float lineTimeDelay=100, enemyTimeDelay=100, obstacleTimeDelay=100;
-
+    public SpawnManager spawnManager;
     #region Singleton
 
     public static LevelManager instance;
 
     private void Awake()
     {
-        enemyTimeDelay=7;
+        enemyTimeDelay=3;
         instance = FindObjectOfType<LevelManager>();
 
         if (instance == null)
@@ -25,24 +25,15 @@ public class LevelManager : MonoBehaviour
         }
         UpdateStats();
         StartCoroutine(LvlUp());
+        Debug.Log("IM alive");
     }
 
     #endregion
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     IEnumerator LvlUp(){
         yield return new WaitForSeconds(lvlUpTimeDelay); 
         Debug.Log("LvlUp");
         currentLvl++;
+        UpdateStats();
         StartCoroutine(LvlUp());
     }
 
@@ -54,8 +45,25 @@ public class LevelManager : MonoBehaviour
         return currentLvl;
     }
     void UpdateStats(){
-        lineTimeDelay = lineTimeDelay-currentLvl;
-        enemyTimeDelay = enemyTimeDelay-currentLvl;
-        obstacleTimeDelay = lineTimeDelay-currentLvl;
+        if(currentLvl<10 || (currentLvl>20 && currentLvl%2==0)){
+            UpdateEnemyDelay();
+        }else{
+            UpdateLineDelay();
+        }
+        //obstacleTimeDelay = lineTimeDelay-currentLvl;
+    }
+    void UpdateEnemyDelay(){
+        enemyTimeDelay = enemyTimeDelay*0.85f;
+    }
+    void UpdateLineDelay(){
+        if(lineTimeDelay==100){
+            lineTimeDelay =5;
+            spawnManager.linesSimultaneusly=2;
+            StartCoroutine(spawnManager.SpawnLines());
+        }
+        if(currentLvl%2==0){
+            spawnManager.linesSimultaneusly++;
+        }
+        lineTimeDelay = lineTimeDelay*0.85f;
     }
 }

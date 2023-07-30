@@ -145,8 +145,8 @@ public class SpawnManager : MonoBehaviour
     {
         StartCoroutine(SpawnMoney());
         StartCoroutine(SpawnEnemy());
-        StartCoroutine(SpawnLines());
-        StartCoroutine(SpawnObstacle());
+        //StartCoroutine(SpawnLines());
+        //StartCoroutine(SpawnObstacle());
 
         if (availablePowerUps.Count != 0)
         {
@@ -162,7 +162,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnObstacle()
     {
-        yield return new WaitForSeconds(spawnObstacleTime);
+        yield return new WaitForSeconds(LevelManager.instance.obstacleTimeDelay);
         
         Instantiate(obstacles[Random.Range(0, obstacles.Count)], obstaclePoint.position, Quaternion.identity);
         StopSpawning();
@@ -172,14 +172,14 @@ public class SpawnManager : MonoBehaviour
     
     #region Spawn fullScreenLines
 
-    private IEnumerator SpawnLines()
+    public IEnumerator SpawnLines()
     {
         yield return new WaitForSeconds(LevelManager.instance.lineTimeDelay);
 
         for (int i = 0; i < linesSimultaneusly; i++)
         {
           fullScreenLineObjects.Add(Instantiate(fullScreenLine, new Vector2(Random.Range(minX, maxX)
-              , Random.Range(minY, maxY)), Quaternion.Euler(0, 0, Random.RandomRange(0, 180))).GetComponent<FullScreenLine>());
+            , Random.Range(minY, maxY)), Quaternion.Euler(0, 0, Random.RandomRange(0, 180))).GetComponent<FullScreenLine>());
           
           yield return new WaitForSeconds(0.5f);
         }
