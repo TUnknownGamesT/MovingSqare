@@ -1325,8 +1325,6 @@ MonoBehaviour:
   spawnLines: 0
   linesSimultaneusly: 0
   linesLife: 0
-  enemySizeRange: {x: 0, y: 0}
-  enemySpeedRange: {x: 0, y: 0}
   spawnObstacleTime: 0
   obstacles:
   - {fileID: 6575078767282077981, guid: 384dc65703f0144249b04c4692d4b24c, type: 3}
