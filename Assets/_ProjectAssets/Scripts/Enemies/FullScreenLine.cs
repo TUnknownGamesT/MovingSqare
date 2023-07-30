@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class FullScreenLine : MonoBehaviour
 {
-    [SerializeField] private Color neutralColor;
+    [SerializeField]
+    [ColorUsageAttribute(true,true,0f,8f,0.125f,3f)]
+    private Color neutralColor;
+    [ColorUsageAttribute(true,true,0f,8f,0.125f,3f)]
     [SerializeField] private Color activeColor;
 
 
@@ -36,6 +39,7 @@ public class FullScreenLine : MonoBehaviour
         }).id;
     }
 
+    [ContextMenu("Test Line")]
     public void Activate()
     {
         Color c = GetComponent<SpriteRenderer>().color;
