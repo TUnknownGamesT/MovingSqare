@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     private float lvlUpTimeDelay=15;
     public float lineTimeDelay=100, enemyTimeDelay=100, obstacleTimeDelay=100;
     public SpawnManager spawnManager;
+    
     #region Singleton
 
     public static LevelManager instance;
@@ -29,6 +30,7 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
+    
     IEnumerator LvlUp(){
         yield return new WaitForSeconds(lvlUpTimeDelay); 
         Debug.Log("LvlUp");
