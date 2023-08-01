@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class DificultyManager : MonoBehaviour
 {
     [SerializeField, Range(0, 30)]
     private int currentLvl=1;
@@ -13,12 +13,12 @@ public class LevelManager : MonoBehaviour
     
     #region Singleton
 
-    public static LevelManager instance;
+    public static DificultyManager instance;
 
     private void Awake()
     {
         enemyTimeDelay=3;
-        instance = FindObjectOfType<LevelManager>();
+        instance = FindObjectOfType<DificultyManager>();
 
         if (instance == null)
         {
@@ -52,7 +52,9 @@ public class LevelManager : MonoBehaviour
         }else{
             UpdateLineDelay();
         }
-        //obstacleTimeDelay = lineTimeDelay-currentLvl;
+        if (currentLvl>30){
+            UpdateObstacleDelay();
+        }
     }
     void UpdateEnemyDelay(){
         enemyTimeDelay = enemyTimeDelay*0.85f;
@@ -67,5 +69,12 @@ public class LevelManager : MonoBehaviour
             spawnManager.linesSimultaneusly++;
         }
         lineTimeDelay = lineTimeDelay*0.85f;
+    }
+    void UpdateObstacleDelay(){
+        if(obstacleTimeDelay==100){
+            obstacleTimeDelay = 30;
+            StartCoroutine(spawnManager.SpawnObstacle());
+        }
+
     }
 }

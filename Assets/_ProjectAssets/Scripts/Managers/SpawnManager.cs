@@ -160,9 +160,9 @@ public class SpawnManager : MonoBehaviour
 
     #region SpawnObstacle
 
-    IEnumerator SpawnObstacle()
+    public IEnumerator SpawnObstacle()
     {
-        yield return new WaitForSeconds(LevelManager.instance.obstacleTimeDelay);
+        yield return new WaitForSeconds(DificultyManager.instance.obstacleTimeDelay);
         
         Instantiate(obstacles[Random.Range(0, obstacles.Count)], obstaclePoint.position, Quaternion.identity);
         StopSpawning();
@@ -174,7 +174,7 @@ public class SpawnManager : MonoBehaviour
 
     public IEnumerator SpawnLines()
     {
-        yield return new WaitForSeconds(LevelManager.instance.lineTimeDelay);
+        yield return new WaitForSeconds(DificultyManager.instance.lineTimeDelay);
 
         for (int i = 0; i < linesSimultaneusly; i++)
         {
@@ -222,7 +222,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(LevelManager.instance.enemyTimeDelay);
+        yield return new WaitForSeconds(DificultyManager.instance.enemyTimeDelay);
 
         GameObject objectToSpawn = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
         Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
