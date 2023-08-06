@@ -6,7 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="8ef79f96-8368-4471-a99a-63ea8e86a2d8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/LevelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Materials/LaserMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Materials/LaserMaterial.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/BossRoom.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/BossRoom.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/Survive.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/Survive.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/Scripts/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/Scripts/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin2.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin3.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin4.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin4.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin5.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin6.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin6.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin7.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin7.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin8.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin8.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/SceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/SceneLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Textures/VFX_Trail/Trail_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Textures/VFX_Trail/Trail_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,25 +40,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\dbogatu\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\dbogatu\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\dbogatu\\AppData\\Local\\Symbols\\src&quot;
-    ]
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="rider.run.widget.enabled.cache" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.6f1\Editor\Unity.exe" />
@@ -91,6 +97,7 @@
       <workItem from="1690496844150" duration="1243000" />
       <workItem from="1690618222418" duration="1633000" />
       <workItem from="1690701709885" duration="3249000" />
+      <workItem from="1691308216131" duration="8056000" />
     </task>
     <servers />
   </component>

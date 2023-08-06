@@ -41003,6 +41003,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackCircle: {fileID: 3648714189186904757}
   tranzition: {fileID: 3648714189186904756}
+  transitionSettings:
+  - {fileID: 11400000, guid: b577ec7af0d48c34a9d31ce17f830a8d, type: 2}
+  - {fileID: 11400000, guid: 057babd6f13132c449650d99e3c4e99c, type: 2}
+  - {fileID: 11400000, guid: 5d42ad7319df4a8439d74d82f30a60cc, type: 2}
+  - {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
+  - {fileID: 11400000, guid: 013263c83b6a84c4d95beaa8bd163ac8, type: 2}
+  - {fileID: 11400000, guid: d641980330b54c243a644222c797e582, type: 2}
+  - {fileID: 11400000, guid: c9f7b34f761c5c342ada8a4b2ab7a716, type: 2}
+  - {fileID: 11400000, guid: 06fa0ad2bc756f44ab258bc74947381d, type: 2}
+  - {fileID: 11400000, guid: 57d2dee28715fc6499379ee5905b3caf, type: 2}
+  - {fileID: 11400000, guid: b0126e1e0c6c2a04895d564bd230dfb9, type: 2}
+  - {fileID: 11400000, guid: 9710edcf009d00943af961dd2a7ca7d3, type: 2}
+  - {fileID: 11400000, guid: 3ad3e86dc386e60458fda4c93a2c3d62, type: 2}
 --- !u!4 &2142500034
 Transform:
   m_ObjectHideFlags: 0

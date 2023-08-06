@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -10,11 +11,7 @@ public class SceneLoader : MonoBehaviour
     public GameObject tranzition;
 
     private bool isLoading;
-
-    private void Start()
-    {
-        //tranzition.SetActive(false);
-    }
+    
     
     public void ReloadGameScene()
     {

@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 
 public enum ElementType
@@ -26,6 +23,7 @@ public class Item : ScriptableObject
 {
     public int id;
     public Sprite sprite;
+    public Texture2D trailTexture;
     public bool unlocked;
     public ElementType type;
     public Effects[] effects;
