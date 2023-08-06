@@ -10,6 +10,10 @@ public class PlayerManager : MonoBehaviour
     public PlayerLife playerLife;
     public Movement movement;
     public CameraShaking cameraShaking;
+    
+    
+    private ParticleSystem _trail;
+    
 
 
     private void OnEnable()
@@ -22,10 +26,17 @@ public class PlayerManager : MonoBehaviour
         AdsManager.onAdFinish -= Revive;
     }
 
+    private void Start()
+    {
+        _trail = transform.GetChild(0).GetComponent<ParticleSystem>();
+    }
 
     public void InitPlayer(Item item)
     {
         GetComponent<SpriteRenderer>().sprite = item.sprite;
+        _trail.GetComponent<Renderer>().material.SetTexture("_BaseMap",item.trailTexture);
+        
+        
         ApplyEffect(item);
     }
 
@@ -138,7 +149,6 @@ public class PlayerManager : MonoBehaviour
 #if !UNITY_EDITOR
     private void OnBecameInvisible()
     {
-        Debug.Log("wtf");
         playerLife.Damage(playerLife.Life);
     }
     
