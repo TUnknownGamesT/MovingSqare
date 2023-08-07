@@ -7,25 +7,13 @@ using TouchPhase = UnityEngine.TouchPhase;
 public class Movement : MonoBehaviour
 {
   public float speed;
-  [HideInInspector] public Vector2 moveDir;
 
-  private Rigidbody2D _rb;
   private bool isMoving;
-  private PlayerInput _playerInput;
   private Vector2 currentInputValue;
   private Vector2 smoothInputValue;
-
   private Touch touch;
-  
 
-  private void Awake()
-  {
-    _playerInput = GetComponent<PlayerInput>();
-    
-    _rb = GetComponent<Rigidbody2D>();
-  }
 
-  
   public void Update()
   {
     if (Input.touchCount > 0)
@@ -41,14 +29,4 @@ public class Movement : MonoBehaviour
     }
 
   }
-  
-  private void FixedUpdate()
-  {
-     /*moveDir = _playerInput.actions["Move"].ReadValue<Vector2>();
-
-    isMoving = Convert.ToBoolean(moveDir.magnitude);
-    
-    _rb.MovePosition(_rb.position + moveDir*speed*Time.deltaTime);*/
-  }
-  
 }

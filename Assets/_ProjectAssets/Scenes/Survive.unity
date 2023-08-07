@@ -1730,7 +1730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackCircle: {fileID: 1128460938}
   tranzition: {fileID: 1129637554}
-  transitionSettings:
+  TransitionSettings:
   - {fileID: 11400000, guid: b577ec7af0d48c34a9d31ce17f830a8d, type: 2}
   - {fileID: 11400000, guid: 057babd6f13132c449650d99e3c4e99c, type: 2}
   - {fileID: 11400000, guid: 5d42ad7319df4a8439d74d82f30a60cc, type: 2}
