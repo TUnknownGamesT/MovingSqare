@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class BgMovement : MonoBehaviour
 {
@@ -41,10 +44,18 @@ public class BgMovement : MonoBehaviour
             if (null == child)
                 continue;
             Debug.Log(child.gameObject.name);
-            LeanTween.value(1f, 0f, 1f).setOnUpdate(value => {
-                child.GetComponent<Image>().color = new Color(1, 1, 1, value);
-            });
-
+          int id = 0;
+          id = LeanTween.value(1f, 0f, 1f).setOnUpdate(value => {
+              try
+              {
+                  child.GetComponent<Image>().color = new Color(1, 1, 1, value);
+              }
+              catch (Exception e)
+              {
+                  LeanTween.cancel(id);
+              }
+                
+          }).id;
         }
     }
     private IEnumerator ResetDest(GameObject obj)
