@@ -14,6 +14,7 @@ Assets/ExternalDependencyManager/Editor/README.md
 Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.176_manifest.txt
 Assets/GoogleMobileAds/CHANGELOG.md
 Assets/GoogleMobileAds/Editor/BuildPreProcessor.cs
+Assets/GoogleMobileAds/Editor/EditorPathUtils.cs
 Assets/GoogleMobileAds/Editor/GoogleMobileAds.Editor.asmdef
 Assets/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml
 Assets/GoogleMobileAds/Editor/GoogleMobileAdsSKAdNetworkItems.xml
