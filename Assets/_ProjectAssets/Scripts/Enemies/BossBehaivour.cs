@@ -11,8 +11,6 @@ public class BossBehaivour : MonoBehaviour
 {
     public int wave,hp;
     public GameObject hpPanel , missle , boomerang;
-    public Transform[] miniBossPos;
-    public Transform[] flankPos;
     public GameObject[] particleLasers;
     public GameObject[] particleColliders, visual;
     public Transform startPosition;
@@ -27,13 +25,22 @@ public class BossBehaivour : MonoBehaviour
     private Transform player;
     private Animator _anim;
     private CancellationTokenSource cts;
-
-    // Start is called before the first frame update
+    
+    
+    
     void Start()
     {
         player = GameManager.instance.Player;
         _anim = GetComponent<Animator>(); 
         cts = new CancellationTokenSource();
+    }
+    
+    void Update()
+    {
+        if (!prepareToAttack)
+        {
+            Move();
+        }
     }
 
     public void InitBoss()
@@ -41,7 +48,7 @@ public class BossBehaivour : MonoBehaviour
         cts = new CancellationTokenSource();
         Attack();
     }
-
+    
     public void SetBossStatus(int hp)
     {
         this.hp = hp;
@@ -51,9 +58,28 @@ public class BossBehaivour : MonoBehaviour
             hpPanel.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
-    
 
-    private  void Attack()
+    
+    #region Movement
+
+    void Move()
+    {
+        float step = 1f * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 3.5f,-2), step);
+    }
+    
+    private void MoveToInitialPosition()
+    {
+        LeanTween.moveLocal(gameObject, startPosition.position, 2f)
+            .setEaseInCubic().setOnComplete(()=>gameObject.SetActive(false));
+    }
+
+    #endregion
+
+
+    #region Attacks
+
+     private  void Attack()
     {
         UniTask.Void(async () =>
         {
@@ -160,21 +186,13 @@ public class BossBehaivour : MonoBehaviour
             Attack();
         });
     }
-    
-    void Update()
-    {
-        if (!prepareToAttack)
-        {
-            Move();
-        }
-    }
-    
-    private void OnParticleCollision(GameObject other)
-    {
-        Destroy(other.transform.parent.gameObject);
-        TakeDmg(1);
-    }
-   
+
+
+    #endregion
+
+
+    #region HpManagement
+
     void TakeDmg(int value)
     {
         hpPanel.transform.GetChild(hp-1).gameObject.SetActive(false);
@@ -207,38 +225,16 @@ public class BossBehaivour : MonoBehaviour
         MoveToInitialPosition();
        
     }
+
+
+    #endregion
     
-    [ContextMenu("Take Damage")]
-    void TakeDmg()
+   
+    private void OnParticleCollision(GameObject other)
     {
-        hp -= 1;
-        if (hp < 1)
-        {
-            if (lastWave)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                LoseAllHP();
-            }
-        }
-        
-        _anim.SetTrigger("TakeDmg");
+        Destroy(other.transform.parent.gameObject);
+        TakeDmg(1);
     }
     
     
-    private void MoveToInitialPosition()
-    {
-        LeanTween.moveLocal(gameObject, startPosition.position, 2f)
-            .setEaseInCubic().setOnComplete(()=>gameObject.SetActive(false));
-    }
-    
-    
-    
-    void Move()
-    {
-        float step = 1f * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 3.5f,-2), step);
-    }
 }

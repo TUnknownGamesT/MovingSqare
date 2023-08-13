@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Missle : MonoBehaviour
 {
+    
     [SerializeField] private GameObject trail, absorb;
     private Vector2 destination;
     // Start is called before the first frame update
@@ -15,6 +16,8 @@ public class Missle : MonoBehaviour
        
         StartCoroutine(Charge());
     }
+    
+    
     IEnumerator Charge()
     {
         yield return new WaitForSeconds(3f);
@@ -22,6 +25,8 @@ public class Missle : MonoBehaviour
         LeanTween.move(this.gameObject, destination, 4f).setEase(LeanTweenType.easeInOutSine);
         StartCoroutine(Explosion());
     }
+    
+    
     IEnumerator Explosion()
     {
         yield return new WaitForSeconds(2.5f);
