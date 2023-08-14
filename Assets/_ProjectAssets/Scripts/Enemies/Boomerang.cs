@@ -1,29 +1,24 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Boomerang : MonoBehaviour
 {
-    [SerializeField] private GameObject trail;
+
+    public static Action onBoomerangHit;
+    
+   
     private Vector2 destination;
     private Transform player;
-    public Transform temp;
     public LayerMask[] RayCastLayer;
     // Start is called before the first frame update
-    void Start()
-    {
-        trail.transform.LookAt(destination);
-    }
+    
     public void Instantiate(Transform player)
     {
         this.player = player;
         StartCoroutine(wait(5,0));
     }
-    private void Temp()
-    {
-        this.player = temp;
-        StartCoroutine(wait(5,0));
-    }
-    
+
     IEnumerator wait(int time, int turn)
     {
         yield return new WaitForSeconds(time);
@@ -43,8 +38,10 @@ public class Boomerang : MonoBehaviour
         if (hit.collider != null)
         {
             destination = hit.point;
-            trail.transform.LookAt(destination);
-            LeanTween.move(this.gameObject, destination, 3f).setEase(LeanTweenType.easeInOutSine);
+            LeanTween.move(this.gameObject, destination, 1.8f).setEase(LeanTweenType.linear).setOnComplete(() =>
+            {
+                 onBoomerangHit?.Invoke();
+            });
             
             StartCoroutine(turn >0 ? Kill() : wait(4, 1));
         }
