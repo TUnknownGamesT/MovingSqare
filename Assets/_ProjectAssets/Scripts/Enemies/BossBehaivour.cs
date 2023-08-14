@@ -16,6 +16,9 @@ public class BossBehaivour : MonoBehaviour
     public Transform startPosition;
     public BossGameplay bossGameplay;
 
+    [Header("Boss Visual Components")] 
+    public Transform whiteLine;
+    
     [HideInInspector]
     public bool lastWave;
     
@@ -179,9 +182,18 @@ public class BossBehaivour : MonoBehaviour
     {
         UniTask.Void(async () =>
         {
+            ChargeEffect();
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(1f),cancellationToken:cts.Token);
+            
             Instantiate(boomerang, particleLasers[1].transform.position, Quaternion.identity).GetComponent<Boomerang>().Instantiate(player);
 
-            await UniTask.Delay(TimeSpan.FromSeconds(8f),cancellationToken:cts.Token);
+            await UniTask.Delay(TimeSpan.FromSeconds(4f),cancellationToken:cts.Token);
+
+            ChargeBoomerangAttack();
+           
+            await UniTask.Delay(TimeSpan.FromSeconds(3f),cancellationToken:cts.Token);
+            
             prepareToAttack = false;
             Attack();
         });
@@ -228,7 +240,36 @@ public class BossBehaivour : MonoBehaviour
 
 
     #endregion
-    
+
+
+    #region Visual
+
+    private void ChargeEffect()
+    {
+        LeanTween.moveLocalY(whiteLine.gameObject, 3.99f, 1f).setEaseInCubic().setOnComplete(() =>
+        {
+            LeanTween.moveLocalY(whiteLine.gameObject, 4.28f, 4f).setEaseInCubic().setOnComplete(() =>
+            {
+                LeanTween.moveLocalY(whiteLine.gameObject, 4f, 0.2f).setEaseInCubic()
+                    .setDelay(0.8f).setOnComplete(() =>
+                    {
+                        LeanTween.moveLocalY(whiteLine.gameObject, 4.14f, 0.2f).setEaseInCubic();
+                    });
+            });
+            
+        });
+    }
+
+    private void ChargeBoomerangAttack()
+    {
+        LeanTween.moveY(gameObject, transform.position.y + 0.5f, 0.8f).setEaseInQuad().setOnComplete(() =>
+        {
+            LeanTween.moveY(gameObject, transform.position.y - 0.5f, 0.2f).setEaseInQuint();
+        });
+
+    }
+
+    #endregion
    
     private void OnParticleCollision(GameObject other)
     {

@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Mono.CompilerServices.SymbolWriter;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -35,7 +31,6 @@ public class PlayerManager : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = item.sprite;
         _trail.GetComponent<Renderer>().material.SetTexture("_BaseMap",item.trailTexture);
-        
         
         ApplyEffect(item);
     }
@@ -146,11 +141,11 @@ public class PlayerManager : MonoBehaviour
         return soum / 100;
     }
 
-#if !UNITY_EDITOR
+/*#if !UNITY_EDITOR
     private void OnBecameInvisible()
     {
         playerLife.Damage(playerLife.Life);
     }
     
-#endif
+#endif*/
 }
