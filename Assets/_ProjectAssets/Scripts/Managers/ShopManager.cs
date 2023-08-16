@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ShopManager : MonoBehaviour
 {
 
@@ -41,14 +42,16 @@ public class ShopManager : MonoBehaviour
     private readonly List<ShopItem> shopElements = new ();
     private  List<BgMovement> bkSquares = new();
     private Dictionary<int,bool> skinStatus = new();
+    private ElementType elementType;
     
 
     
     void Start()
     {
         bkSquares = FindObjectsOfType<BgMovement>().ToList();
+        elementType = ElementType.Skin;
         InitPlayerPrefs();
-        InitShopElements();
+        InitShopElements(elementType);
     }
     
 
@@ -76,24 +79,26 @@ public class ShopManager : MonoBehaviour
         SetBkSquares();
     }
    
-    private void InitShopElements()
+    private void InitShopElements(ElementType elementType)
     {
         foreach (var t in itemsPool.items)
         {
-            if (t.type == ElementType.Skin)
+            if (t.type==elementType && elementType == ElementType.Skin)
             {
                 shopElements.Add(Instantiate(skinContainer, contentContainer)
                 .GetComponent<ShopItem>().Initialize(t,skinStatus[t.id]));
             }
-            else
+            if(t.type==elementType && elementType == ElementType.PowerUp)
             {
                 shopElements.Add(Instantiate(powerUpContainer, contentContainer)
                     .GetComponent<ShopItem>().Initialize(t,skinStatus[t.id]));
             }
         }
-        
-        shopElements[selectedSkin].GetComponent<Skin>().SetStatus(true);
-        shopElements[selectedSkin].Select();
+        if(elementType == ElementType.Skin)
+        {
+            shopElements[selectedSkin].GetComponent<Skin>().SetStatus(true);
+            shopElements[selectedSkin].Select();
+        }
     }
 
     public void SetDetails(int index)
@@ -109,7 +114,6 @@ public class ShopManager : MonoBehaviour
                             $" {shopElements[index].effects[shopElements[index].upgradeStage].shopDescription}";
         }
         
-       
     }
     
     private void SetBkSquares()
@@ -117,6 +121,31 @@ public class ShopManager : MonoBehaviour
         foreach (var square in bkSquares)
         {
             square.SetSkin();
+        }
+    }
+    public void NextShopPage(){
+        elementType++;
+        if(System.Enum.GetValues(typeof(ElementType)).Length-1 < elementType.GetHashCode()){
+            elementType =0;
+        }
+        DestroyAllShopElements();
+        InitPlayerPrefs();
+        InitShopElements(elementType);
+    }
+    public void PrevShopPage(){
+        elementType--;
+        if(elementType.GetHashCode()<0){
+            elementType += System.Enum.GetValues(typeof(ElementType)).Length;
+        }
+        DestroyAllShopElements();
+        InitPlayerPrefs();
+        InitShopElements(elementType);
+    }
+    private void DestroyAllShopElements(){
+        shopElements.Clear();
+        skinStatus.Clear();
+        foreach (Transform child in contentContainer) {
+	        GameObject.Destroy(child.gameObject);
         }
     }
     

@@ -14,6 +14,7 @@ public class SceneLoader : MonoBehaviour
     private void Start()
     {
         //tranzition.SetActive(false);
+        
     }
     
     public void ReloadGameScene()

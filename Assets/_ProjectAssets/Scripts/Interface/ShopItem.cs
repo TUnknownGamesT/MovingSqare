@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class ShopItem : MonoBehaviour
 {
+    public ElementType elementType;
     public Effects[] effects;
     public int upgradeStage= 0;
     

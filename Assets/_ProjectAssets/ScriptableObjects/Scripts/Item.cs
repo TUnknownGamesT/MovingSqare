@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public enum ElementType
 { 
-    Skin,
-   PowerUp
+    Skin=0,
+    PowerUp
 }
 
 [System.Serializable]

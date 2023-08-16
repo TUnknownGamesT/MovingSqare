@@ -1,3 +1,4 @@
+using System.Xml.Schema;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,8 +10,11 @@ using UnityEngine.UI;
 public class Skin :  ShopItem
 {
     private Sprite itemSprite;
+    [SerializeField]
     private RawImage skinImageShow;
+    [SerializeField] 
     private RawImage buttonSprite;
+    [SerializeField] 
     private TextMeshProUGUI text;
     private int price;
     private int id;
@@ -18,16 +22,13 @@ public class Skin :  ShopItem
     
     public override ShopItem Initialize(Item shopItem,bool status)
     {
+        elementType = ElementType.Skin;
         effects = shopItem.effects;
         type = shopItem.type;
         id = shopItem.id;
         price = type == ElementType.Skin ? effects[0].price : effects[PlayerPrefs.GetInt(effects[0].name)].price;
 
         itemSprite = shopItem.sprite;
-        
-        skinImageShow = transform.GetChild(0).GetComponent<RawImage>();
-        buttonSprite = transform.GetChild(1).GetComponent<RawImage>();
-        text = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
         
         SetStatus(status);
         return this;

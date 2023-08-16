@@ -14,8 +14,10 @@ public class PlayerManager : MonoBehaviour
 
     private void OnEnable()
     {
+        
         AdsManager.onAdFinish += Revive;
     }
+    
 
     private void OnDisable()
     {
@@ -97,6 +99,7 @@ public class PlayerManager : MonoBehaviour
         if (col.gameObject.CompareTag("PowerUp"))
         {
             col.gameObject.GetComponent<PowerUpBehaviour>().Effect();
+            
         }
 
        
