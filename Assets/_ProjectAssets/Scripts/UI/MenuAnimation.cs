@@ -10,7 +10,6 @@ public class MenuAnimation : MonoBehaviour
     public TextMeshProUGUI[] textFade;
     public TextMeshProUGUI money;
     public GameObject main, shop, topBar, startButton, gameModeMenu;
-    public RawImage darkEdgeShop;
     public Image backButonShop;
     private void Start()
     {
@@ -109,12 +108,7 @@ public class MenuAnimation : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         
         shop.SetActive(true);
-        LeanTween.value(from, to, 1f).setOnUpdate(value =>
-        {
-            
-            darkEdgeShop.uvRect = new Rect(1-value, 0, 1, 1);
-            backButonShop.fillAmount = value;
-        });
+       
     }
 
     public void ChoseGameMode()

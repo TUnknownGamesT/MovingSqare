@@ -17,6 +17,7 @@ public class DificultyManager : MonoBehaviour
 
     private void Awake()
     {
+        
         enemyTimeDelay=3;
         instance = FindObjectOfType<DificultyManager>();
 

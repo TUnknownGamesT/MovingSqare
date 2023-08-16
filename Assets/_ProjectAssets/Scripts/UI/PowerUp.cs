@@ -15,7 +15,7 @@ public class PowerUp :  ShopItem
 
     public override ShopItem Initialize(Item shopItem, bool status)
     {
-        
+        elementType = ElementType.PowerUp;
         effects = shopItem.effects;
         type = shopItem.type;
         
