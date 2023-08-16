@@ -11,13 +11,14 @@ public class BossBehaivour : MonoBehaviour
 {
     public int wave,hp;
     public GameObject hpPanel , missle , boomerang;
-    public Transform[] miniBossPos;
-    public Transform[] flankPos;
     public GameObject[] particleLasers;
     public GameObject[] particleColliders, visual;
     public Transform startPosition;
     public BossGameplay bossGameplay;
 
+    [Header("Boss Visual Components")] 
+    public Transform whiteLine;
+    
     [HideInInspector]
     public bool lastWave;
     
@@ -27,13 +28,22 @@ public class BossBehaivour : MonoBehaviour
     private Transform player;
     private Animator _anim;
     private CancellationTokenSource cts;
-
-    // Start is called before the first frame update
+    
+    
+    
     void Start()
     {
         player = GameManager.instance.Player;
         _anim = GetComponent<Animator>(); 
         cts = new CancellationTokenSource();
+    }
+    
+    void Update()
+    {
+        if (!prepareToAttack)
+        {
+            Move();
+        }
     }
 
     public void InitBoss()
@@ -41,7 +51,7 @@ public class BossBehaivour : MonoBehaviour
         cts = new CancellationTokenSource();
         Attack();
     }
-
+    
     public void SetBossStatus(int hp)
     {
         this.hp = hp;
@@ -51,9 +61,28 @@ public class BossBehaivour : MonoBehaviour
             hpPanel.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
-    
 
-    private  void Attack()
+    
+    #region Movement
+
+    void Move()
+    {
+        float step = 1f * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 3.5f,-2), step);
+    }
+    
+    private void MoveToInitialPosition()
+    {
+        LeanTween.moveLocal(gameObject, startPosition.position, 2f)
+            .setEaseInCubic().setOnComplete(()=>gameObject.SetActive(false));
+    }
+
+    #endregion
+
+
+    #region Attacks
+
+     private  void Attack()
     {
         UniTask.Void(async () =>
         {
@@ -153,28 +182,29 @@ public class BossBehaivour : MonoBehaviour
     {
         UniTask.Void(async () =>
         {
+            ChargeEffect();
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(1f),cancellationToken:cts.Token);
+            
             Instantiate(boomerang, particleLasers[1].transform.position, Quaternion.identity).GetComponent<Boomerang>().Instantiate(player);
 
-            await UniTask.Delay(TimeSpan.FromSeconds(8f),cancellationToken:cts.Token);
+            await UniTask.Delay(TimeSpan.FromSeconds(4f),cancellationToken:cts.Token);
+
+            ChargeBoomerangAttack();
+           
+            await UniTask.Delay(TimeSpan.FromSeconds(3f),cancellationToken:cts.Token);
+            
             prepareToAttack = false;
             Attack();
         });
     }
-    
-    void Update()
-    {
-        if (!prepareToAttack)
-        {
-            Move();
-        }
-    }
-    
-    private void OnParticleCollision(GameObject other)
-    {
-        Destroy(other.transform.parent.gameObject);
-        TakeDmg(1);
-    }
-   
+
+
+    #endregion
+
+
+    #region HpManagement
+
     void TakeDmg(int value)
     {
         hpPanel.transform.GetChild(hp-1).gameObject.SetActive(false);
@@ -207,38 +237,45 @@ public class BossBehaivour : MonoBehaviour
         MoveToInitialPosition();
        
     }
-    
-    [ContextMenu("Take Damage")]
-    void TakeDmg()
+
+
+    #endregion
+
+
+    #region Visual
+
+    private void ChargeEffect()
     {
-        hp -= 1;
-        if (hp < 1)
+        LeanTween.moveLocalY(whiteLine.gameObject, 3.99f, 1f).setEaseInCubic().setOnComplete(() =>
         {
-            if (lastWave)
+            LeanTween.moveLocalY(whiteLine.gameObject, 4.28f, 4f).setEaseInCubic().setOnComplete(() =>
             {
-                Destroy(gameObject);
-            }
-            else
-            {
-                LoseAllHP();
-            }
-        }
-        
-        _anim.SetTrigger("TakeDmg");
+                LeanTween.moveLocalY(whiteLine.gameObject, 4f, 0.2f).setEaseInCubic()
+                    .setDelay(0.8f).setOnComplete(() =>
+                    {
+                        LeanTween.moveLocalY(whiteLine.gameObject, 4.14f, 0.2f).setEaseInCubic();
+                    });
+            });
+            
+        });
     }
-    
-    
-    private void MoveToInitialPosition()
+
+    private void ChargeBoomerangAttack()
     {
-        LeanTween.moveLocal(gameObject, startPosition.position, 2f)
-            .setEaseInCubic().setOnComplete(()=>gameObject.SetActive(false));
+        LeanTween.moveY(gameObject, transform.position.y + 0.5f, 0.8f).setEaseInQuad().setOnComplete(() =>
+        {
+            LeanTween.moveY(gameObject, transform.position.y - 0.5f, 0.2f).setEaseInQuint();
+        });
+
     }
-    
-    
-    
-    void Move()
+
+    #endregion
+   
+    private void OnParticleCollision(GameObject other)
     {
-        float step = 1f * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 3.5f,-2), step);
+        Destroy(other.transform.parent.gameObject);
+        TakeDmg(1);
     }
+    
+    
 }

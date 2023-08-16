@@ -227,15 +227,6 @@ public class SpawnManager : MonoBehaviour
         GameObject objectToSpawn = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
         Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
 
-        #region SET_SIZE_SPEED_STAGE
-        //objectToSpawn.GetComponent<EnemyBehaviour>().speed = Random.Range(enemySpeedRange.x , enemySpeedRange.y);
-
-        //float randomSize = Random.Range(enemySizeRange.x, enemySizeRange.y);
-        //objectToSpawn.transform.localScale = new Vector2(randomSize, randomSize);
-        
-        //SetStage(objectToSpawn);
-            #endregion  
-        
         //Set direction and Target 
         
         attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
@@ -247,35 +238,7 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnEnemy());
     }
 
-    // Set the stage of enemies
-  /*  private void SetStage(GameObject objectToSpawn)
-    {
-        switch (objectToSpawn.name)
-        {
-            case "Circle":
-            {
-                objectToSpawn.GetComponent<EnemyBehaviour>().stage =
-                    Random.value < circleStage2 ? Stages.second : Stages.first;
-                break;
-            }
 
-            case "Hexagon":
-            {
-                objectToSpawn.GetComponent<EnemyBehaviour>().stage =
-                    Random.value < hexagonStage2 ? Stages.second : Stages.first;
-                break;
-            }
-
-            case "Square":
-            {
-                objectToSpawn.GetComponent<EnemyBehaviour>().stage =
-                    Random.value < squareStage2 ? Stages.second : Stages.first;
-                break;
-            }
-        }
-    }*/
-    
-    
     private void SetEnemyDirection(Transform spawnedPoint)
     {
         switch (spawnedPoint.name)

@@ -10,6 +10,7 @@ public class DificultyManager : MonoBehaviour
     private float lvlUpTimeDelay=15;
     public float lineTimeDelay=100, enemyTimeDelay=100, obstacleTimeDelay=100;
     public SpawnManager spawnManager;
+    
     #region Singleton
 
     public static DificultyManager instance;
@@ -30,6 +31,7 @@ public class DificultyManager : MonoBehaviour
     }
 
     #endregion
+    
     IEnumerator LvlUp(){
         yield return new WaitForSeconds(lvlUpTimeDelay); 
         Debug.Log("LvlUp");

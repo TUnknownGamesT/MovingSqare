@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Turbo : PowerUpBehaviour
@@ -12,13 +10,12 @@ public class Turbo : PowerUpBehaviour
 
         player.GetComponent<Movement>().speed += item.GetEffect(item.effects[0].name);
         player.GetComponent<TrailRenderer>().enabled = true;
-            StartCoroutine(DestroyTurboEffect());
+        StartCoroutine(DestroyTurboEffect());
 
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
     }
-
     
     
     private IEnumerator DestroyTurboEffect()
@@ -26,12 +23,11 @@ public class Turbo : PowerUpBehaviour
         yield return new WaitForSeconds(effectTime);
         Movement playerMovement = GameManager.instance.Player.GetComponent<Movement>();
         playerMovement.speed -= item.GetEffect(item.effects[0].name);
+        
         Transform player = GameManager.instance.Player;
         player.GetComponent<TrailRenderer>().enabled = false;
         
         Destroy(gameObject);
     }
 
-  
-    
 }
