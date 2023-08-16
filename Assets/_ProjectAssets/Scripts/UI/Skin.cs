@@ -58,7 +58,7 @@ public class Skin :  ShopItem
     
     public override void Buy()
     {
-
+        Debug.Log("buyyy");
         int currentMoney = Int32.Parse(ShopManager.instance.money.text);
         if ( currentMoney >= price)
         {
@@ -109,7 +109,7 @@ public class Skin :  ShopItem
         }
         else
         {
-           buttonSprite.gameObject.GetComponent<Button>().onClick.AddListener(Buy);   
+            buttonSprite.gameObject.GetComponent<Button>().onClick.AddListener(Buy);   
         }
     }
 
