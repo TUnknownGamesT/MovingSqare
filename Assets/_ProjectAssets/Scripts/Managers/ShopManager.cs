@@ -23,7 +23,7 @@ public class ShopManager : MonoBehaviour
     }
 
     #endregion
-    
+    public ShopText shopText;
     public ItemsPool itemsPool;
     public GameObject skinContainer;
     public GameObject powerUpContainer;
@@ -39,6 +39,8 @@ public class ShopManager : MonoBehaviour
     [Header("Item Main Image")] 
     public Texture2D unBoughtImage;
     
+    [SerializeField]
+    private TMP_Text shopType;
     private readonly List<ShopItem> shopElements = new ();
     private  List<BgMovement> bkSquares = new();
     private Dictionary<int,bool> skinStatus = new();
@@ -81,12 +83,16 @@ public class ShopManager : MonoBehaviour
    
     private void InitShopElements(ElementType elementType)
     {
+        //header
+        shopType.text = elementType.ToString();
+
+        //create items
         foreach (var t in itemsPool.items)
         {
             if (t.type==elementType && elementType == ElementType.Skin)
             {
                 shopElements.Add(Instantiate(skinContainer, contentContainer)
-                .GetComponent<ShopItem>().Initialize(t,skinStatus[t.id]));
+                .GetComponent<ShopItem>().Initialize(t,skinStatus[t.id], shopText));
             }
             if(t.type==elementType && elementType == ElementType.PowerUp)
             {
@@ -94,6 +100,7 @@ public class ShopManager : MonoBehaviour
                     .GetComponent<ShopItem>().Initialize(t,skinStatus[t.id]));
             }
         }
+        //choose selectedSkin
         if(elementType == ElementType.Skin)
         {
             shopElements[selectedSkin].GetComponent<Skin>().SetStatus(true);
@@ -101,20 +108,20 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void SetDetails(int index)
-    {
-        if (shopElements[index].upgradeStage == 3)
-        {
-            _details.text = $"{shopElements[index].effects[2].name} :" +
-                            $" {shopElements[index].effects[2].shopDescription}";
-        }
-        else
-        {
-            _details.text = $"{shopElements[index].effects[shopElements[index].upgradeStage].name} :" +
-                            $" {shopElements[index].effects[shopElements[index].upgradeStage].shopDescription}";
-        }
+    // public void SetDetails(int index)
+    // {
+    //     if (shopElements[index].upgradeStage == 3)
+    //     {
+    //         _details.text = $"{shopElements[index].effects[2].name} :" +
+    //                         $" {shopElements[index].effects[2].shopDescription}";
+    //     }
+    //     else
+    //     {
+    //         _details.text = $"{shopElements[index].effects[shopElements[index].upgradeStage].name} :" +
+    //                         $" {shopElements[index].effects[shopElements[index].upgradeStage].shopDescription}";
+    //     }
         
-    }
+    // }
     
     private void SetBkSquares()
     {
