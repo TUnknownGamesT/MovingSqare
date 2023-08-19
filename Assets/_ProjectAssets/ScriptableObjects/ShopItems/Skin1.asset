@@ -20,5 +20,5 @@ MonoBehaviour:
   effects:
   - name: size
     price: 100
-    effect: 10
-    shopDescription: -10%
+    effect: 1
+    value: 10

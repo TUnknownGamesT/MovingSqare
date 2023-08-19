@@ -29,7 +29,7 @@ public class PowerUp :  ShopItem
         return this;
     }
 
-
+    public override ShopItem Initialize(Item shopItem, bool status, ShopText shopText){return null;}
     private void SetStatus()
     {
         if (upgradeStage < 3)

@@ -43,37 +43,32 @@ public class PlayerManager : MonoBehaviour
 
     private void ApplyEffect( Item item)
     {
-        switch (item.effects[0].name)
+        
+        switch (item.effects[0].effect)
         {
-            case "nothing":
+            case EffectType.Size:
             {
-                return;
-            }
-            
-            case "size":
-            {
-                transform.localScale -= CalculatePercentage(float.Parse(item.effects[0].effect))*Vector3.one;
+                Debug.LogError("SizeEffectApllied");
+                transform.localScale -= CalculatePercentage(item.effects[0].value)*Vector3.one;
                 float scale =  GetComponent<TrailRenderer>().widthMultiplier - 0.12f*PlayerPrefs.GetInt(item.effects[0].name);
                 GetComponent<TrailRenderer>().widthMultiplier = scale;
                 break;
             }
-
-            case "speed":
+            case EffectType.Speed:
             {
-                movement.speed += float.Parse(item.effects[0].effect);
+                Debug.LogError("SpeedEffectApllied");
+                movement.speed += item.effects[0].value;
                 break;
             }
-            
-            case "heal":
+            case EffectType.Life:
             {
-                playerLife.AddLife(1);
+                Debug.LogError("LifeEffectApllied " + (int)item.effects[0].value);
+                playerLife.AddLife((int)item.effects[0].value);
                 break;
             }
-
-            default:
-            {
-                Debug.Log("Effect from player not defined in switch");
-                return;
+            default:{
+                Debug.LogError("NoEffectApllied");
+                break;
             }
         }
     }

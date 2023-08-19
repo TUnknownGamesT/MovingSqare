@@ -20,5 +20,5 @@ MonoBehaviour:
   effects:
   - name: heal
     price: 400
-    effect: +1
-    shopDescription: start 2 lifes
+    effect: 2
+    value: 2
