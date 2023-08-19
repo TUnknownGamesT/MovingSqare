@@ -43,13 +43,6 @@ public class ContentVisualBehaviour : MonoBehaviour
         
         scrollPos = scrollbar.GetComponent<Scrollbar>().value;
 
-         for (int i = 0; i < pos.Length; i++)
-        {
-            if (scrollPos < pos[i] + (distance /  2f) && scrollPos > pos[i] - (distance / 2f))
-            {
-                ShopManager.instance.SetDetails(i);
-            }
-        }
     }
     
     

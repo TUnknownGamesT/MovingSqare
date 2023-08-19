@@ -8,13 +8,20 @@ public enum ElementType
     PowerUp
 }
 
+public enum EffectType{
+    Speed,
+    Size,
+    Life,
+    None
+}
+
 [System.Serializable]
 public class Effects
 {
     public string name;
     public int price;
-    public string effect;
-    public string shopDescription;
+    public EffectType effect;
+    public float value;
 }
 
 
@@ -35,7 +42,7 @@ public class Item : ScriptableObject
         if (index == 3)
             index--;
         
-        return float.Parse(effects[index].effect); 
+        return float.Parse(effects[index].effect.ToString()); 
     }
     
     

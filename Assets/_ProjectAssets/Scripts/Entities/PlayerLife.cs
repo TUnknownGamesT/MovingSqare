@@ -20,11 +20,12 @@ public class PlayerLife : MonoBehaviour
         if (life + amount > 3)
         {
             life = 3;
+            uiManagerGameRoom.IncreaseLife(life);
         }
         else
         {
             life += 1;
-            uiManagerGameRoom.IncreaseLife();
+            uiManagerGameRoom.IncreaseLife(life);
         }
     }
 

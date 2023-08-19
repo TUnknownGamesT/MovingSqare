@@ -20,7 +20,7 @@ public class Skin :  ShopItem
     private int id;
     private ElementType type;
     
-    public override ShopItem Initialize(Item shopItem,bool status)
+    public override ShopItem Initialize(Item shopItem,bool status,ShopText shopText)
     {
         elementType = ElementType.Skin;
         effects = shopItem.effects;
@@ -30,9 +30,11 @@ public class Skin :  ShopItem
 
         itemSprite = shopItem.sprite;
         
+        SetDesctiption(shopText);
         SetStatus(status);
         return this;
     }
+    public override ShopItem Initialize(Item shopItem,bool status){return null;}
     
 
     public void SetStatus(bool status)
@@ -42,7 +44,6 @@ public class Skin :  ShopItem
         {
             //Unselect Case
             buttonSprite.texture = ShopManager.instance.unselectedTexture;
-            text.text = "Select";
             skinImageShow.texture = itemSprite.texture;
             text.color = new Color32(255, 255, 255, 255);
         }
@@ -55,7 +56,13 @@ public class Skin :  ShopItem
         }
     }
 
-    
+    private void SetDesctiption(ShopText shopText){
+        foreach(EffectTypeString current in shopText.effectTypeString){
+            if(current.type == effects[0].effect){
+                text.text = effects[0].value.ToString() + current.text;
+            }
+        }
+    }
     public override void Buy()
     {
         Debug.Log("buyyy");
@@ -76,7 +83,6 @@ public class Skin :  ShopItem
         LeanTween.scale(skinImageShow.gameObject, new Vector3(0,0,0),1f);
         yield return new WaitForSeconds(1f);
         skinImageShow.texture = itemSprite.texture;
-        text.text = "Select";
         text.color = new Color32(255, 255, 255, 255);
         LeanTween.scale(skinImageShow.gameObject, new Vector3(1,1,1), 0.5f).setEase(LeanTweenType.easeOutBack);
     }
@@ -84,16 +90,14 @@ public class Skin :  ShopItem
     public void Unselect(Texture2D unselectedTexture)
     {
         buttonSprite.texture = unselectedTexture;
-        text.color = new Color32(255, 255, 255, 255);
-        text.text = "Select";
+        gameObject.GetComponent<SelectedShopItemAnimation>().StopAnimation();
     }
     
     public override void Select()
     {
+        gameObject.AddComponent<SelectedShopItemAnimation>();
         ShopManager.instance.selectedSkin = id;
         buttonSprite.texture = ShopManager.instance.selectTexture;
-        text.text = "Selected";
-        text.color = new Color32(0, 0, 0, 255);
         PlayerPrefs.SetInt("currentSkin", id);
     }
     

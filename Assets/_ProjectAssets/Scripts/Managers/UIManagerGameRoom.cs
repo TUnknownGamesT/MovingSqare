@@ -159,10 +159,12 @@ public class UIManagerGameRoom : MonoBehaviour
         gameOver = true;
     }
     
-    public void IncreaseLife()
+    public void IncreaseLife(int life)
     {
-        index++;
-        playerLives[index].SetActive(true);
+        while(index < life-1){
+            index++;
+            playerLives[index].SetActive(true);
+        }
         
         LeanTween.value(1, 0.5f, 0.7f).setOnUpdate(value =>
         {
