@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerLife : MonoBehaviour
 {
+
+    public static Action onPlayerDie;
     
     public UIManagerGameRoom uiManagerGameRoom;
     
@@ -39,8 +41,12 @@ public class PlayerLife : MonoBehaviour
         life -= damage;
         EffectManager.DamageEffect();
         uiManagerGameRoom.DecreaseLife();
-        if(life <=0)
+        if (life <= 0)
+        {
+            onPlayerDie?.Invoke();
             GameManager.instance.GameOver();
+        }
+            
     }
 
 }

@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
         alreadyOver = !alreadyOver;
     }
 
-    public void SetViewAdTrue()
+    private void SetViewAdTrue()
     {
         askedAd = true;
     }
@@ -131,7 +131,6 @@ public class GameManager : MonoBehaviour
 
     private void StartCoroutine()
     {
-        //StartCoroutine(IncreaseDifficulty());
         StartCoroutine(IncreaseMoneyValue());
     }
     
@@ -146,35 +145,5 @@ public class GameManager : MonoBehaviour
         StartCoroutine(IncreaseMoneyValue());
     }
     
-    private IEnumerator IncreaseDifficulty()
-    {
-        yield return new WaitForSeconds(difficultySpeed);
-
-        int enemy = Random.Range(1, 4);
-
-        switch (enemy)
-        {
-            case 1:
-            {
-                spawnManager.squareStage2 += Random.value;
-                break;
-            }
-
-            case 2:
-            {
-                spawnManager.circleStage2 += Random.value;
-                break;
-            }
-
-            case 3:
-            {
-                spawnManager.hexagonStage2 += Random.value;
-                break;
-            }
-        }
-
-        StartCoroutine(IncreaseDifficulty());
-
-    }
 
 }

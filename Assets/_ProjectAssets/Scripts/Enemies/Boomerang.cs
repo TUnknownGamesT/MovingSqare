@@ -38,11 +38,32 @@ public class Boomerang : MonoBehaviour
         if (hit.collider != null)
         {
             destination = hit.point;
-            LeanTween.move(this.gameObject, destination, 1.8f).setEase(LeanTweenType.linear).setOnComplete(() =>
+            LeanTween.move(this.gameObject,new Vector2(destination.x,destination.y+0.3f), 1.8f).setEase(LeanTweenType.linear).setOnComplete(() =>
             {
-                 onBoomerangHit?.Invoke();
+                if(turn==0)
+                    onBoomerangHit?.Invoke();
+                
+                LeanTween.moveX(gameObject, transform.position.x + .05f, 0.03f).setEaseInQuad().setOnComplete(() =>
+                {
+                    LeanTween.moveY(gameObject, transform.position.y + 0.05f, 0.03f).setEaseInQuad().setOnComplete(() =>
+                    {
+                        LeanTween.moveX(gameObject, transform.position.x - 0.05f, 0.03f).setEaseInQuad().setOnComplete(() =>
+                        {
+                            LeanTween.moveY(gameObject, transform.position.y - 0.05f, 0.03f).setEaseInQuad();
+                        });
+                    });
+                }).setDelay(2f);
             });
-            
+
+
+            /*if (turn>0)
+            {
+                StartCoroutine(Kill());
+            }
+            else
+            {
+                StartCoroutine(wait(4, 1));
+            }*/
             StartCoroutine(turn >0 ? Kill() : wait(4, 1));
         }
         
