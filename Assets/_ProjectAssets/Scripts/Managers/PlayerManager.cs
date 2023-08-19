@@ -6,33 +6,36 @@ public class PlayerManager : MonoBehaviour
     public PlayerLife playerLife;
     public Movement movement;
     public CameraShaking cameraShaking;
+    public ParticleSystem deathEffect;
+    public ParticleSystem trail;
     
-    
-    private ParticleSystem _trail;
+    private SpriteRenderer _spriteRenderer;
     
 
 
     private void OnEnable()
     {
-        
+        GameManager.onGameOver += PlayerDeath;
         AdsManager.onAdFinish += Revive;
     }
     
 
     private void OnDisable()
     {
+        GameManager.onGameOver -= PlayerDeath;
         AdsManager.onAdFinish -= Revive;
     }
 
     private void Start()
     {
-        _trail = transform.GetChild(0).GetComponent<ParticleSystem>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        trail = transform.GetChild(0).GetComponent<ParticleSystem>();
     }
 
     public void InitPlayer(Item item)
     {
         GetComponent<SpriteRenderer>().sprite = item.sprite;
-        _trail.GetComponent<Renderer>().material.SetTexture("_BaseMap",item.trailTexture);
+        trail.GetComponent<Renderer>().material.SetTexture("_BaseMap",item.trailTexture);
         
         ApplyEffect(item);
     }
@@ -74,10 +77,19 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-    
+
+    private void PlayerDeath()
+    {
+        deathEffect.Play();
+        _spriteRenderer.enabled = false;
+        trail.gameObject.SetActive(false);
+    }
     
     private void Revive()
     {
+        _spriteRenderer.enabled = true;
+        trail.gameObject.SetActive(true);
+        
         transform.position = Vector3.zero;
         playerLife.AddLife(1);
         GetComponent<BoxCollider2D>().enabled = false;

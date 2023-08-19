@@ -114,7 +114,7 @@ public class UIManagerGameRoom : MonoBehaviour
         {
             loseState.alpha = value;
 
-        }).setEaseInQuad();
+        }).setEaseInQuad().setDelay(0.5f);
     }
     
     public void AdState()
@@ -127,7 +127,7 @@ public class UIManagerGameRoom : MonoBehaviour
         LeanTween.value(0, 1, 1f).setOnUpdate(value =>
         {
             loseState.alpha = value;
-        }).setEaseInQuad();
+        }).setEaseInQuad().setDelay(0.5f);
     }
     
 

@@ -18,6 +18,7 @@ public class BossBehaivour : MonoBehaviour
 
     [Header("Boss Visual Components")] 
     public Transform whiteLine;
+    public Transform gunn;
     
     [HideInInspector]
     public bool lastWave;
@@ -171,6 +172,12 @@ public class BossBehaivour : MonoBehaviour
             {
                 Instantiate(missle, particleLasers[1].transform.position, Quaternion.identity);
             }
+
+            LeanTween.moveLocalY(gunn.gameObject, 4.016f, 2f).setEaseInCubic().setOnComplete(() =>
+            {
+                LeanTween.moveLocalY(gunn.gameObject, 3.82f, 1f).setEaseInCubic();
+            });
+            
             await UniTask.Delay(TimeSpan.FromSeconds(5f),cancellationToken:cts.Token);
             prepareToAttack = false;
             Attack();
