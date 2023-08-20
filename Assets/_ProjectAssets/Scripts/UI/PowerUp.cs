@@ -8,9 +8,12 @@ using UnityEngine.UI;
 
 public class PowerUp :  ShopItem
 {
-
+    [SerializeField]
     private RawImage skinImageShow;
+    [SerializeField]
     private TextMeshProUGUI text;
+    [SerializeField]
+    private Button button;
     private ElementType type;
     [SerializeField]
     private GameObject buyVFX;
@@ -23,8 +26,7 @@ public class PowerUp :  ShopItem
         
         upgradeStage = PlayerPrefs.HasKey(effects[0].name) ? PlayerPrefs.GetInt(effects[0].name) : 0;
         
-        text = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
-        transform.GetChild(0).GetComponent<RawImage>().texture = shopItem.sprite.texture;
+        skinImageShow.texture = shopItem.sprite.texture;
         
         SetStatus();
     
@@ -55,9 +57,7 @@ public class PowerUp :  ShopItem
 
     public override void Buy()
     {
-        if(buyVFX.active == true){
-            buyVFX.SetActive(false);
-        }
+        buyVFX.SetActive(false);
         buyVFX.SetActive(true);
         int currentMoney = Int32.Parse(ShopManager.instance.money.text);
         if ( currentMoney >= effects[upgradeStage].price)
@@ -79,12 +79,12 @@ public class PowerUp :  ShopItem
     {
         if (upgradeStage < 3)
         {
-            transform.GetChild(1).GetComponent<Button>().onClick.AddListener(Buy);
+            button.onClick.AddListener(Buy);
         }
     }
     
     private void ClearListener()
     {
-        transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
+        button.onClick.RemoveAllListeners();
     }
 }
