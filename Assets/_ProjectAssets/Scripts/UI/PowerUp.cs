@@ -12,6 +12,8 @@ public class PowerUp :  ShopItem
     private RawImage skinImageShow;
     private TextMeshProUGUI text;
     private ElementType type;
+    [SerializeField]
+    private GameObject buyVFX;
 
     public override ShopItem Initialize(Item shopItem, bool status)
     {
@@ -53,6 +55,10 @@ public class PowerUp :  ShopItem
 
     public override void Buy()
     {
+        if(buyVFX.active == true){
+            buyVFX.SetActive(false);
+        }
+        buyVFX.SetActive(true);
         int currentMoney = Int32.Parse(ShopManager.instance.money.text);
         if ( currentMoney >= effects[upgradeStage].price)
         {
