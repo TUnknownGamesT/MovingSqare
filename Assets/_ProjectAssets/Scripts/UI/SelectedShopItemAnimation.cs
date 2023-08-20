@@ -36,7 +36,8 @@ public class SelectedShopItemAnimation : MonoBehaviour
                 MakeSmaller();
             }
         }else{
-            mainTexture.transform.localScale = new Vector3(1,1,1); 
+            LeanTween.scale(gameObject, new Vector3(1f,1f,1), 0.5f)
+            .setEase(LeanTweenType.easeOutQuad);
             Destroy(this);
         }
     }

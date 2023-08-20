@@ -518,7 +518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &637820843238137187
 Transform:
   m_ObjectHideFlags: 0
@@ -3203,7 +3203,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 69.7
+      scalar: 94.9
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3360,7 +3360,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.54
+    frequency: 0.94
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
@@ -5280,7 +5280,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3ea4434dfea5af04aaefcbb6304c20b9, type: 2}
+  - {fileID: 2100000, guid: 825c050036921524497c8303a2a0bcdc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
