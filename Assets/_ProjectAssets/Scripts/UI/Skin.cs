@@ -14,6 +14,8 @@ public class Skin :  ShopItem
     private RawImage skinImageShow;
     [SerializeField] 
     private RawImage buttonSprite;
+    [SerializeField]
+    private GameObject buyVFX, selectVFX;
     [SerializeField] 
     private TextMeshProUGUI text;
     private int price;
@@ -65,7 +67,6 @@ public class Skin :  ShopItem
     }
     public override void Buy()
     {
-        Debug.Log("buyyy");
         int currentMoney = Int32.Parse(ShopManager.instance.money.text);
         if ( currentMoney >= price)
         {
@@ -76,6 +77,7 @@ public class Skin :  ShopItem
             PlayerPrefs.SetInt("unlockedSkin" + id, 1);
             ClearListener();
             AddListener(true);
+            buyVFX.SetActive(true);
         }
     }
     IEnumerator AnimatePurchase()
@@ -91,6 +93,7 @@ public class Skin :  ShopItem
     {
         buttonSprite.texture = unselectedTexture;
         gameObject.GetComponent<SelectedShopItemAnimation>().StopAnimation();
+        selectVFX.SetActive(false);
     }
     
     public override void Select()
@@ -99,6 +102,7 @@ public class Skin :  ShopItem
         ShopManager.instance.selectedSkin = id;
         buttonSprite.texture = ShopManager.instance.selectTexture;
         PlayerPrefs.SetInt("currentSkin", id);
+        selectVFX.SetActive(true);
     }
     
     private void AddListener(bool status)

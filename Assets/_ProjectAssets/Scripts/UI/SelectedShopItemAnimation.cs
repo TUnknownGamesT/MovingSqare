@@ -17,13 +17,13 @@ public class SelectedShopItemAnimation : MonoBehaviour
 
     private void MakeBigger(){
         isSmall= false;
-        LeanTween.scale(mainTexture, new Vector3(1.1f,1.1f,1.1f), 1f)
+        LeanTween.scale(gameObject, new Vector3(1.1f,1.1f,1.1f), 1f)
             .setEase(LeanTweenType.easeOutQuad) // You can choose different ease types
             .setOnComplete(ContinueAnimation);
     }
     private void MakeSmaller(){
         isSmall=true;
-        LeanTween.scale(mainTexture, new Vector3(0.9f,0.9f,0.9f), 1f)
+        LeanTween.scale(gameObject, new Vector3(0.9f,0.9f,0.9f), 1f)
             .setEase(LeanTweenType.easeOutQuad) // You can choose different ease types
             .setOnComplete(ContinueAnimation);
     }
@@ -37,10 +37,10 @@ public class SelectedShopItemAnimation : MonoBehaviour
             }
         }else{
             mainTexture.transform.localScale = new Vector3(1,1,1); 
+            Destroy(this);
         }
     }
     public void StopAnimation(){
         continueAnimation=false;
-        Destroy(this);
     }
 }
