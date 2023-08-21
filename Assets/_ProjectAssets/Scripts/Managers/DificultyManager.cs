@@ -7,7 +7,7 @@ public class DificultyManager : MonoBehaviour
 {
     [SerializeField, Range(0, 30)]
     private int currentLvl=1;
-    private float lvlUpTimeDelay=15;
+    private float lvlUpTimeDelay=9;
     public float lineTimeDelay=100, enemyTimeDelay=100, obstacleTimeDelay=100;
     public SpawnManager spawnManager;
     
