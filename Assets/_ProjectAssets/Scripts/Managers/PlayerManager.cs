@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour
             case EffectType.Speed:
             {
                 Debug.LogError("SpeedEffectApllied");
-                movement.speed += item.effects[0].value;
+                movement.speed +=(10 + item.effects[0].value/10)/2500;
                 break;
             }
             case EffectType.Life:
