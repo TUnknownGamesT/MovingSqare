@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
 
     public void Update()
     {
+
         if (Input.touchCount > 0 && alive)
         {
             touch = Input.GetTouch(0);

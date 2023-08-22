@@ -14,18 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   sprite: {fileID: 21300000, guid: aadfca7d5579f9d4a966908e04d7656a, type: 3}
+  trailTexture: {fileID: 0}
   unlocked: 0
   type: 1
   effects:
   - name: speed
     price: 300
-    effect: +0.001
-    shopDescription: +10%
+    effect: 0
+    value: 0.001
   - name: speed
     price: 500
-    effect: +0.002
-    shopDescription: +20%
+    effect: 0
+    value: 0.001
   - name: speed
     price: 800
-    effect: +0.003
-    shopDescription: +30%
+    effect: 0
+    value: 0.001
