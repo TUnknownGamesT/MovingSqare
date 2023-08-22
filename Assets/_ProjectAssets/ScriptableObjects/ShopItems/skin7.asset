@@ -21,4 +21,4 @@ MonoBehaviour:
   - name: speed
     price: 100
     effect: 0
-    value: 15
+    value: 0.003

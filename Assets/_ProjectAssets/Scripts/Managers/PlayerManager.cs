@@ -48,7 +48,6 @@ public class PlayerManager : MonoBehaviour
         {
             case EffectType.Size:
             {
-                Debug.LogError("SizeEffectApllied");
                 transform.localScale -= CalculatePercentage(item.effects[0].value)*Vector3.one;
                 float scale =  GetComponent<TrailRenderer>().widthMultiplier - 0.12f*PlayerPrefs.GetInt(item.effects[0].name);
                 GetComponent<TrailRenderer>().widthMultiplier = scale;
@@ -56,13 +55,11 @@ public class PlayerManager : MonoBehaviour
             }
             case EffectType.Speed:
             {
-                Debug.LogError("SpeedEffectApllied");
-                movement.speed +=(10 + item.effects[0].value/10)/2500;
+                movement.speed += item.effects[0].value;
                 break;
             }
             case EffectType.Life:
             {
-                Debug.LogError("LifeEffectApllied " + (int)item.effects[0].value);
                 playerLife.AddLife((int)item.effects[0].value);
                 break;
             }
@@ -112,10 +109,8 @@ public class PlayerManager : MonoBehaviour
         if (col.gameObject.CompareTag("PowerUp"))
         {
             col.gameObject.GetComponent<PowerUpBehaviour>().Effect();
-            
         }
 
-       
     }
     
 

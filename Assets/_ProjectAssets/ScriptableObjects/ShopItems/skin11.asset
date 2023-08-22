@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 11
   sprite: {fileID: 21300000, guid: 9a4af12d1ddc44ac990be7fd0bf72540, type: 3}
-  trailTexture: {fileID: 2800000, guid: 9a4af12d1ddc44ac990be7fd0bf72540, type: 3}
+  trailTexture: {fileID: 2800000, guid: d84a723cd816f034f90046e8ad437c7e, type: 3}
   unlocked: 0
   type: 0
   effects:

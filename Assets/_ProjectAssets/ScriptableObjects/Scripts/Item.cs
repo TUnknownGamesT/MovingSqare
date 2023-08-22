@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-
 public enum ElementType
 { 
     Skin=0,
@@ -42,7 +40,7 @@ public class Item : ScriptableObject
         if (index == 3)
             index--;
         
-        return float.Parse(effects[index].effect.ToString()); 
+        return effects[index].value; 
     }
     
     
