@@ -55,7 +55,7 @@ public class PlayerManager : MonoBehaviour
             }
             case EffectType.Speed:
             {
-                movement.speed += item.effects[0].value;
+                movement.speed += CalculateSpeed(movement.speed, item.effects[0].value);
                 break;
             }
             case EffectType.Life:
@@ -144,6 +144,11 @@ public class PlayerManager : MonoBehaviour
     {
         float soum = transform.localScale.x * effect;
         return soum / 100;
+    }
+
+    private float CalculateSpeed(float defaultSpeed, float speedBonus)
+    {
+        return (defaultSpeed/100)*speedBonus;
     }
 
 /*#if !UNITY_EDITOR
