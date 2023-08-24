@@ -82,11 +82,11 @@ public class MenuAnimation : MonoBehaviour
     public void GoShop()
     {
         StartCoroutine(AnimateTransition(1, 30,0));
-        StartCoroutine(ShowHideShop(0,1,1));
+        StartCoroutine(ShowHideShop(0,1,0.5f));
     }
     public void LeaveShop()
     {
-        StartCoroutine(AnimateTransition(30, 1,1));
+        StartCoroutine(AnimateTransition(30, 1,0.1f));
         StartCoroutine(ShowHideShop(1, 0,0));
     }
     IEnumerator AnimateTransition(float from, float to, float waitTime)
@@ -96,7 +96,7 @@ public class MenuAnimation : MonoBehaviour
         {
             shop.SetActive(false);
         }
-        LeanTween.value(from, to, 1f).setOnUpdate(value => {
+        LeanTween.value(from, to, 0.5f).setOnUpdate(value => {
             Vector3 temp = new Vector3(value, value, 1);
             main.transform.localScale = temp;
             //topBar.transform.localScale = temp;
