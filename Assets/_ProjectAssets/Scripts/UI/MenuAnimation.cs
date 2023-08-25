@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using EasyTransition;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuAnimation : MonoBehaviour
@@ -10,6 +12,7 @@ public class MenuAnimation : MonoBehaviour
     public TextMeshProUGUI[] textFade;
     public TextMeshProUGUI money;
     public GameObject main, shop, topBar, startButton, gameModeMenu;
+    public SceneLoader SceneLoader;
     public Image backButonShop;
     private void Start()
     {
@@ -81,13 +84,15 @@ public class MenuAnimation : MonoBehaviour
 
     public void GoShop()
     {
-        StartCoroutine(AnimateTransition(1, 30,0));
-        StartCoroutine(ShowHideShop(0,1,0.5f));
+        SceneLoader.RandomTransition();
+        //StartCoroutine(AnimateTransition(1, 30,0));
+        StartCoroutine(ShowHideShop(true,1f));
     }
     public void LeaveShop()
     {
-        StartCoroutine(AnimateTransition(30, 1,0.1f));
-        StartCoroutine(ShowHideShop(1, 0,0));
+        SceneLoader.RandomTransition();
+       // StartCoroutine(AnimateTransition(30, 1,0.1f));
+        StartCoroutine(ShowHideShop(false, 1f));
     }
     IEnumerator AnimateTransition(float from, float to, float waitTime)
     {
@@ -103,12 +108,11 @@ public class MenuAnimation : MonoBehaviour
         });
         
     }
-    IEnumerator ShowHideShop(float from, float to,float waitTime)
+    IEnumerator ShowHideShop(bool state,float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        
-        shop.SetActive(true);
-       
+
+        shop.SetActive(state);
     }
 
     public void ChoseGameMode()
