@@ -6,18 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="8ef79f96-8368-4471-a99a-63ea8e86a2d8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Others/Heal.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Others/Heal.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Others/Minimize.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Others/Minimize.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Others/PowerUpContainer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Others/PowerUpContainer.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/VFX/Turbo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/VFX/Turbo.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin12.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin12.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin13.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin13.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin6.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin6.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin7.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin7.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin9.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin9.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Enemys/Boss/Animation/TakeDmg.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Enemys/Boss/Animation/TakeDmg.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Money/Coin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Money/Coin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/BossRoom.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/BossRoom.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/CoinsBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/CoinsBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/SceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/SceneLoader.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/MenuAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/MenuAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +107,7 @@
       <workItem from="1692555620520" duration="13000" />
       <workItem from="1692733424325" duration="2870000" />
       <workItem from="1692873240389" duration="3128000" />
+      <workItem from="1692979280880" duration="3403000" />
     </task>
     <servers />
   </component>
