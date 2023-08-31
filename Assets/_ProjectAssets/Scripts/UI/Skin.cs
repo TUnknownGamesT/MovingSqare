@@ -67,7 +67,7 @@ public class Skin :  ShopItem
     }
     public override void Buy()
     {
-        int currentMoney = Int32.Parse(ShopManager.instance.money.text);
+        int currentMoney = PlayerPrefs.GetInt("Money");
         if ( currentMoney >= price)
         {
             currentMoney -= price;
