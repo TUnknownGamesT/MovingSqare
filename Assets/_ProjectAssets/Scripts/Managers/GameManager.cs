@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 
 public class GameManager : MonoBehaviour
 {
@@ -37,7 +35,7 @@ public class GameManager : MonoBehaviour
     private  Transform player;
     private bool alreadyOver;
     private static bool askedAd;
-    private float moneyMultiplayer=10;
+    private float moneyMultiplayer = 2;
     private int index;
 
     public Transform Player => player;

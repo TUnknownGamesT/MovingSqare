@@ -6,8 +6,23 @@ using UnityEngine;
 public class CoinsBehaviour : MonoBehaviour
 {
 
+    public float life;
     public static int amount;
+    public GameObject destroyVFX;
     public GameObject vfx;
+
+
+    private void Start()
+    { 
+        Invoke(nameof(Destroy),life);
+    }
+
+    private void Destroy()
+    {
+        Instantiate(destroyVFX, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+    
 
     private void OnCollisionEnter2D(Collision2D col)
     {
