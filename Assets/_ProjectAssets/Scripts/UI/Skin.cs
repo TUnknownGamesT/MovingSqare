@@ -36,6 +36,7 @@ public class Skin :  ShopItem
         SetStatus(status);
         return this;
     }
+    
     public override ShopItem Initialize(Item shopItem,bool status){return null;}
     
 
@@ -61,15 +62,18 @@ public class Skin :  ShopItem
     private void SetDesctiption(ShopText shopText){
         foreach(EffectTypeString current in shopText.effectTypeString){
             if(current.type == effects[0].effect){
-                text.text = effects[0].value.ToString() + current.text;
+                text.text = effects[0].value + current.text;
             }
         }
     }
+    
+    
     public override void Buy()
     {
         int currentMoney = PlayerPrefs.GetInt("Money");
         if ( currentMoney >= price)
         {
+            SetDesctiption(ShopManager.instance.shopText);
             currentMoney -= price;
             PlayerPrefs.SetInt("Money",currentMoney);
             ShopManager.instance.money.text = currentMoney.ToString();
@@ -80,6 +84,7 @@ public class Skin :  ShopItem
             buyVFX.SetActive(true);
         }
     }
+    
     IEnumerator AnimatePurchase()
     {
         LeanTween.scale(skinImageShow.gameObject, new Vector3(0,0,0),1f);
