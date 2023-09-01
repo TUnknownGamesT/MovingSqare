@@ -8,10 +8,16 @@ public class Movement : MonoBehaviour
 {
     public float speed;
 
+    
+    private float maxX= 2.17f;
+    private float minX = -2.17f;
+    private float maxY= 4.82f;
+    private float minY= -4.82f;
+    
     private bool isMoving;
     private Vector2 currentInputValue;
     private Vector2 smoothInputValue;
-    private Touch touch;
+    private Touch _touch;
     private bool alive = true;
 
 
@@ -32,13 +38,18 @@ public class Movement : MonoBehaviour
 
         if (Input.touchCount > 0 && alive)
         {
-            touch = Input.GetTouch(0);
+            _touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Moved)
+            if (_touch.phase == TouchPhase.Moved)
             {
-                transform.position = new Vector2(
-                    transform.position.x + touch.deltaPosition.x * speed,
-                    transform.position.y + touch.deltaPosition.y * speed);
+                Vector2 nextPosition = new Vector2(
+                    transform.position.x + _touch.deltaPosition.x * speed,
+                    transform.position.y + _touch.deltaPosition.y * speed);
+                
+                nextPosition.x =  Mathf.Clamp(nextPosition.x, minX, maxX);
+                nextPosition.y = Mathf.Clamp(nextPosition.y, minY, maxY);
+                
+                transform.position =nextPosition;
             }
         }
     }
@@ -52,4 +63,5 @@ public class Movement : MonoBehaviour
     {
         alive = false;
     }
+    
 }
