@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Skin :  ShopItem
 {
@@ -14,10 +15,16 @@ public class Skin :  ShopItem
     private RawImage skinImageShow;
     [SerializeField] 
     private RawImage buttonSprite;
-    [SerializeField]
-    private GameObject buyVFX, selectVFX;
     [SerializeField] 
     private TextMeshProUGUI text;
+    [SerializeField] 
+    private Color selectedColor, unselectedColor;
+    [SerializeField] 
+    private GameObject selectedVFX;
+    [SerializeField] 
+    private RawImage margin;
+
+    private String description;
     private int price;
     private int id;
     private ElementType type;
@@ -49,6 +56,7 @@ public class Skin :  ShopItem
             buttonSprite.texture = ShopManager.instance.unselectedTexture;
             skinImageShow.texture = itemSprite.texture;
             text.color = new Color32(255, 255, 255, 255);
+            text.text = description;
         }
         else
         {
@@ -62,7 +70,7 @@ public class Skin :  ShopItem
     private void SetDesctiption(ShopText shopText){
         foreach(EffectTypeString current in shopText.effectTypeString){
             if(current.type == effects[0].effect){
-                text.text = effects[0].value + current.text;
+                description = effects[0].value.ToString() + current.text;
             }
         }
     }
@@ -76,17 +84,20 @@ public class Skin :  ShopItem
             SetDesctiption(ShopManager.instance.shopText);
             currentMoney -= price;
             PlayerPrefs.SetInt("Money",currentMoney);
-            ShopManager.instance.money.text = currentMoney.ToString();
+            ShopManager.instance.SetMoney(currentMoney);
+            ShopManager.instance.purchaseAnimation.SetActive(true);
+            ShopManager.instance.purchaseAnimation.GetComponent<PurchaseAnimation>().SetSkin(itemSprite);
             StartCoroutine(AnimatePurchase());
             PlayerPrefs.SetInt("unlockedSkin" + id, 1);
             ClearListener();
             AddListener(true);
-            buyVFX.SetActive(true);
+            text.text = description;
         }
     }
     
     IEnumerator AnimatePurchase()
     {
+       // StartCoroutine(ColorAnimation());
         LeanTween.scale(skinImageShow.gameObject, new Vector3(0,0,0),1f);
         yield return new WaitForSeconds(1f);
         skinImageShow.texture = itemSprite.texture;
@@ -94,20 +105,37 @@ public class Skin :  ShopItem
         LeanTween.scale(skinImageShow.gameObject, new Vector3(1,1,1), 0.5f).setEase(LeanTweenType.easeOutBack);
     }
 
+    /*IEnumerator ColorAnimation()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            text.color =Random.ColorHSV(0,1,0,1,1,1,1,1);
+            margin.color = Random.ColorHSV(0,1,0,1,1,1,1,1);
+            skinImageShow.color = Random.ColorHSV(0,1,0,1,1,1,1,1);
+        }
+        skinImageShow.color = Color.white;
+        text.text = description;
+        text.color = unselectedColor;
+        margin.color = unselectedColor;
+    }*/
+
     public void Unselect(Texture2D unselectedTexture)
     {
+        margin.color = unselectedColor;
+        text.color = unselectedColor;
+        selectedVFX.SetActive(false);
         buttonSprite.texture = unselectedTexture;
-        gameObject.GetComponent<SelectedShopItemAnimation>().StopAnimation();
-        selectVFX.SetActive(false);
     }
     
     public override void Select()
     {
-        gameObject.AddComponent<SelectedShopItemAnimation>();
+        margin.color = selectedColor;
+        text.color = selectedColor;
+        selectedVFX.SetActive(true);
         ShopManager.instance.selectedSkin = id;
         buttonSprite.texture = ShopManager.instance.selectTexture;
         PlayerPrefs.SetInt("currentSkin", id);
-        selectVFX.SetActive(true);
     }
     
     private void AddListener(bool status)

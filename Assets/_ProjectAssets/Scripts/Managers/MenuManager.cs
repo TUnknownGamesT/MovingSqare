@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         int cash =PlayerPrefs.GetInt("Money");
-        if(cash<10000){
+        if(cash<1000){
             money.text =cash.ToString();
         }else{
             cash = cash/1000;
