@@ -43,6 +43,7 @@ public class Skin :  ShopItem
         SetStatus(status);
         return this;
     }
+    
     public override ShopItem Initialize(Item shopItem,bool status){return null;}
     
 
@@ -70,15 +71,17 @@ public class Skin :  ShopItem
         foreach(EffectTypeString current in shopText.effectTypeString){
             if(current.type == effects[0].effect){
                 description = effects[0].value.ToString() + current.text;
-                
             }
         }
     }
+    
+    
     public override void Buy()
     {
         int currentMoney = PlayerPrefs.GetInt("Money");
         if ( currentMoney >= price)
         {
+            SetDesctiption(ShopManager.instance.shopText);
             currentMoney -= price;
             PlayerPrefs.SetInt("Money",currentMoney);
             ShopManager.instance.SetMoney(currentMoney);
@@ -91,6 +94,7 @@ public class Skin :  ShopItem
             text.text = description;
         }
     }
+    
     IEnumerator AnimatePurchase()
     {
        // StartCoroutine(ColorAnimation());

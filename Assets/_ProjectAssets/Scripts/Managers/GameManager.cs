@@ -78,7 +78,6 @@ public class GameManager : MonoBehaviour
     {
         //Init Money
         CoinsBehaviour.amount = (int)moneyMultiplayer;
-        uiManager.SetMoneySign((int)moneyMultiplayer);
 
         yield return new WaitForSeconds(2f);
         spawnManager.StartSpawning();
@@ -138,7 +137,7 @@ public class GameManager : MonoBehaviour
 
         moneyMultiplayer += Mathf.Ceil(moneyMultiplayer/10);
         CoinsBehaviour.amount = (int)moneyMultiplayer;
-        uiManager.SetMoneySign((int)moneyMultiplayer);
+        //uiManager.SetMoneySign((int)moneyMultiplayer);
 
         StartCoroutine(IncreaseMoneyValue());
     }

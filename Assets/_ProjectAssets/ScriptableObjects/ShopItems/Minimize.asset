@@ -21,12 +21,12 @@ MonoBehaviour:
   - name: size
     price: 400
     effect: 1
-    value: 0
+    value: 10
   - name: size
     price: 500
     effect: 1
-    value: 0
+    value: 15
   - name: size
     price: 600
     effect: 1
-    value: 0
+    value: 25
