@@ -59,12 +59,12 @@ public class PowerUp :  ShopItem
     {
         buyVFX.SetActive(false);
         buyVFX.SetActive(true);
-        int currentMoney = Int32.Parse(ShopManager.instance.money.text);
+        int currentMoney = PlayerPrefs.GetInt("Money");
         if ( currentMoney >= effects[upgradeStage].price)
         {
             currentMoney -= Int32.Parse(text.text);
             PlayerPrefs.SetInt("Money",currentMoney);
-            ShopManager.instance.money.text = currentMoney.ToString();
+            ShopManager.instance.SetMoney(currentMoney); 
 
             upgradeStage++;
             

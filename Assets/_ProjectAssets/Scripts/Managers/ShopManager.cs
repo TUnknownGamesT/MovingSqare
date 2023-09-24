@@ -27,11 +27,11 @@ public class ShopManager : MonoBehaviour
     public ItemsPool itemsPool;
     public GameObject skinContainer;
     public GameObject powerUpContainer;
+    public GameObject purchaseAnimation;
     public Transform contentContainer;
     public TextMeshProUGUI money;
     public int selectedSkin;
-    public TextMeshProUGUI _details;
-    
+
     [Header("Buttons")]
     public Texture2D unselectedTexture;
     public Texture2D selectTexture;
@@ -155,5 +155,14 @@ public class ShopManager : MonoBehaviour
 	        GameObject.Destroy(child.gameObject);
         }
     }
-    
+
+    public void SetMoney(int cash)
+    {
+        if(cash<1000){
+            money.text =cash.ToString();
+        }else{
+            cash = cash/1000;
+            money.text = cash +"k";
+        }
+    }
 }
