@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public static Action onGameOver;
 
     public UIManagerGameRoom uiManager;
-    public SpawnManager spawnManager;
+    public Spawner spawnManagerSurvive;
     public Vector2 PlayerPosition => player.position;
     public ItemsPool items;
     public int difficultySpeed;
@@ -46,10 +46,11 @@ public class GameManager : MonoBehaviour
         BossGameplay.OnBossAppear += StopCoroutine;
         BossGameplay.OnBossDisappear += StartCoroutine;
         onGameOver += StopCoroutine;
+        Timer.onCounterEnd += StopCoroutine;
         
-        AdsManager.onAdFinish += ResetAlreadyOver;
-        AdsManager.onAdFinish += StartCoroutine;
-        AdsManager.onAdFinish += SetViewAdTrue;
+        AdsManager.onReviveADFinish += ResetAlreadyOver;
+        AdsManager.onReviveADFinish += StartCoroutine;
+        AdsManager.onReviveADFinish += SetViewAdTrue;
     }
     
     
@@ -58,10 +59,11 @@ public class GameManager : MonoBehaviour
         BossGameplay.OnBossAppear -= StopCoroutine;
         BossGameplay.OnBossDisappear -= StartCoroutine;
         onGameOver -= StopCoroutine;
+        Timer.onCounterEnd -= StopCoroutine;
         
-        AdsManager.onAdFinish -= StartCoroutine;
-        AdsManager.onAdFinish -= ResetAlreadyOver;
-        AdsManager.onAdFinish -= SetViewAdTrue;
+        AdsManager.onReviveADFinish -= StartCoroutine;
+        AdsManager.onReviveADFinish -= ResetAlreadyOver;
+        AdsManager.onReviveADFinish -= SetViewAdTrue;
     }
 
     private void Start()
@@ -80,7 +82,7 @@ public class GameManager : MonoBehaviour
         CoinsBehaviour.amount = (int)moneyMultiplayer;
 
         yield return new WaitForSeconds(2f);
-        spawnManager.StartSpawning();
+        spawnManagerSurvive.StartSpawning();
         
         //StartCoroutine(IncreaseDifficulty());
         StartCoroutine(IncreaseMoneyValue());

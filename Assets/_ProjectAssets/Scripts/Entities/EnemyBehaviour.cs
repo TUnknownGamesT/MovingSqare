@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public abstract class EnemyBehaviour : MonoBehaviour
 {
     public float speed;
     public GameObject deadEffect;
@@ -16,6 +16,9 @@ public class EnemyBehaviour : MonoBehaviour
     {
         transform.right = GameManager.instance.PlayerPosition - (Vector2)transform.position;
     }
+
+
+    public abstract void UpdateSpeedBasedOnFigure(float speed);
 
     private void Awake()
     {  

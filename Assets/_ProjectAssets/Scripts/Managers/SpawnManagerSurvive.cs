@@ -1,115 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 
-public enum PowerUps
+public class SpawnManagerSurvive : Spawner
 {
-    heal,
-    speed,
-    size
-}
-
-public class SpawnManager : MonoBehaviour
-{
-    public List<Transform> spawningPoints;
-    public List<GameObject> spawnableObjects;
-    public List<GameObject> powerUps;
-    public GameObject enemyAlertSignPrefab;
-    public GameObject coinPrefab;
-    public GameObject fullScreenLine;
+    
     public GameStats gameStats;
     
-    public float spawnEnemy;
-    public float spawnPowerUps;
-    public float spawnMoney;
-    
-    [Header("Spawn lasers")]
-    public float spawnLines;
-    public int linesSimultaneusly;
-    public float linesLife;
-    
-    //[Header("Enemies Range")]
-    //public Vector2 enemySizeRange;
-    //public Vector2 enemySpeedRange;
-    public float spawnObstacleTime;
-
-
-    [Header("Obstacles")] 
     public List<GameObject> obstacles;
-    public Transform obstaclePoint;
 
-    [HideInInspector]
-    public float squareStage2;
-    [HideInInspector]
-    public float circleStage2;
-    [HideInInspector]
-    public float hexagonStage2;
+    private float lvlDuration;
 
-    [Header("V Values")]
-    public float maxV;
-    public float minV;
-    [Header("W Values")] 
-    public float maxW;
-    public float minW;
-    [Header("E Values")]
-    public float maxE;
-    public float minE;
-    [Header("S Values")]
-    public float maxS;
-    public float minS;
-
-    [Header("Money Spawner Zone")]
-    public float maxX;
-    public float minX;
-    public float maxY;
-    public float minY;
-    
-    
-    
-    private Vector2 positionToSpawn;
-    private AttentionSignBehaviour attentionSignBehaviour;
-    private List<GameObject> availablePowerUps;
-    List<FullScreenLine> fullScreenLineObjects = new();
-
-
-    private void OnEnable()
+    protected override void Start()
     {
-        BossGameplay.OnBossAppear += StopSpawning;
-        BossGameplay.OnBossDisappear += StartSpawning;
-        GameManager.onGameOver += StopSpawning;
-        AdsManager.onAdFinish += StartSpawning;
-    }
-
-    private void OnDisable()
-    {
-        BossGameplay.OnBossAppear -= StopSpawning;
-        BossGameplay.OnBossDisappear -= StartSpawning;
-        GameManager.onGameOver -= StopSpawning;
-        AdsManager.onAdFinish -= StartSpawning;
-    }
-
-    private void Start()
-    {
-        InitStats();
+        InitLvlStats();
         InitPowerUps();
     }
 
-    private void InitStats()
+    protected override void InitLvlStats()
     {
-        spawnPowerUps = gameStats.spawnPowerUpsTime;
-        spawnMoney = gameStats.spawnMoneyTime;
-        spawnEnemy = gameStats.spawnEnemyTime;
-
-        //enemySizeRange = gameStats.enemySizeRange;
-        //enemySpeedRange = gameStats.enemySpeedRange;
+        timeBetweenSpawnPowerUps = gameStats.spawnPowerUpsTime;
+        timeBetweenSpawnMoney = gameStats.spawnMoneyTime;
+        timeBetweenSpawnsGeometricFigures = gameStats.spawnEnemyTime;
     }
 
-    private void InitPowerUps()
+    
+    protected override void InitPowerUps()
     {
         availablePowerUps = new();
         
@@ -129,25 +49,13 @@ public class SpawnManager : MonoBehaviour
         }
         
     }
+    
 
-    public void StopSpawning()
-    {
-        StopAllCoroutines();
-
-        foreach (var fullScreenLine in fullScreenLineObjects)
-        {
-            fullScreenLine.DestroyLaser();
-        }
-        fullScreenLineObjects.Clear();
-    }
-
-    public void StartSpawning()
+    public override void StartSpawning()
     {
         StartCoroutine(SpawnMoney());
-        StartCoroutine(SpawnEnemy());
-        //StartCoroutine(SpawnLines());
-        //StartCoroutine(SpawnObstacle());
-
+        StartCoroutine(SpawnGeometricFigures());
+        
         if (availablePowerUps.Count != 0)
         {
             StartCoroutine(SpawnPowerUps());
@@ -164,7 +72,7 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(DificultyManager.instance.obstacleTimeDelay);
         
-        Instantiate(obstacles[Random.Range(0, obstacles.Count)], obstaclePoint.position, Quaternion.identity);
+        Instantiate(obstacles[Random.Range(0, obstacles.Count)], obstacleSpawnPoint.position, Quaternion.identity);
         StopSpawning();
     }
 
@@ -172,13 +80,13 @@ public class SpawnManager : MonoBehaviour
     
     #region Spawn fullScreenLines
 
-    public IEnumerator SpawnLines()
+    public override IEnumerator SpawnLines()
     {
         yield return new WaitForSeconds(DificultyManager.instance.lineTimeDelay);
 
-        for (int i = 0; i < linesSimultaneusly; i++)
+        for (int i = 0; i < timeBetweenSpawnLasers; i++)
         {
-          fullScreenLineObjects.Add(Instantiate(fullScreenLine, new Vector2(Random.Range(minX, maxX)
+          fullScreenLineObjects.Add(Instantiate(laser, new Vector2(Random.Range(minX, maxX)
             , Random.Range(minY, maxY)), Quaternion.Euler(0, 0, Random.RandomRange(0, 180))).GetComponent<FullScreenLine>());
           
           yield return new WaitForSeconds(0.5f);
@@ -207,9 +115,9 @@ public class SpawnManager : MonoBehaviour
 
     #region Spawn Money
 
-    private IEnumerator SpawnMoney()
+    protected override IEnumerator SpawnMoney()
     {
-        yield return new WaitForSeconds(spawnMoney);
+        yield return new WaitForSeconds(timeBetweenSpawnMoney);
         Instantiate(coinPrefab, new Vector2(Random.Range(minX, maxX)
             , Random.Range(minY, maxY)), Quaternion.identity);
 
@@ -220,11 +128,11 @@ public class SpawnManager : MonoBehaviour
 
     #region Spawn Enemy
 
-    private IEnumerator SpawnEnemy()
+    protected override IEnumerator SpawnGeometricFigures()
     {
         yield return new WaitForSeconds(DificultyManager.instance.enemyTimeDelay);
 
-        GameObject objectToSpawn = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
+        GameObject objectToSpawn = geometricFigures[Random.Range(0, geometricFigures.Count)];
         Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
 
         //Set direction and Target 
@@ -235,11 +143,11 @@ public class SpawnManager : MonoBehaviour
         attentionSignBehaviour.target =
             Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity).GetComponent<Transform>();
 
-        StartCoroutine(SpawnEnemy());
+        StartCoroutine(SpawnGeometricFigures());
     }
 
 
-    private void SetEnemyDirection(Transform spawnedPoint)
+    protected override void SetEnemyDirection(Transform spawnedPoint)
     {
         switch (spawnedPoint.name)
         {
@@ -269,9 +177,9 @@ public class SpawnManager : MonoBehaviour
 
     #region Spawn Power Ups
 
-    IEnumerator SpawnPowerUps()
+    protected override IEnumerator SpawnPowerUps()
     {
-        yield return new WaitForSeconds(spawnPowerUps);
+        yield return new WaitForSeconds(timeBetweenSpawnPowerUps);
         Instantiate(availablePowerUps[Random.Range(0, availablePowerUps.Count-1)], new Vector2(Random.Range(minX, maxX)
             , Random.Range(minY, maxY)), Quaternion.identity);
         StartCoroutine(SpawnPowerUps());

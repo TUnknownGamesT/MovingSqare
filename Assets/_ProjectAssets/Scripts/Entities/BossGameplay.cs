@@ -20,7 +20,7 @@ public class BossGameplay : MonoBehaviour
     public DataManager dataManager;
     public List<GameObject> fireWorks;
     public GameObject winSign;
-    public SpawnManager spawnManager;
+    public SpawnManagerSurvive spawnManagerSurvive;
     public GameManager gameManager;
     public UIManagerGameRoom uiManagerGameRoom;
     public BossBehaivour bossPrefab;

@@ -29,7 +29,8 @@ public class AdsManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public static Action onAdFinish;
+    public static Action onReviveADFinish;
+    public static Action onDoubleMoneyADFinish;
     
     private static RewardedAd rewardedAd;
 
@@ -45,12 +46,21 @@ public class AdsManager : MonoBehaviour
     }
 
     
-    public static void ShowAd()
+    public static void InitReviveAD()
     {
         if (rewardedAd.CanShowAd())
         {
             RegisterEventHandlers(rewardedAd);
-            ShowRewardedAd();
+            ShowReviveAD(true);
+        }
+    }
+    
+    public static void InitDoubleCoinAD()
+    {
+        if (rewardedAd.CanShowAd())
+        {
+            RegisterEventHandlers(rewardedAd);
+            ShowReviveAD(false);
         }
     }
 
@@ -91,18 +101,28 @@ public class AdsManager : MonoBehaviour
             });
     }
     
-    private static void ShowRewardedAd()
+    private static void ShowReviveAD(bool value)
     {
         if (rewardedAd != null && rewardedAd.CanShowAd())
         {
             rewardedAd.Show((Reward reward) =>
             {
-                onAdFinish?.Invoke();
+                //send a bool to switch between revive and double money
+                //need to modify in the future
+                
+                if (value)
+                {
+                    onReviveADFinish?.Invoke();
+                }
+                else
+                {
+                    onDoubleMoneyADFinish?.Invoke();
+                }
                 LoadRewardedAd();
             });
         }
     }
-    
+
     private static void RegisterReloadHandler(RewardedAd ad)
     {
         // Raised when the ad closed full screen content.

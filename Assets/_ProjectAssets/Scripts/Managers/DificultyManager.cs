@@ -9,7 +9,7 @@ public class DificultyManager : MonoBehaviour
     private int currentLvl=1;
     private float lvlUpTimeDelay=6;
     public float lineTimeDelay=100, enemyTimeDelay=100, obstacleTimeDelay=100;
-    public SpawnManager spawnManager;
+    public SpawnManagerSurvive spawnManagerSurvive;
     
     #region Singleton
 
@@ -63,18 +63,18 @@ public class DificultyManager : MonoBehaviour
     void UpdateLineDelay(){
         if(lineTimeDelay==100){
             lineTimeDelay =5;
-            spawnManager.linesSimultaneusly=2;
-            StartCoroutine(spawnManager.SpawnLines());
+            spawnManagerSurvive.timeBetweenSpawnLasers=2;
+            StartCoroutine(spawnManagerSurvive.SpawnLines());
         }
         if(currentLvl%2==0){
-            spawnManager.linesSimultaneusly++;
+            spawnManagerSurvive.timeBetweenSpawnLasers++;
         }
         lineTimeDelay = lineTimeDelay*0.85f;
     }
     void UpdateObstacleDelay(){
         if(obstacleTimeDelay==100){
             obstacleTimeDelay = 30;
-            StartCoroutine(spawnManager.SpawnObstacle());
+            StartCoroutine(spawnManagerSurvive.SpawnObstacle());
         }
 
     }
