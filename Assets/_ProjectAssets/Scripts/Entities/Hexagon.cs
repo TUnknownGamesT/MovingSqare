@@ -6,4 +6,8 @@ public class Hexagon : EnemyBehaviour
 {
 
     public GameObject collider;
+    public override void UpdateSpeedBasedOnFigure(float speed)
+    {
+        this.speed = speed +1;
+    }
 }

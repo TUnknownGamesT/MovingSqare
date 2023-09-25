@@ -6,7 +6,7 @@ using UnityEngine;
 public class ObstacleBehaviour : MonoBehaviour
 {
 
-    public float speed;
+    public static float speed;
 
     private bool activateSpawner;
     
@@ -18,18 +18,9 @@ public class ObstacleBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.name == "Dead Zone" && !activateSpawner)
+        if (col.gameObject.name == "ObstacleDestroyer")
         {
-            activateSpawner = !activateSpawner;
-            GameObject.FindWithTag("SpawnManager").GetComponent<SpawnManager>().StartSpawning();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-
-        if (col.gameObject.name == "Dead Zone")
-        {
+            GameObject.FindWithTag("SpawnManager").GetComponent<Spawner>().StartSpawning();
             Destroy(gameObject);
         }
     }

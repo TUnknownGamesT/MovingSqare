@@ -16,14 +16,14 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         GameManager.onGameOver += PlayerDeath;
-        AdsManager.onAdFinish += Revive;
+        AdsManager.onReviveADFinish += Revive;
     }
     
 
     private void OnDisable()
     {
         GameManager.onGameOver -= PlayerDeath;
-        AdsManager.onAdFinish -= Revive;
+        AdsManager.onReviveADFinish -= Revive;
     }
 
     private void Start()

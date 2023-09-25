@@ -24,13 +24,13 @@ public class Movement : MonoBehaviour
     private void OnEnable()
     {
         PlayerLife.onPlayerDie += SetAliveFalse;
-        AdsManager.onAdFinish += SetAliveTrue;
+        AdsManager.onReviveADFinish += SetAliveTrue;
     }
 
     private void OnDisable()
     {
         PlayerLife.onPlayerDie -= SetAliveFalse;
-        AdsManager.onAdFinish -= SetAliveTrue;
+        AdsManager.onReviveADFinish -= SetAliveTrue;
     }
 
     public void Update()

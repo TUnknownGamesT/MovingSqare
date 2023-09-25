@@ -534,6 +534,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &538967497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8355042232046692004, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
+  m_PrefabInstance: {fileID: 646571524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &580410755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,11 +1010,6 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 3648714189139709081, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
   m_PrefabInstance: {fileID: 646571524}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &646571534 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3648714188943707492, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
-  m_PrefabInstance: {fileID: 646571524}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &859896079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,12 +1250,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScore: {fileID: 646571532}
   moneyCollected: {fileID: 646571531}
-  loseState: {fileID: 646571533}
+  mainUI: {fileID: 646571533}
   movingZone: {fileID: 859896079}
   money: {fileID: 646571525}
   moneyParent: {fileID: 622868995}
   revive: {fileID: 646571530}
-  x2Money: {fileID: 646571534}
+  doubleCoin: {fileID: 538967497}
   playerLives:
   - {fileID: 646571528}
   - {fileID: 646571527}
@@ -1593,7 +1593,7 @@ MonoBehaviour:
   lineTimeDelay: 100
   enemyTimeDelay: 100
   obstacleTimeDelay: 100
-  spawnManager: {fileID: 7534325334839782986}
+  spawnManagerSurvive: {fileID: 0}
 --- !u!1 &1464892628 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3648714188943707493, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
@@ -1678,7 +1678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 922029890}
-  spawnManager: {fileID: 7534325334839782986}
+  spawnManagerSurvive: {fileID: 7534325334839782986}
   items: {fileID: 11400000, guid: b7ea795655413406ea507c2ff8ac869a, type: 2}
   difficultySpeed: 10
   extraMoneyIncrease: 15
@@ -2059,38 +2059,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d27503d541b8f4c8be719f26944eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  geometricFigures:
+  - {fileID: 5141665547245863844, guid: 7b9ef30859cb37e46891fea3c3c2f63b, type: 3}
+  - {fileID: 2023566006283250090, guid: 2732291cf6bb83744a4d0f2b73c1e981, type: 3}
+  - {fileID: 2203469339562770796, guid: 04e1c91305786594981ed930483713ff, type: 3}
+  enemyAlertSignPrefab: {fileID: 7786718456191243107, guid: e29cc032366c1044495bb74baaacdfd9, type: 3}
+  laser: {fileID: 7159293786856718687, guid: 928d9da3d80284f4793091c4ec7b021a, type: 3}
   spawningPoints:
   - {fileID: 1876896043}
   - {fileID: 1295611627}
   - {fileID: 2142957699}
   - {fileID: 586236617}
-  spawnableObjects:
-  - {fileID: 5141665547245863844, guid: 7b9ef30859cb37e46891fea3c3c2f63b, type: 3}
-  - {fileID: 2203469339562770796, guid: 04e1c91305786594981ed930483713ff, type: 3}
-  - {fileID: 2023566006283250090, guid: 2732291cf6bb83744a4d0f2b73c1e981, type: 3}
   powerUps:
   - {fileID: 5272691153176339402, guid: f9739c0806d0afa43bb70892c69d6607, type: 3}
   - {fileID: 7380964038077222623, guid: a3ca1bc6801421941808d85d7ff08bf4, type: 3}
   - {fileID: 8914157103130330078, guid: 76105902883d4f246ad8586919eccac7, type: 3}
-  enemyAlertSignPrefab: {fileID: 7786718456191243107, guid: e29cc032366c1044495bb74baaacdfd9, type: 3}
   coinPrefab: {fileID: 141189488381344411, guid: 652c2241b038b0645b53c3361c825e58, type: 3}
-  fullScreenLine: {fileID: 7159293786856718687, guid: 928d9da3d80284f4793091c4ec7b021a, type: 3}
-  gameStats: {fileID: 11400000, guid: 2631bcfccffd7cd48a5dc567a3780c03, type: 2}
-  spawnEnemy: 0.7
-  spawnPowerUps: 10
-  spawnMoney: 7
-  spawnLines: 2
-  linesSimultaneusly: 5
+  timeBetweenSpawnsGeometricFigures: 0
+  timeBetweenSpawnPowerUps: 0
+  timeBetweenSpawnMoney: 0
+  timeBetweenSpawnLasers: 0
   linesLife: 1.5
-  spawnObstacleTime: 20
-  obstacles:
-  - {fileID: 6575078767282077981, guid: 384dc65703f0144249b04c4692d4b24c, type: 3}
-  - {fileID: 6399405610291231052, guid: 51dce7b833973437da4cc10c0c2f4f02, type: 3}
-  - {fileID: 843863818072900001, guid: 24202f188fdeeb24fa93d5085c2b9bd5, type: 3}
-  obstaclePoint: {fileID: 2205941659688731135}
-  squareStage2: 0
-  circleStage2: 0
-  hexagonStage2: 0
   maxV: 4.41
   minV: -2.93
   maxW: 4.24
@@ -2103,6 +2092,12 @@ MonoBehaviour:
   minX: -1.59
   maxY: 4.35
   minY: -2.04
+  gameStats: {fileID: 11400000, guid: 2631bcfccffd7cd48a5dc567a3780c03, type: 2}
+  obstacles:
+  - {fileID: 6575078767282077981, guid: 384dc65703f0144249b04c4692d4b24c, type: 3}
+  - {fileID: 6399405610291231052, guid: 51dce7b833973437da4cc10c0c2f4f02, type: 3}
+  - {fileID: 843863818072900001, guid: 24202f188fdeeb24fa93d5085c2b9bd5, type: 3}
+  obstacleSpawnPoint: {fileID: 2205941659688731135}
 --- !u!4 &7534325334839782987
 Transform:
   m_ObjectHideFlags: 0

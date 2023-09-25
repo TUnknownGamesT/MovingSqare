@@ -28,29 +28,43 @@ public class UIManagerGameRoom : MonoBehaviour
     
     public TextMeshProUGUI highScore;
     public TextMeshProUGUI moneyCollected;
-    public CanvasGroup loseState;
+    public CanvasGroup mainUI;
     public GameObject movingZone;
     public TextMeshProUGUI money;
     public GameObject moneyParent;
     public GameObject revive;
-    public RectTransform x2Money;
+    public GameObject doubleCoin;
     public List<GameObject> playerLives;
     public GameObject livesParent;
 
     private bool gameOver;
     private int index = 0;
     private int timeToIncreaseMoneyValue;
+    private bool candWatchDoubleCoinAD=true;
     
     private void OnEnable()
     {
         GameManager.onGameOver += SetGameOver;
-        AdsManager.onAdFinish += ResetMainMenu;
+        AdsManager.onReviveADFinish += ResetMainMenu;
+        AdsManager.onDoubleMoneyADFinish += RemoveDoubleCoinButton;
+        AdsManager.onDoubleMoneyADFinish += () =>
+        {
+            candWatchDoubleCoinAD = false;
+        };
+
+        Timer.onCounterEnd += FinishLvlState;
     }
 
     private void OnDisable()
     {
         GameManager.onGameOver -= SetGameOver;
-        AdsManager.onAdFinish -= ResetMainMenu;
+        AdsManager.onReviveADFinish -= ResetMainMenu;
+        AdsManager.onDoubleMoneyADFinish -= RemoveDoubleCoinButton;
+        AdsManager.onDoubleMoneyADFinish -= () =>
+        {
+            candWatchDoubleCoinAD = false;
+        };
+        Timer.onCounterEnd -= FinishLvlState;
     }
     
 
@@ -95,30 +109,52 @@ public class UIManagerGameRoom : MonoBehaviour
     {
         UpdateScoreUI();
         
-        
-        loseState.gameObject.SetActive(true);
-        revive.SetActive(false);
-        
-        LeanTween.value(0, 1, 1f).setOnUpdate(value =>
-        {
-            loseState.alpha = value;
+        mainUI.gameObject.SetActive(true);
+        revive.SetActive(candWatchDoubleCoinAD);
+        doubleCoin.SetActive(true);
 
-        }).setEaseInQuad().setDelay(0.5f);
+        FadeInEffect();
     }
-    
+
+    private void FinishLvlState()
+    {
+        UpdateScoreUI();
+        
+        mainUI.gameObject.SetActive(true);
+        revive.SetActive(false);
+        doubleCoin.SetActive(candWatchDoubleCoinAD);
+        
+        FadeInEffect();
+    }
+
     public void AdState()
     {
         UpdateScoreUI();
         AdListener();
 
         revive.SetActive(true);
-        loseState.gameObject.SetActive(true);
-        LeanTween.value(0, 1, 1f).setOnUpdate(value =>
-        {
-            loseState.alpha = value;
-        }).setEaseInQuad().setDelay(0.5f);
+        doubleCoin.SetActive(candWatchDoubleCoinAD);
+        mainUI.gameObject.SetActive(true);
+       
+        FadeInEffect();
+    }
+
+    
+    private void RemoveDoubleCoinButton()
+    {
+        doubleCoin.SetActive(false);
+        DoubleTheMoney();
+        UpdateScoreUI();
+        
     }
     
+    private void FadeInEffect()
+    {
+        LeanTween.value(0, 1, 1f).setOnUpdate(value =>
+        {
+            mainUI.alpha = value;
+        }).setEaseInQuad().setDelay(0.5f);
+    }
 
     private void UpdateScoreUI()
     {
@@ -129,18 +165,25 @@ public class UIManagerGameRoom : MonoBehaviour
 
     private void AdListener()
     {
-        revive.GetComponent<Button>().onClick.AddListener(AdsManager.ShowAd);
+        revive.GetComponent<Button>().onClick.AddListener(AdsManager.InitReviveAD);
+        doubleCoin.GetComponent<Button>().onClick.AddListener(AdsManager.InitDoubleCoinAD);
     }
     
+    private void DoubleTheMoney()
+    {
+        int amountOfMoney = Int32.Parse(money.text);
+        amountOfMoney *= 2;
+        money.text = amountOfMoney.ToString();
+    }
 
-    public void ResetMainMenu()
+    private void ResetMainMenu()
     {
         revive.GetComponent<Button>().onClick.RemoveAllListeners();
         LeanTween.value(1, 0, 1f).setOnUpdate(value =>
         {
-            loseState.alpha = value;
+            mainUI.alpha = value;
 
-        }).setEaseInQuad().setOnComplete( ()=> loseState.gameObject.SetActive(false));
+        }).setEaseInQuad().setOnComplete( ()=> mainUI.gameObject.SetActive(false));
     }
     
     private void SetGameOver()
