@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour
     public bool musicOn, soundOn;
     public TextMeshProUGUI money;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         int cash =PlayerPrefs.GetInt("Money");
@@ -21,12 +21,7 @@ public class MenuManager : MonoBehaviour
         }
         AudioSetup();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public void MusicToogle(GameObject img)
     {
         if (musicOn)

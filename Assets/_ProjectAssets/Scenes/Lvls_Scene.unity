@@ -1165,6 +1165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 959231091}
+  - component: {fileID: 959231092}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1195,6 +1196,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &959231092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959231090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b46c2d886a393e43990c487c5a50f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levles:
+  - {fileID: 11400000, guid: 374d6ceeea83114438ed94f66b632c38, type: 2}
+  - {fileID: 11400000, guid: 3b9b5868a8614a046a1004d3a09490fa, type: 2}
+  - {fileID: 11400000, guid: 5b8c5ee6c9fad0040b47e624a7de6075, type: 2}
+  - {fileID: 11400000, guid: bde51c51c9c09bc48876e939688ab38f, type: 2}
+  - {fileID: 11400000, guid: 14eb3b565d032f0439c04b926e0be832, type: 2}
+  - {fileID: 11400000, guid: af5c7ac82e1d02343b91b96ffb5dc9b7, type: 2}
+  - {fileID: 11400000, guid: 70ffb375d5ae18d4fac9d75f23e92ea0, type: 2}
+  - {fileID: 11400000, guid: 3783bcacf3204554e913c65033c72e36, type: 2}
+  - {fileID: 11400000, guid: dc4f41043de1eaa4092b0492dea5153d, type: 2}
+  - {fileID: 11400000, guid: 3ee0fe7c85364a94eb6427c49751c4cc, type: 2}
+  - {fileID: 11400000, guid: 5c9a2d10f7086884e9962a77d9682dc1, type: 2}
+  - {fileID: 11400000, guid: f3f7c29b2f5851d44a1e663a5b0aa215, type: 2}
+  - {fileID: 11400000, guid: 2716c74a896df7948a2357fc46ba64de, type: 2}
+  - {fileID: 11400000, guid: 8f935175b2412d8488da31dbc8204133, type: 2}
+  - {fileID: 11400000, guid: 9ff42b61db583b846bc8aae76dfba17d, type: 2}
+  - {fileID: 11400000, guid: f52b8951b69de3c4b80e600a1d51b6e0, type: 2}
+  - {fileID: 11400000, guid: 2a0b7925df85bb04c97a2443c3b23ea8, type: 2}
+  - {fileID: 11400000, guid: 743c085e8c17ce14a8ed421bb491887d, type: 2}
 --- !u!1 &1083632468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,7 +1982,7 @@ MonoBehaviour:
   minX: -1.59
   maxY: 4.35
   minY: -2.04
-  lvlSettings: {fileID: 11400000, guid: 2a0b7925df85bb04c97a2443c3b23ea8, type: 2}
+  LvlIndexer: {fileID: 959231092}
   tetrisRange: {x: -0.78, y: 3.38}
   tetrisSpawnPoint: {fileID: 748943620}
 --- !u!1 &8735849737841826523
