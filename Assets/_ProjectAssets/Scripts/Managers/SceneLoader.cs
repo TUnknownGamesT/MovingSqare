@@ -8,12 +8,24 @@ using Random = UnityEngine.Random;
 
 public class SceneLoader : MonoBehaviour
 {
-    public RawImage blackCircle;
-    public GameObject tranzition;
+    
+    #region Singleton
+    
+    public static SceneLoader instance;
+    
+    private void Awake()
+    {
+        instance = FindObjectOfType<SceneLoader>();
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+    
+    #endregion
+    
     public TransitionSettings[] TransitionSettings;
-    
     private bool isLoading;
-    
     
     
     public void ReloadGameScene()
@@ -27,6 +39,7 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
+    //Change With Load LvlMenu
     public void LoadBossScene()
     {
         if (!isLoading)
@@ -49,14 +62,6 @@ public class SceneLoader : MonoBehaviour
                     ,0);
         }
     }
-    private void StartGame(int sceneIndex)
-    {
-        tranzition.SetActive(true);
-        LeanTween.value(0, 1, 1f).setOnUpdate(value =>
-        {
-            blackCircle.color = new Vector4(0, 0, 0, value);
-        }).setEaseInCubic().setOnComplete(() => SceneManager.LoadScene(sceneIndex)).setDelay(1f);
-    }
 
     public  void LoadMainMenu()
     {
@@ -70,6 +75,17 @@ public class SceneLoader : MonoBehaviour
                     ,0);
         }
         
+    }
+
+    public void LoadLvlScene()
+    {
+        if (!isLoading)
+        {
+            isLoading = !isLoading;
+            EasyTransition.TransitionManager.Instance()
+                .Transition(3,TransitionSettings[Random.Range(0,TransitionSettings.Length)]
+                    ,0);
+        }
     }
 
     public void RandomTransition()

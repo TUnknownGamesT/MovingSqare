@@ -13,7 +13,8 @@ public class MenuAnimation : MonoBehaviour
     public TextMeshProUGUI money;
     public GameObject main, shop, topBar, startButton, gameModeMenu;
     public SceneLoader SceneLoader;
-    public Image backButonShop;
+    public GameObject lvlMenu;
+    
     private void Start()
     {
         InitPlayerPrefs();
@@ -53,35 +54,20 @@ public class MenuAnimation : MonoBehaviour
         }
 
     }
-    
-    public void LeaveMenu()
-    {
-        for (int i = 0; i < buttonsFill.Length; i++)
-        {
-            buttonsFill[i].fillAmount = 0;
-            int index = i;
-            LeanTween.value(1, 0, 1f).setOnUpdate(value => {
-                buttonsFill[index].fillAmount = value;
-            });
-        }
-        for (int i = 0; i < textFade.Length; i++)
-        {
-            textFade[i].color = new Color32(255, 255, 255, 1);
-            int index = i;
-            LeanTween.value(1, 0, 1f).setOnUpdate(value =>
-            {
-                Color c = textFade[index].color;
-                c.a = value;
-                textFade[index].color = c;
-            });
-        }
-        GameObject sign = money.transform.parent.Find("Sign").gameObject;
-        LeanTween.value(1f, 0f, 1f).setOnUpdate(value => {
-            sign.GetComponent<RawImage>().color = new Color(1, 1, 1, value);
-            money.color = new Color(1, 1, 1, value);
-        });
-    }
 
+
+    public void ShowLvlMenu()
+    {
+        SceneLoader.RandomTransition();
+        lvlMenu.SetActive(true);
+    }
+    
+    public void HideLvlMenu()
+    {
+        SceneLoader.RandomTransition();
+        lvlMenu.SetActive(false);
+    }
+    
     public void GoShop()
     {
         SceneLoader.RandomTransition();
