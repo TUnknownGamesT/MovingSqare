@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class SpawnManagerLvls : Spawner
 {
+
+   public LVLIndexer LvlIndexer;
    
    [Header("Lvl Settings")]
-   public LvlSettings lvlSettings;
-   
    public Vector2 tetrisRange;
    public Transform tetrisSpawnPoint;
    
@@ -17,7 +17,7 @@ public class SpawnManagerLvls : Spawner
    private bool _lvlOver;
    private float _timeBetweenSpawnTetris;
    private int _tetrisPeacesOnTime;
-
+   private LvlSettings _lvlSettings;
 
    protected override void OnEnable()
    {
@@ -42,6 +42,7 @@ public class SpawnManagerLvls : Spawner
 
    protected override void Start()
    {
+      _lvlSettings = LvlIndexer.GetCurrentLvlSettings();
       InitLvlStats();
       InitPowerUps();
    }
@@ -49,15 +50,15 @@ public class SpawnManagerLvls : Spawner
 
    protected override void InitLvlStats()
    {
-      timeBetweenSpawnsGeometricFigures = lvlSettings.timeBetweenSpawnGeometricFigures;
-      timeBetweenSpawnPowerUps = lvlSettings.timeBetweenSpawnPowerUps;
-      timeBetweenSpawnMoney = lvlSettings.timeBetweenSpawnMoney;
-      timeBetweenSpawnLasers = lvlSettings.timeBetweenSpawnLasers;
-      linesLife = lvlSettings.linesLife;
-      _timeBetweenSpawnMaze = lvlSettings.timeBetweenSpawnMaze;
-      _mazePrefab = lvlSettings.obstaclePrefab;
-      _geometryFiguresSpeed = lvlSettings.geometricFiguresSpeed;
-      Timer.Duration = lvlSettings.lvlDuration;
+      timeBetweenSpawnsGeometricFigures = _lvlSettings.timeBetweenSpawnGeometricFigures;
+      timeBetweenSpawnPowerUps = _lvlSettings.timeBetweenSpawnPowerUps;
+      timeBetweenSpawnMoney = _lvlSettings.timeBetweenSpawnMoney;
+      timeBetweenSpawnLasers = _lvlSettings.timeBetweenSpawnLasers;
+      linesLife = _lvlSettings.linesLife;
+      _timeBetweenSpawnMaze = _lvlSettings.timeBetweenSpawnMaze;
+      _mazePrefab = _lvlSettings.obstaclePrefab;
+      _geometryFiguresSpeed = _lvlSettings.geometricFiguresSpeed;
+      Timer.Duration = _lvlSettings.lvlDuration;
    }
    
    protected override void InitPowerUps()
@@ -86,23 +87,23 @@ public class SpawnManagerLvls : Spawner
       if (_lvlOver)
          return;
       
-      if (lvlSettings.geometryFigures)
+      if (_lvlSettings.geometryFigures)
       {
          StartCoroutine(SpawnGeometricFigures());
       }
 
-      if (lvlSettings.lasers)
+      if (_lvlSettings.lasers)
       {
          StartCoroutine(SpawnLines());
       }
       
-      if(lvlSettings.maze)
+      if(_lvlSettings.maze)
       {
-         _mazePrefab=lvlSettings.obstaclePrefab;
+         _mazePrefab=_lvlSettings.obstaclePrefab;
          StartCoroutine(SpawnMaze());
       }
 
-      if (lvlSettings.tetris)
+      if (_lvlSettings.tetris)
       {
          StartCoroutine(SpawnTetrisPiece());
       }
@@ -121,7 +122,7 @@ public class SpawnManagerLvls : Spawner
       yield return new WaitForSeconds(_timeBetweenSpawnMaze);
       
       Instantiate(_mazePrefab,obstacleSpawnPoint.position,Quaternion.identity);
-      ObstacleBehaviour.speed = lvlSettings.obstacleSpeed;
+      ObstacleBehaviour.speed = _lvlSettings.obstacleSpeed;
       StopSpawning();
       
    }
@@ -134,7 +135,7 @@ public class SpawnManagerLvls : Spawner
    {
       yield return new WaitForSeconds(timeBetweenSpawnLasers);
 
-      for (int i = 0; i < lvlSettings.linesCount; i++)
+      for (int i = 0; i < _lvlSettings.linesCount; i++)
       {
          fullScreenLineObjects.Add(Instantiate(laser, new Vector2(Random.Range(minX, maxX)
             , Random.Range(minY, maxY)), Quaternion.Euler(0, 0, Random.RandomRange(0, 180))).GetComponent<FullScreenLine>());
@@ -245,11 +246,11 @@ public class SpawnManagerLvls : Spawner
    {
       yield return new WaitForSeconds(_timeBetweenSpawnMaze);
      
-      ObstacleBehaviour.speed = lvlSettings.obstacleSpeed;
+      ObstacleBehaviour.speed = _lvlSettings.obstacleSpeed;
       
-      for (int tetrisIndex = 0; tetrisIndex < lvlSettings.tetrisCount; tetrisIndex++)
+      for (int tetrisIndex = 0; tetrisIndex < _lvlSettings.tetrisCount; tetrisIndex++)
       {
-         Instantiate(lvlSettings.obstaclePrefab,
+         Instantiate(_lvlSettings.obstaclePrefab,
             new Vector2(Random.Range(tetrisRange.x,tetrisRange.y),tetrisSpawnPoint.position.y)
             ,Quaternion.identity);
          yield return new WaitForSeconds(1f);
