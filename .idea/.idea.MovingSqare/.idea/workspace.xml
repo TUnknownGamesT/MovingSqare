@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ef79f96-8368-4471-a99a-63ea8e86a2d8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Others/SkinContainer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Others/SkinContainer.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/Survive.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/Survive.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/ColectMoneyEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/ColectMoneyEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/ComboBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/ComboBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/PowerUps/Minimize.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/PowerUps/Minimize.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/GameAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/GameAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
-    </list>
+    <list default="true" id="8ef79f96-8368-4471-a99a-63ea8e86a2d8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,7 +101,7 @@
       <workItem from="1695894137125" duration="1250000" />
       <workItem from="1696332375317" duration="1950000" />
       <workItem from="1696351587194" duration="637000" />
-      <workItem from="1696783752371" duration="1248000" />
+      <workItem from="1696783752371" duration="2042000" />
     </task>
     <servers />
   </component>
