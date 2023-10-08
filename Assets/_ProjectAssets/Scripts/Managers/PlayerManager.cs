@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public ParticleSystem deathEffect;
     public ParticleSystem trail;
     
+    [SerializeField]
     private SpriteRenderer _spriteRenderer;
     
 
@@ -28,13 +29,12 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         trail = transform.GetChild(0).GetComponent<ParticleSystem>();
     }
 
     public void InitPlayer(Item item)
     {
-        GetComponent<SpriteRenderer>().sprite = item.sprite;
+        _spriteRenderer.sprite = item.sprite;
         trail.GetComponent<Renderer>().material.SetTexture("_BaseMap",item.trailTexture);
         
         ApplyEffect(item);

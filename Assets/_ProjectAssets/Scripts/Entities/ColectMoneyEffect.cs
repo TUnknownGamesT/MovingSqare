@@ -1,5 +1,5 @@
 using System.Collections;
-using Febucci.UI;
+//using Febucci.UI;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class ColectMoneyEffect : MonoBehaviour
     public Color[] textColors;
     public string[] textOptions;
     
-    private TypewriterByWord _typewriterByWord;
+   // private TypewriterByWord _typewriterByWord;
     private TextMeshPro _tmp;
     
     
@@ -18,7 +18,7 @@ public class ColectMoneyEffect : MonoBehaviour
     private void Awake()
     {
         _tmp = GetComponent<TextMeshPro>();
-        _typewriterByWord = GetComponent<TypewriterByWord>();
+        //_typewriterByWord = GetComponent<TypewriterByWord>();
     }
 
     
@@ -36,7 +36,7 @@ public class ColectMoneyEffect : MonoBehaviour
     IEnumerator HideText()
     {
         yield return new WaitForSeconds(0.5f);
-        _typewriterByWord.StartDisappearingText();
+       // _typewriterByWord.StartDisappearingText();
     }
 
     public void Destroy()

@@ -21,7 +21,7 @@ public class GameAnimation : MonoBehaviour
             moneySign.color = myColor;
             money.color = myColor;
             lives[0].color = myColor;
-            player.GetComponent<SpriteRenderer>().color = myColor;
+            //player.GetComponent<SpriteRenderer>().color = myColor;
         });
     }
 
