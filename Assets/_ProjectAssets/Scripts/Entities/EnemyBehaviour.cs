@@ -17,6 +17,12 @@ public abstract class EnemyBehaviour : MonoBehaviour
         transform.right = GameManager.instance.PlayerPosition - (Vector2)transform.position;
     }
 
+    public void SetTransformRight()
+    {
+        transform.rotation=Quaternion.identity;
+        transform.right = (Vector2)transform.position + new Vector2(-90, 0);
+    }
+
 
     public abstract void UpdateSpeedBasedOnFigure(float speed);
 
@@ -33,10 +39,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     private  void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.name == "Dead Zone")
-            Destroy(gameObject);
-
-        if (col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player") ||col.gameObject.CompareTag("DeadZone"))
         {
             SoundManager.instance.PlaySoundEffect(Constants.Sounds.DestroyEnemy);
             Destroy(gameObject);

@@ -35,7 +35,7 @@ public class SceneLoader : MonoBehaviour
             isLoading = !isLoading;
             EasyTransition.TransitionManager.Instance()
                 .Transition(SceneManager.GetActiveScene().buildIndex
-                    ,TransitionSettings[Random.Range(0,TransitionSettings.Length)],0);
+                    ,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)],0);
         }
     }
 
@@ -46,7 +46,7 @@ public class SceneLoader : MonoBehaviour
         {
             isLoading = !isLoading;
             EasyTransition.TransitionManager.Instance()
-                .Transition(2,TransitionSettings[Random.Range(0,TransitionSettings.Length)]
+                .Transition(2,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)]
                     ,0);
         }
     }
@@ -58,7 +58,7 @@ public class SceneLoader : MonoBehaviour
         {
             isLoading = !isLoading;
             EasyTransition.TransitionManager.Instance()
-                .Transition(1,TransitionSettings[Random.Range(0,TransitionSettings.Length)]
+                .Transition(1,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)]
                     ,0);
         }
     }
@@ -71,7 +71,7 @@ public class SceneLoader : MonoBehaviour
             GameManager.instance.ResetAd();
             isLoading = !isLoading;
             EasyTransition.TransitionManager.Instance()
-                .Transition(0,TransitionSettings[Random.Range(0,TransitionSettings.Length)]
+                .Transition(0,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)]
                     ,0);
         }
         
@@ -83,7 +83,7 @@ public class SceneLoader : MonoBehaviour
         {
             isLoading = !isLoading;
             EasyTransition.TransitionManager.Instance()
-                .Transition(3,TransitionSettings[Random.Range(0,TransitionSettings.Length)]
+                .Transition(3,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)]
                     ,0);
         }
     }
@@ -91,7 +91,7 @@ public class SceneLoader : MonoBehaviour
     public void RandomTransition()
     {
         EasyTransition.TransitionManager.Instance()
-            .Transition(TransitionSettings[Random.Range(0,TransitionSettings.Length)]
+            .Transition(TransitionSettings[Random.Range(0,TransitionSettings.Length-1)]
                 ,0);
     }
 }
