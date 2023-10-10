@@ -41,27 +41,37 @@ public class UIManagerGameRoom : MonoBehaviour
     private int index = 0;
     private int timeToIncreaseMoneyValue;
     private bool candWatchDoubleCoinAD=true;
+    private bool canWatchReviveAD=true;
+    
     
     private void OnEnable()
     {
         GameManager.onGameOver += SetGameOver;
-        AdsManager.onReviveADFinish += ResetMainMenu;
-        AdsManager.onDoubleMoneyADFinish += RemoveDoubleCoinButton;
+        AdsManager.onReviveADFinish +=()=>
+        {
+            canWatchReviveAD = false;
+            ResetMainMenu();
+        };
         AdsManager.onDoubleMoneyADFinish += () =>
         {
+            RemoveDoubleCoinButton();
             candWatchDoubleCoinAD = false;
         };
-
+        
         Timer.onCounterEnd += FinishLvlState;
     }
 
     private void OnDisable()
     {
         GameManager.onGameOver -= SetGameOver;
-        AdsManager.onReviveADFinish -= ResetMainMenu;
-        AdsManager.onDoubleMoneyADFinish -= RemoveDoubleCoinButton;
+        AdsManager.onReviveADFinish -=()=>
+        {
+            canWatchReviveAD = false;
+            ResetMainMenu();
+        };
         AdsManager.onDoubleMoneyADFinish -= () =>
         {
+            RemoveDoubleCoinButton();
             candWatchDoubleCoinAD = false;
         };
         Timer.onCounterEnd -= FinishLvlState;
@@ -110,13 +120,13 @@ public class UIManagerGameRoom : MonoBehaviour
         UpdateScoreUI();
         
         mainUI.gameObject.SetActive(true);
-        revive.SetActive(candWatchDoubleCoinAD);
-        doubleCoin.SetActive(true);
+        revive.SetActive(canWatchReviveAD);
+        doubleCoin.SetActive(candWatchDoubleCoinAD);
 
         FadeInEffect();
     }
 
-    private void FinishLvlState()
+    public void FinishLvlState()
     {
         UpdateScoreUI();
         
@@ -132,7 +142,7 @@ public class UIManagerGameRoom : MonoBehaviour
         UpdateScoreUI();
         AdListener();
 
-        revive.SetActive(true);
+        revive.SetActive(canWatchReviveAD);
         doubleCoin.SetActive(candWatchDoubleCoinAD);
         mainUI.gameObject.SetActive(true);
        
@@ -145,9 +155,8 @@ public class UIManagerGameRoom : MonoBehaviour
         doubleCoin.SetActive(false);
         DoubleTheMoney();
         UpdateScoreUI();
-        
     }
-    
+
     private void FadeInEffect()
     {
         LeanTween.value(0, 1, 1f).setOnUpdate(value =>
@@ -210,6 +219,9 @@ public class UIManagerGameRoom : MonoBehaviour
         playerLives[index].SetActive(false);
         index--;
     }
-    
-    
+
+    public void DefeatedBoss()
+    {
+        
+    }
 }

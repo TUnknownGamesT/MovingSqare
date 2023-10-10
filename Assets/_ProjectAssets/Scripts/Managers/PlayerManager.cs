@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public ParticleSystem trail;
     
     private SpriteRenderer _spriteRenderer;
+    private BoxCollider2D _boxCollider2D;
     
 
 
@@ -28,6 +29,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
+        _boxCollider2D = GetComponent<BoxCollider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         trail = transform.GetChild(0).GetComponent<ParticleSystem>();
     }
@@ -74,6 +76,7 @@ public class PlayerManager : MonoBehaviour
     {
         deathEffect.Play();
         _spriteRenderer.enabled = false;
+        _boxCollider2D.enabled = false;
         trail.gameObject.SetActive(false);
     }
     
@@ -81,7 +84,7 @@ public class PlayerManager : MonoBehaviour
     {
         _spriteRenderer.enabled = true;
         trail.gameObject.SetActive(true);
-        
+        _boxCollider2D.enabled = true;
         transform.position = Vector3.zero;
         playerLife.AddLife(1);
         GetComponent<BoxCollider2D>().enabled = false;
@@ -97,6 +100,9 @@ public class PlayerManager : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D col)
     {
+        
+        if(col.gameObject.CompareTag("DeadZone"))
+            playerLife.Damage(1);
         
         if (col.gameObject.CompareTag("Enemy"))
         {
