@@ -1,5 +1,9 @@
+using System;
 using System.Collections;
+using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManagerLvls : Spawner
 {
@@ -259,6 +263,41 @@ public class SpawnManagerLvls : Spawner
       yield return new WaitForSeconds(4f);
 
       StartCoroutine(SpawnTetrisPiece());
+   }
+
+   #endregion
+   #region SpawnBossAttacks
+   
+   public void StartSecondAttack()
+   {
+      
+      UniTask.Void(async () =>
+      {
+         int roundTime = 10;
+         int geometricFigureIndex=0;
+         while (geometricFigureIndex < geometricFigures.Count)
+         {
+            GameObject objectToSpawn = geometricFigures[geometricFigureIndex];
+            objectToSpawn.GetComponent<EnemyBehaviour>().UpdateSpeedBasedOnFigure(_geometryFiguresSpeed);
+            objectToSpawn.GetComponent<EnemyBehaviour>().SetTransformRight();
+            
+            Transform spawnPoint = spawningPoints[3];
+            
+            attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
+               .GetComponent<AttentionSignBehaviour>();
+            SetEnemyDirection(spawnPoint);
+            attentionSignBehaviour.target =
+               Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity).GetComponent<Transform>();
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            roundTime--;
+            if (roundTime == 0)
+            {
+               roundTime = 10;
+               geometricFigureIndex++;
+            }
+         }
+      });
    }
 
    #endregion

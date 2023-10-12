@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class LVLIndexer : MonoBehaviour
 {
-    public static int currentLvlIndex;
+    public static int currentLvlIndex=9;
     public LvlSettings[] levles;
-
+    
+    
+    public void LvlCompleted()
+    {
+        PlayerPrefs.SetInt("MaxLvlReached", currentLvlIndex+1);
+    }
+    
 
     public LvlSettings GetCurrentLvlSettings()
     {

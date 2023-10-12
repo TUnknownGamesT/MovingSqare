@@ -12,7 +12,15 @@ public class LVLMenuBehaviour : MonoBehaviour
     
     private void Awake()
     {
-        maxLvlReached = PlayerPrefs.GetInt("MaxLvlReached", 0);
+        if (!PlayerPrefs.HasKey("MaxLvlReached"))
+        {
+            PlayerPrefs.SetInt("MaxLvlReached", 0);
+        }
+        else
+        { 
+            maxLvlReached = PlayerPrefs.GetInt("MaxLvlReached", 0);
+        }
+        
     }
 
 

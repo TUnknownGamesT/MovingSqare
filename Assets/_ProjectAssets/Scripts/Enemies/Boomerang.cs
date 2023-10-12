@@ -6,11 +6,12 @@ public class Boomerang : MonoBehaviour
 {
 
     public static Action onBoomerangHit;
-    
+
+    public ParticleSystem collisionEffect; 
    
     private Vector2 destination;
     private Transform player;
-    public LayerMask[] RayCastLayer;
+    public LayerMask RayCastLayer;
     // Start is called before the first frame update
     
     public void Instantiate(Transform player)
@@ -34,12 +35,13 @@ public class Boomerang : MonoBehaviour
     private void SetDirection(int turn)
     {
         
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, player.position - this.transform.position, Mathf.Infinity, RayCastLayer[turn]);
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, player.position - this.transform.position, Mathf.Infinity, RayCastLayer);
         if (hit.collider != null)
         {
             destination = hit.point;
-            LeanTween.move(this.gameObject,new Vector2(destination.x,destination.y+0.3f), 1.8f).setEase(LeanTweenType.linear).setOnComplete(() =>
+            LeanTween.move(this.gameObject,new Vector2(destination.x,destination.y+0.3f), 1.2f).setEase(LeanTweenType.linear).setOnComplete(() =>
             {
+                collisionEffect.Play();
                 if(turn==0)
                     onBoomerangHit?.Invoke();
                 
@@ -54,16 +56,7 @@ public class Boomerang : MonoBehaviour
                     });
                 }).setDelay(2f);
             });
-
-
-            /*if (turn>0)
-            {
-                StartCoroutine(Kill());
-            }
-            else
-            {
-                StartCoroutine(wait(4, 1));
-            }*/
+            
             StartCoroutine(turn >0 ? Kill() : wait(4, 1));
         }
         
