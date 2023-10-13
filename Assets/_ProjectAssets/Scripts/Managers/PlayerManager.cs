@@ -32,7 +32,6 @@ public class PlayerManager : MonoBehaviour
     {
 
         _boxCollider2D = GetComponent<BoxCollider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         trail = transform.GetChild(0).GetComponent<ParticleSystem>();
     }
 
