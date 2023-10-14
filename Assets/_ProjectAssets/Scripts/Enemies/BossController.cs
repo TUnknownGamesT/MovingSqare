@@ -201,8 +201,11 @@ public class BossController : MonoBehaviour
         LeanTween.rotate(gameObject, new Vector3(0, 0, 180), 30f).setEaseInQuad();
         LeanTween.scale(rewardText, new Vector3(1, 1, 1), 1f).setEaseInQuad().setOnComplete(() =>
         {
+            UIManagerGameRoom.instance.UpdateMoney(500);
             UIManagerGameRoom.instance.FinishLvlState();
         });
+        
+        
 
     }
 
