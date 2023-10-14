@@ -23,12 +23,9 @@ public class BackgroundParticlesManager : MonoBehaviour
     }
 
     #endregion
-
-    private void Start()
-    {
-        
-    }
-
+    
+    
+    
     public void InitAnimation()
     {
         StartCoroutine(ChangeColor());

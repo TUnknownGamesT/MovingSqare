@@ -9,17 +9,23 @@ public class SpawnManagerLvls : Spawner
 {
 
    public LVLIndexer LvlIndexer;
+   public GameObject boss;
    
    [Header("Lvl Settings")]
    public Vector2 tetrisRange;
    public Transform tetrisSpawnPoint;
    
+   [Header("Tetris Prefabs")]
+   public GameObject[] tetrisPrefabs;
+   public GameObject tetrisDestroyEffect;
    
    private GameObject _mazePrefab;
    private float _geometryFiguresSpeed;
+   private float _tetrisEnemiesSpeed;
    private float _timeBetweenSpawnMaze;
    private bool _lvlOver;
    private float _timeBetweenSpawnTetris;
+   private float _timeBetweenSpawnTetrisEnemies;
    private int _tetrisPeacesOnTime;
    private LvlSettings _lvlSettings;
 
@@ -62,6 +68,8 @@ public class SpawnManagerLvls : Spawner
       _timeBetweenSpawnMaze = _lvlSettings.timeBetweenSpawnMaze;
       _mazePrefab = _lvlSettings.obstaclePrefab;
       _geometryFiguresSpeed = _lvlSettings.geometricFiguresSpeed;
+      _tetrisEnemiesSpeed = _lvlSettings.tetrisEnemiesSpeed;
+      _timeBetweenSpawnTetrisEnemies = _lvlSettings.timeBetweenSpawnTetrisEnemies;
       Timer.Duration = _lvlSettings.lvlDuration;
    }
    
@@ -90,6 +98,12 @@ public class SpawnManagerLvls : Spawner
    {
       if (_lvlOver)
          return;
+
+      if (_lvlSettings.lvl10Boss)
+      {
+         boss.SetActive(true);
+         return;
+      }
       
       if (_lvlSettings.geometryFigures)
       {
@@ -110,6 +124,11 @@ public class SpawnManagerLvls : Spawner
       if (_lvlSettings.tetris)
       {
          StartCoroutine(SpawnTetrisPiece());
+      }
+
+      if (_lvlSettings.tetrisBoss)
+      {
+         StartCoroutine(SpawnTetrisEnemies());
       }
 
       StartCoroutine(SpawnMoney());
@@ -178,6 +197,7 @@ public class SpawnManagerLvls : Spawner
 
       StartCoroutine(SpawnMoney());
    }
+   
 
    #endregion
 
@@ -202,7 +222,6 @@ public class SpawnManagerLvls : Spawner
 
       StartCoroutine(SpawnGeometricFigures());
    }
-
 
    protected override void SetEnemyDirection(Transform spawnedPoint)
    {
@@ -231,7 +250,82 @@ public class SpawnManagerLvls : Spawner
    }
 
    #endregion
-   
+
+
+
+   #region Spawn Tetris Enemies
+
+   private IEnumerator SpawnTetrisEnemies()
+   {
+      yield return new WaitForSeconds(_timeBetweenSpawnTetrisEnemies);
+
+      GameObject objectToSpawn = tetrisPrefabs[Random.Range(0, tetrisPrefabs.Length)];
+      Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
+
+      //Set direction and Target 
+        
+      attentionSignBehaviour = Instantiate(enemyAlertSignPrefab, spawnPoint.position, spawnPoint.rotation)
+         .GetComponent<AttentionSignBehaviour>();
+      SetEnemyDirection(spawnPoint);
+      attentionSignBehaviour.target =
+         Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity).GetComponent<Transform>();
+      GameObject newTetrisObject = attentionSignBehaviour.target.gameObject;
+      SetTetrisObject(newTetrisObject,objectToSpawn);
+      newTetrisObject.GetComponent<EnemyBehaviour>().UpdateSpeedBasedOnFigure(_tetrisEnemiesSpeed);
+      StartCoroutine(SpawnTetrisEnemies());
+   }
+
+    
+    private void SetTetrisObject(GameObject newTetrisObject,GameObject tetrisPrefab)
+    {
+       
+       newTetrisObject.AddComponent<Rigidbody2D>();
+       newTetrisObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+       newTetrisObject.tag= "Enemy";
+       newTetrisObject.layer = 3;
+       
+       switch (tetrisPrefab.name)
+       {
+          case "Cube":
+          {
+             newTetrisObject.AddComponent<Square>();
+             newTetrisObject.GetComponent<BoxCollider2D>().isTrigger = false;
+             break;
+          }
+          case "L_Down":
+          {
+             newTetrisObject.AddComponent<Hexagon>();
+             newTetrisObject.GetComponent<EdgeCollider2D>().isTrigger = false;   
+             break;
+          }
+         
+          case "L_Up":
+          {
+             newTetrisObject.AddComponent<Hexagon>();
+             newTetrisObject.GetComponent<EdgeCollider2D>().isTrigger = false;   
+             break;
+          }
+
+          case "Line_UP":
+          {
+             newTetrisObject.AddComponent<Circle>();
+             newTetrisObject.GetComponent<BoxCollider2D>().isTrigger = false;
+             break;
+          }
+
+          default:
+          {
+             Debug.LogError("Tetris Object Undefined",this);
+             break;
+          }
+       }
+
+       
+       newTetrisObject.GetComponent<EnemyBehaviour>().deadEffect = tetrisDestroyEffect;
+    }
+    
+   #endregion
+
    #region Spawn Power Ups
 
    protected override IEnumerator SpawnPowerUps()
@@ -244,7 +338,7 @@ public class SpawnManagerLvls : Spawner
 
    #endregion
 
-   #region Spawn Tetris
+   #region Spawn Tetris One Peace
 
    IEnumerator SpawnTetrisPiece()
    {
@@ -254,10 +348,11 @@ public class SpawnManagerLvls : Spawner
       
       for (int tetrisIndex = 0; tetrisIndex < _lvlSettings.tetrisCount; tetrisIndex++)
       {
-         Instantiate(_lvlSettings.obstaclePrefab,
+       GameObject newTetrisObject =  Instantiate(_lvlSettings.obstaclePrefab,
             new Vector2(Random.Range(tetrisRange.x,tetrisRange.y),tetrisSpawnPoint.position.y)
             ,Quaternion.identity);
-         yield return new WaitForSeconds(1f);
+       newTetrisObject.AddComponent<ObstacleBehaviour>();
+       yield return new WaitForSeconds(1f);
       }
       
       yield return new WaitForSeconds(4f);
@@ -266,6 +361,7 @@ public class SpawnManagerLvls : Spawner
    }
 
    #endregion
+   
    #region SpawnBossAttacks
    
    public void StartSecondAttack()

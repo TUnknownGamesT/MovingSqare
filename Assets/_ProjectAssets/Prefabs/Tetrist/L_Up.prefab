@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 3499446546707619330}
   - component: {fileID: 3499446546707619331}
   - component: {fileID: 3499446546707619328}
-  - component: {fileID: 3499446546707619329}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_Up
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -96,7 +95,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -114,15 +113,3 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &3499446546707619329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3499446546707619334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a181f8cefd7ec234fb2b197a0ee0da69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

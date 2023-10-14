@@ -66,7 +66,7 @@ public class ComboBehaviour : MonoBehaviour
 
    private void UpdateComboText()
    {
-      BackgroundParticlesManager.instance.InitAnimation();
+     // BackgroundParticlesManager.instance.InitAnimation();
       comboAmount++;
       comboTXT.text = $"X{comboAmount}";
       

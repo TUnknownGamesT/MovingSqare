@@ -83,7 +83,7 @@ public class SceneLoader : MonoBehaviour
         {
             isLoading = !isLoading;
             EasyTransition.TransitionManager.Instance()
-                .Transition(3,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)]
+                .Transition(2,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)]
                     ,0);
         }
     }
