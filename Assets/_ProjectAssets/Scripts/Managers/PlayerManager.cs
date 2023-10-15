@@ -91,9 +91,9 @@ public class PlayerManager : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         LeanTween.value(1, 0.5f, 0.3f).setOnUpdate(value =>
         {
-            Color c = GetComponent<SpriteRenderer>().color;
+            Color c = _spriteRenderer.color;
             c.a = value;
-            GetComponent<SpriteRenderer>().color = c;
+            _spriteRenderer.color = c;
         }).setLoopCount(10).setEaseInOutCubic().setLoopPingPong()
             .setOnComplete(()=> GetComponent<BoxCollider2D>().enabled = true);
     }
