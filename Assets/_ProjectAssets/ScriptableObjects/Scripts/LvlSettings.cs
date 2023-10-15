@@ -11,6 +11,8 @@ public class LvlSettings : ScriptableObject
    public bool lasers;
    public bool maze;
    public bool tetris;
+   public bool tetrisBoss;
+   public bool lvl10Boss;
 
    [Header("Spawn Time")]
    public float timeBetweenSpawnGeometricFigures;
@@ -18,6 +20,7 @@ public class LvlSettings : ScriptableObject
    public float timeBetweenSpawnPowerUps;
    public float timeBetweenSpawnMoney;
    public float timeBetweenSpawnMaze;
+   public float timeBetweenSpawnTetrisEnemies;
    
    [Header("Duration")]
    public float linesLife;
@@ -28,6 +31,7 @@ public class LvlSettings : ScriptableObject
    [Header("Obstacle Speed")]
    public float geometricFiguresSpeed;
    public float obstacleSpeed;
+   public float tetrisEnemiesSpeed;
 
    [Header("Obstacle Count")] 
    public int linesCount;

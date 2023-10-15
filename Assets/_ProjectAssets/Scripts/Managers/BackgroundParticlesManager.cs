@@ -26,6 +26,7 @@ public class BackgroundParticlesManager : MonoBehaviour
     #endregion
 
     public async void InitAnimation()
+
     {
         foreach (var child in children)
         {

@@ -809,6 +809,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5731594154615455235, guid: 2d5d764d147f1c5448daf69b2a5044d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5731594154615455246, guid: 2d5d764d147f1c5448daf69b2a5044d4, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1131,63 +1135,6 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 3648714189139709081, guid: 0565bcfb184537347b50f13119c5bfb7, type: 3}
   m_PrefabInstance: {fileID: 646571524}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &659178405
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354748, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115600189062354749, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
-      propertyPath: m_Name
-      value: InGameVFX
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
 --- !u!1 &748943619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1166,11 @@ Transform:
   m_Father: {fileID: 7534325334839782987}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &776839870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5731594154615455235, guid: 2d5d764d147f1c5448daf69b2a5044d4, type: 3}
+  m_PrefabInstance: {fileID: 645310023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &859896079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,6 +1525,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f52b8951b69de3c4b80e600a1d51b6e0, type: 2}
   - {fileID: 11400000, guid: 2a0b7925df85bb04c97a2443c3b23ea8, type: 2}
   - {fileID: 11400000, guid: 743c085e8c17ce14a8ed421bb491887d, type: 2}
+  - {fileID: 11400000, guid: b1adbeef6b94a1a48b9466e51748c622, type: 2}
 --- !u!1 &1083632468
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,7 +2156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 178476164381607094, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 178476164381607096, guid: 20a448c1914d7b34a94be25d5b8459b0, type: 3}
       propertyPath: cameraShaking
@@ -2311,8 +2264,15 @@ MonoBehaviour:
   maxY: 4.35
   minY: -2.04
   LvlIndexer: {fileID: 959231092}
+  boss: {fileID: 776839870}
   tetrisRange: {x: -0.78, y: 3.38}
   tetrisSpawnPoint: {fileID: 748943620}
+  tetrisPrefabs:
+  - {fileID: 5499197284911700023, guid: bbf041d91164f584da1d16b98a1aa623, type: 3}
+  - {fileID: 5452853481168850698, guid: 0b4ae1072a8acb4429d3ca54e047c270, type: 3}
+  - {fileID: 3499446546707619334, guid: 765ea39c2e5f9574a9d5cce76c4747bc, type: 3}
+  - {fileID: 8368129268147546496, guid: 8d8dc9cc9674de649bd304fb412a35fa, type: 3}
+  tetrisDestroyEffect: {fileID: 5684917093094143395, guid: dc1e3406cccaad94780c3a3d3106fdf5, type: 3}
 --- !u!1 &8735849737841826523
 GameObject:
   m_ObjectHideFlags: 0

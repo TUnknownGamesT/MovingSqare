@@ -16,17 +16,21 @@ MonoBehaviour:
   lasers: 0
   maze: 0
   tetris: 0
+  tetrisBoss: 0
+  lvl10Boss: 1
   timeBetweenSpawnGeometricFigures: 0
   timeBetweenSpawnLasers: 0
   timeBetweenSpawnPowerUps: 99999
   timeBetweenSpawnMoney: 99999
   timeBetweenSpawnMaze: 99999
+  timeBetweenSpawnTetrisEnemies: 0
   linesLife: 0
   powerUpsLife: 0
   moneyLife: 0
   lvlDuration: 99999
   geometricFiguresSpeed: 1.3
   obstacleSpeed: 0
+  tetrisEnemiesSpeed: 0
   linesCount: 0
   tetrisCount: 0
   obstaclePrefab: {fileID: 0}
