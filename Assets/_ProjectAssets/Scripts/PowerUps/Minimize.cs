@@ -39,11 +39,7 @@ public class Minimize :  PowerUpBehaviour
             .setOnUpdate(value =>
             {
                 player.localScale = Vector3.one * value;
-            }).setEaseInCubic().setOnComplete(() =>
-            {
-                float scale = trailRenderer.widthMultiplier + 0.5f*PlayerPrefs.GetInt(item.effects[0].name);
-                trailRenderer.widthMultiplier = scale;
-            });
+            }).setEaseInCubic();
         
         Destroy(gameObject);
         

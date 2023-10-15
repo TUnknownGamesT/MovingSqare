@@ -8,7 +8,8 @@ public class BackgroundParticlesManager : MonoBehaviour
 {
     public Color defColor, actionColor, deathColor;
     public ParticleSystem[] children;
-    private LTDescr _tween;
+    private int _tween;
+    
     #region Singleton
 
     public static BackgroundParticlesManager instance;
@@ -29,21 +30,34 @@ public class BackgroundParticlesManager : MonoBehaviour
     {
         foreach (var child in children)
         {
-            if (_tween!=null)
-            {
-                _tween.reset();
-            }
             _tween = LeanTween.value(0, 1, 1f).setOnUpdate((value) =>
             {
-                child.GetComponent<Renderer>().material.color =
-                    Color.Lerp(child.GetComponent<Renderer>().material.color, actionColor, value);
-            }).setOnComplete(ClearTween);
+                try
+                {
+                    child.GetComponent<Renderer>().material.color =
+                        Color.Lerp(child.GetComponent<Renderer>().material.color, actionColor, value);
+                }
+                catch (Exception e)
+                {
+                    ClearTween();
+                }
+            }).id;
+            
             await Task.Delay(2000);
+            
             _tween = LeanTween.value(0, 1, 1500f).setOnUpdate((value) =>
             {
-                child.GetComponent<Renderer>().material.color =
-                    Color.Lerp(child.GetComponent<Renderer>().material.color, defColor, value);
-            }).setOnComplete(ClearTween);
+                try
+                {
+                    child.GetComponent<Renderer>().material.color =
+                        Color.Lerp(child.GetComponent<Renderer>().material.color, defColor, value);
+                }
+                catch (Exception e)
+                {
+                    ClearTween();
+                }
+                
+            }).id;
         }
     }
 
@@ -51,27 +65,41 @@ public class BackgroundParticlesManager : MonoBehaviour
     {
         foreach (var child in children)
         {
-            if (_tween!=null)
-            {
-                _tween.reset();
-            }
             _tween = LeanTween.value(0, 1, 1f).setOnUpdate((value) =>
             {
-                child.GetComponent<Renderer>().material.color =
-                    Color.Lerp(child.GetComponent<Renderer>().material.color, deathColor, value);
-            }).setOnComplete(ClearTween);
+                try
+                {
+                    child.GetComponent<Renderer>().material.color =
+                        Color.Lerp(child.GetComponent<Renderer>().material.color, deathColor, value);
+                }
+                catch (Exception e)
+                {
+                    ClearTween();
+                }
+               
+            }).id;
+            
             await Task.Delay(2000);
+            
             _tween = LeanTween.value(0, 1, 1500f).setOnUpdate((value) =>
             {
-                child.GetComponent<Renderer>().material.color =
-                    Color.Lerp(child.GetComponent<Renderer>().material.color, defColor, value);
-            }).setOnComplete(ClearTween);
+                try
+                {
+                    child.GetComponent<Renderer>().material.color =
+                        Color.Lerp(child.GetComponent<Renderer>().material.color, defColor, value);
+                }
+                catch (Exception e)
+                {
+                    ClearTween();
+                }
+               
+            }).id;
         }
     }
 
     private void ClearTween()
     {
-        _tween = null;
+        LeanTween.cancel(_tween);
     }
 
 }
