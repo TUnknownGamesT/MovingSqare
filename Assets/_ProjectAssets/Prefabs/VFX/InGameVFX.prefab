@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
   actionColor: {r: 1, g: 0.9929693, b: 0, a: 1}
+  deathColor: {r: 0.5188679, g: 0, b: 0, a: 1}
   children:
   - {fileID: 5115600189782291649}
 --- !u!1 &5115600189782291678

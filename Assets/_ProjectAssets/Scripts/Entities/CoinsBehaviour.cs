@@ -35,6 +35,7 @@ public class CoinsBehaviour : MonoBehaviour
             Instantiate(textEffect, transform.position+Vector3.forward*-9.125f, Quaternion.identity);
             Instantiate(vfx, transform.position, Quaternion.identity);
             UIManagerGameRoom.instance.UpdateMoney(amount);
+            BackgroundParticlesManager.instance.TakeCoinAnimation();
             SoundManager.instance.PlaySoundEffect(Constants.Sounds.PickCoin);
             onCoinDestroy?.Invoke(true);
             Destroy(gameObject);

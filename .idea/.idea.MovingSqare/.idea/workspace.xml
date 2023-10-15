@@ -6,16 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="8ef79f96-8368-4471-a99a-63ea8e86a2d8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/VFX/TetrsiDestroyEffect.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/VFX/TetrsiDestroyEffect.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/VFX/InGameVFX.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/VFX/InGameVFX.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/LvlsScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/LvlsScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/LVLIndexer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/LVLIndexer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/SceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/SceneLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/PowerUps/Minimize.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/PowerUps/Minimize.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/PowerUps/Turbo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/PowerUps/Turbo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/MenuAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/MenuAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/Survive.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/Survive.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/CoinsBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/CoinsBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/ColectMoneyEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/ColectMoneyEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/BackgroundParticlesManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/BackgroundParticlesManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,18 +22,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a31731933e0419ca5a995305014ad37157a00/48/08ef6398/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.7/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@73d86259ce/Runtime/Internal/ContinuationQueue.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@73d86259ce/Runtime/Internal/PlayerLoopRunner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@73d86259ce/Runtime/UniTaskScheduler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.7/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Q3XRDj7GUKxxNec6o2HDZNIEZV" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -120,8 +114,9 @@
       <workItem from="1696351587194" duration="637000" />
       <workItem from="1696783752371" duration="2042000" />
       <workItem from="1697139100060" duration="419000" />
-      <workItem from="1697306935822" duration="595000" />
-      <workItem from="1697370706096" duration="1692000" />
+      <workItem from="1697212836228" duration="717000" />
+      <workItem from="1697262489680" duration="2741000" />
+      <workItem from="1697372757948" duration="672000" />
     </task>
     <servers />
   </component>
@@ -131,4 +126,23 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/ComboBehaviour.cs</url>
+          <line>57</line>
+          <properties documentPath="D:\unityProj\MovingSqare\Assets\_ProjectAssets\Scripts\Entities\ComboBehaviour.cs" initialLine="57" containingFunctionPresentation="method 'ComboStatus'">
+            <startOffsets>
+              <option value="1153" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1169" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>
