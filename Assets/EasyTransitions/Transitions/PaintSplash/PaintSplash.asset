@@ -23,7 +23,7 @@ MonoBehaviour:
   autoAdjustTransitionTime: 1
   flipX: 0
   flipY: 0
-  transitionTime: 0.75
+  transitionTime: 1
   destroyTime: 1.1
   transitionIn: {fileID: 501235885848192162, guid: 278370681279aad4093aaab29aadd98e, type: 3}
   transitionOut: {fileID: 410111082859399802, guid: 28c9e4b137f5a424fb352eb97b777b04, type: 3}

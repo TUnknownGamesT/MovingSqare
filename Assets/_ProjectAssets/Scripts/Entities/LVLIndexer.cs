@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LVLIndexer : MonoBehaviour
 {
-    public static int currentLvlIndex=19;
+    public static int currentLvlIndex;
     public LvlSettings[] levles;
     
     
