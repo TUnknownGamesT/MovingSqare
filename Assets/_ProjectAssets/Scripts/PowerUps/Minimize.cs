@@ -9,7 +9,6 @@ public class Minimize :  PowerUpBehaviour
     public override void Effect()
     {
         Transform player=  GameManager.instance.Player;
-        TrailRenderer trailRenderer = player.GetComponent<TrailRenderer>();
 
 
         LeanTween.value(player.localScale.x,

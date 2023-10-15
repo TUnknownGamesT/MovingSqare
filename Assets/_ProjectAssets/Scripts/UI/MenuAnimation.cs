@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using EasyTransition;
 using TMPro;
 using UnityEngine;
@@ -58,14 +60,28 @@ public class MenuAnimation : MonoBehaviour
 
     public void ShowLvlMenu()
     {
-        SceneLoader.RandomTransition();
-        lvlMenu.SetActive(true);
+        UniTask.Void(async () =>
+        {
+            SceneLoader.RandomTransition();
+
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        
+            lvlMenu.SetActive(true);
+        });
     }
     
     public void HideLvlMenu()
     {
-        SceneLoader.RandomTransition();
-        lvlMenu.SetActive(false);
+        UniTask.Void(async () =>
+        {
+            SceneLoader.RandomTransition();
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            
+            lvlMenu.SetActive(false);
+        });
+        
+        
     }
     
     public void GoShop()
