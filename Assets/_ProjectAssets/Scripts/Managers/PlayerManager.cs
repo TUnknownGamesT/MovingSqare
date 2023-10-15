@@ -52,8 +52,8 @@ public class PlayerManager : MonoBehaviour
             case EffectType.Size:
             {
                 transform.localScale -= CalculatePercentage(item.effects[0].value)*Vector3.one;
-                float scale =  GetComponent<TrailRenderer>().widthMultiplier - 0.12f*PlayerPrefs.GetInt(item.effects[0].name);
-                GetComponent<TrailRenderer>().widthMultiplier = scale;
+                //float scale =  GetComponent<TrailRenderer>().widthMultiplier - 0.12f*PlayerPrefs.GetInt(item.effects[0].name);
+                //GetComponent<TrailRenderer>().widthMultiplier = scale;
                 break;
             }
             case EffectType.Speed:
