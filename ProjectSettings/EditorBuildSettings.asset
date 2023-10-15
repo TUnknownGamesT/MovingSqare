@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/_ProjectAssets/Scenes/Survive.unity
     guid: 7e54b01b0c73dc14aa32047bf1f8fa1c
   - enabled: 1
-    path: Assets/_ProjectAssets/Scenes/BossRoom.unity
+    path: Assets/_ProjectAssets/Scenes/PlayGround/BossRoom.unity
     guid: fb60788bf3455d54e8e6cb16734c6ca0
   - enabled: 1
     path: Assets/_ProjectAssets/Scenes/Lvls_Scene.unity

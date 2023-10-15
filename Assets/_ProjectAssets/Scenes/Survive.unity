@@ -2207,6 +2207,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameVFX
       objectReference: {fileID: 0}
+    - target: {fileID: 5115600189062354751, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
+      propertyPath: deathColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115600189062354751, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
+      propertyPath: deathColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115600189062354751, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
+      propertyPath: deathColor.r
+      value: 0.6320754
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
 --- !u!1 &7534325334839782980

@@ -35,7 +35,7 @@ public class PlayerLife : MonoBehaviour
     {
         if (life - damage < 0)
             return;
-        
+        BackgroundParticlesManager.instance.TakeDamageAnimation();
         Handheld.Vibrate();
         life -= damage;
         EffectManager.DamageEffect();
