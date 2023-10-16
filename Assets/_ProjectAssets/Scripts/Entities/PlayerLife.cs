@@ -7,7 +7,6 @@ public class PlayerLife : MonoBehaviour
 {
 
     public static Action onPlayerDie;
-    
     public UIManagerGameRoom uiManagerGameRoom;
     
     private int life=1;
@@ -42,6 +41,8 @@ public class PlayerLife : MonoBehaviour
         uiManagerGameRoom.DecreaseLife();
         if (life <= 0)
         {
+            Debug.LogWarning("Player Die");
+            
             onPlayerDie?.Invoke();
             GameManager.instance.GameOver();
         }

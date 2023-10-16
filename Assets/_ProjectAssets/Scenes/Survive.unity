@@ -2288,10 +2288,10 @@ MonoBehaviour:
   minE: -3.07
   maxS: 2.62
   minS: -2.27
-  maxX: 1.54
-  minX: -1.59
-  maxY: 4.35
-  minY: -2.04
+  maxX: 1.2
+  minX: -1.2
+  maxY: 3.8
+  minY: -1.5
   gameStats: {fileID: 11400000, guid: 2631bcfccffd7cd48a5dc567a3780c03, type: 2}
   obstacles:
   - {fileID: 6575078767282077981, guid: 384dc65703f0144249b04c4692d4b24c, type: 3}

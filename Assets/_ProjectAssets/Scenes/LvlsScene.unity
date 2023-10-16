@@ -2332,10 +2332,10 @@ MonoBehaviour:
   minE: -3.07
   maxS: 2.62
   minS: -2.27
-  maxX: 1.54
-  minX: -1.59
-  maxY: 4.35
-  minY: -2.04
+  maxX: 1.2
+  minX: -1.2
+  maxY: 3.8
+  minY: -1.5
   LvlIndexer: {fileID: 959231092}
   boss: {fileID: 776839870}
   tetrisRange: {x: -0.78, y: 3.38}
