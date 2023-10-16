@@ -14,7 +14,6 @@ public class ColectMoneyEffect : MonoBehaviour
     private TypewriterByWord _typewriterByWord;
     private TextMeshPro _tmp;
     
-    public int MoneyAmount { get; set; }
     
     private void Awake()
     {

@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class SceneLoader : MonoBehaviour
 {
+
+    public static Action onSceneNewSceneLoad;
     
     #region Singleton
     
@@ -36,6 +38,7 @@ public class SceneLoader : MonoBehaviour
             EasyTransition.TransitionManager.Instance()
                 .Transition(SceneManager.GetActiveScene().buildIndex
                     ,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)],0);
+            onSceneNewSceneLoad?.Invoke();
         }
     }
 
@@ -85,6 +88,7 @@ public class SceneLoader : MonoBehaviour
             EasyTransition.TransitionManager.Instance()
                 .Transition(2,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)]
                     ,0);
+            onSceneNewSceneLoad?.Invoke();
         }
     }
 
