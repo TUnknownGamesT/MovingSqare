@@ -33,6 +33,7 @@ public class AdsManager : MonoBehaviour
     public static Action onDoubleMoneyADFinish;
     
     private static RewardedAd rewardedAd;
+    private static bool differentTypeOfAdd;
 
     private void Start()
     {
@@ -51,7 +52,8 @@ public class AdsManager : MonoBehaviour
         if (rewardedAd.CanShowAd())
         {
             RegisterEventHandlers(rewardedAd);
-            ShowReviveAD(true);
+            differentTypeOfAdd = true;
+            ShowReviveAD();
         }
     }
     
@@ -60,7 +62,8 @@ public class AdsManager : MonoBehaviour
         if (rewardedAd.CanShowAd())
         {
             RegisterEventHandlers(rewardedAd);
-            ShowReviveAD(false);
+            differentTypeOfAdd = false;
+            ShowReviveAD();
         }
     }
 
@@ -101,7 +104,7 @@ public class AdsManager : MonoBehaviour
             });
     }
     
-    private static void ShowReviveAD(bool value)
+    private static void ShowReviveAD()
     {
         if (rewardedAd != null && rewardedAd.CanShowAd())
         {
@@ -109,15 +112,6 @@ public class AdsManager : MonoBehaviour
             {
                 //send a bool to switch between revive and double money
                 //need to modify in the future
-                
-                if (value)
-                {
-                    onReviveADFinish?.Invoke();
-                }
-                else
-                {
-                    onDoubleMoneyADFinish?.Invoke();
-                }
                 LoadRewardedAd();
             });
         }
@@ -172,6 +166,15 @@ public class AdsManager : MonoBehaviour
         // Raised when the ad closed full screen content.
         ad.OnAdFullScreenContentClosed += () =>
         {
+            if (differentTypeOfAdd)
+            {
+                onReviveADFinish?.Invoke();
+            }
+            else
+            {
+                onDoubleMoneyADFinish?.Invoke();
+            }
+            
             RegisterReloadHandler(rewardedAd);
             ad.Destroy();
         };

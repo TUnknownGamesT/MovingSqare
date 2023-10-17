@@ -1792,6 +1792,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameVFX
       objectReference: {fileID: 0}
+    - target: {fileID: 5115600189062354751, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
+      propertyPath: actionColor.a
+      value: 0.34901962
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115600189062354751, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
+      propertyPath: actionColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115600189062354751, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
+      propertyPath: actionColor.g
+      value: 0.54287827
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115600189062354751, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
+      propertyPath: actionColor.r
+      value: 0.5471698
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ebaa4b895a5f3499d39a7cfa5ad49e, type: 3}
 --- !u!114 &1220180889 stripped
@@ -2471,10 +2487,10 @@ MonoBehaviour:
   minE: -3.07
   maxS: 2.62
   minS: -2.27
-  maxX: 1.54
-  minX: -1.59
-  maxY: 4.35
-  minY: -2.04
+  maxX: 1.2
+  minX: -1.2
+  maxY: 3.8
+  minY: -1.5
   LvlIndexer: {fileID: 959231092}
   boss: {fileID: 776839870}
   tetrisRange: {x: -0.78, y: 3.38}
