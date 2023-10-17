@@ -97,12 +97,6 @@ public class BackgroundParticlesManager : MonoBehaviour
         }
     }
 
-    public void StopTween()
-    {
-        _tween.reset();
-        _tween = null;
-    }
-
     private void ClearTween()
     {
         LeanTween.cancel(_tween);
