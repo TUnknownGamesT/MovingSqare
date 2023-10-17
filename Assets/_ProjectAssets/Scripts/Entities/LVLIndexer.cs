@@ -12,7 +12,13 @@ public class LVLIndexer : MonoBehaviour
     {
         PlayerPrefs.SetInt("MaxLvlReached", currentLvlIndex+1);
     }
-    
+
+    public void NextLevel()
+    {
+        LVLIndexer.currentLvlIndex++;
+        Debug.Log("starting lvl "+ currentLvlIndex);
+        SceneLoader.instance.LoadLvlScene();
+    }
 
     public LvlSettings GetCurrentLvlSettings()
     {
