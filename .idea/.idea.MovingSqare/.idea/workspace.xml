@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ef79f96-8368-4471-a99a-63ea8e86a2d8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/BackgroundParticlesManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/BackgroundParticlesManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/ColectMoneyEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/ColectMoneyEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +14,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/4a31731933e0419ca5a995305014ad37157a00/96/ff876c07/0200024C.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@73d86259ce/Runtime/UniTaskScheduler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a31731933e0419ca5a995305014ad37157a00/5f/a2ca56a6/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/7b/ff31f2bb/Action.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.7/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">

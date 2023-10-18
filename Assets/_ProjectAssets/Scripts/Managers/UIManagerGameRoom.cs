@@ -33,6 +33,7 @@ public class UIManagerGameRoom : MonoBehaviour
     public TextMeshProUGUI money;
     public GameObject moneyParent;
     public GameObject revive;
+    public GameObject next;
     public GameObject doubleCoin;
     public List<GameObject> playerLives;
     public GameObject livesParent;
@@ -121,6 +122,7 @@ public class UIManagerGameRoom : MonoBehaviour
         
         mainUI.gameObject.SetActive(true);
         revive.SetActive(canWatchReviveAD);
+        next.SetActive(false);
         doubleCoin.SetActive(candWatchDoubleCoinAD);
 
         FadeInEffect();
@@ -132,6 +134,7 @@ public class UIManagerGameRoom : MonoBehaviour
         
         mainUI.gameObject.SetActive(true);
         revive.SetActive(false);
+        next.SetActive(true);
         doubleCoin.SetActive(candWatchDoubleCoinAD);
         
         FadeInEffect();

@@ -45,9 +45,7 @@ public class LVLIndexer : MonoBehaviour
 
     public void NextLevel()
     {
-        LVLIndexer.currentLvlIndex++;
-        Debug.Log("starting lvl "+ currentLvlIndex);
-        SceneLoader.instance.LoadLvlScene();
+        currentLvlIndex++;
     }
 
     public LvlSettings GetCurrentLvlSettings()
