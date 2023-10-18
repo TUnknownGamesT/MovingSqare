@@ -42,7 +42,13 @@ public class LVLIndexer : MonoBehaviour
         if (maxLvl <= currentLvlIndex)
            PlayerPrefs.SetInt("MaxLvlReached", currentLvlIndex+1);
     }
-    
+
+    public void NextLevel()
+    {
+        LVLIndexer.currentLvlIndex++;
+        Debug.Log("starting lvl "+ currentLvlIndex);
+        SceneLoader.instance.LoadLvlScene();
+    }
 
     public LvlSettings GetCurrentLvlSettings()
     {
