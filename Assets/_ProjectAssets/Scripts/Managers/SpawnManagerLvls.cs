@@ -52,11 +52,15 @@ public class SpawnManagerLvls : Spawner
 
    protected override void Start()
    {
+      SetLvlValues();
+   }
+
+   public void SetLvlValues()
+   {
       _lvlSettings = LvlIndexer.GetCurrentLvlSettings();
       InitLvlStats();
       InitPowerUps();
    }
-   
 
    protected override void InitLvlStats()
    {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,6 +61,7 @@ public abstract class Spawner : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        Debug.LogError(this.GetInstanceID() + " is created");
         BossGameplay.OnBossAppear += StopSpawning;
         BossGameplay.OnBossDisappear += StartSpawning;
         GameManager.onGameOver += StopSpawning;
@@ -80,12 +82,20 @@ public abstract class Spawner : MonoBehaviour
 
     protected void StopSpawning()
     {
-        StopAllCoroutines();
-        foreach (var fullScreenLine in fullScreenLineObjects)
+        try
         {
-            fullScreenLine.DestroyLaser();
+            StopAllCoroutines();
+            foreach (var fullScreenLine in fullScreenLineObjects)
+            {
+                fullScreenLine.DestroyLaser();
+            }
+            fullScreenLineObjects.Clear();
         }
-        fullScreenLineObjects.Clear();
+        catch (Exception e)
+        {
+            Debug.LogWarning("plm carpeala" + this.GetInstanceID());
+        }
+
     }
     
    protected abstract void InitLvlStats();
