@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         GameManager.onGameOver += PlayerDeath;
+        Timer.onCounterEnd += WinLvl;
         AdsManager.onReviveADFinish += Revive;
     }
     
@@ -25,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     private void OnDisable()
     {
         GameManager.onGameOver -= PlayerDeath;
+        Timer.onCounterEnd -= WinLvl;
         AdsManager.onReviveADFinish -= Revive;
     }
 
@@ -71,6 +73,11 @@ public class PlayerManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void WinLvl()
+    {
+        _boxCollider2D.enabled = false;
     }
 
     private void PlayerDeath()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -142,6 +143,16 @@ public class GameManager : MonoBehaviour
         //uiManager.SetMoneySign((int)moneyMultiplayer);
 
         StartCoroutine(IncreaseMoneyValue());
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+    
+    public void Resume()
+    {
+        Time.timeScale = 1;
     }
     
 

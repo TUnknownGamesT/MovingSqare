@@ -23,11 +23,11 @@ MonoBehaviour:
   timeBetweenSpawnPowerUps: 5
   timeBetweenSpawnMoney: 3
   timeBetweenSpawnMaze: 5
-  timeBetweenSpawnTetrisEnemies: 0
+  timeBetweenSpawnTetrisEnemies: 120
   linesLife: 2
   powerUpsLife: 3
   moneyLife: 3
-  lvlDuration: 5
+  lvlDuration: 120
   geometricFiguresSpeed: 1.2
   obstacleSpeed: 2
   tetrisEnemiesSpeed: 0

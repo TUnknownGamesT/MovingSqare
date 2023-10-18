@@ -37,6 +37,10 @@ public class UIManagerGameRoom : MonoBehaviour
     public GameObject doubleCoin;
     public List<GameObject> playerLives;
     public GameObject livesParent;
+    public GameObject pauseMenu;
+    public GameObject maineMenu;
+    public TextMeshProUGUI highScorePauseMenu;
+    public TextMeshProUGUI moneyCollectedPauseMenu;
 
     private bool gameOver;
     private int index = 0;
@@ -118,6 +122,7 @@ public class UIManagerGameRoom : MonoBehaviour
     
     public void LoseState()
     {
+        maineMenu.SetActive(true);
         UpdateScoreUI();
         
         mainUI.gameObject.SetActive(true);
@@ -130,6 +135,7 @@ public class UIManagerGameRoom : MonoBehaviour
 
     public void FinishLvlState()
     {
+        maineMenu.SetActive(true);
         UpdateScoreUI();
         
         mainUI.gameObject.SetActive(true);
@@ -142,6 +148,7 @@ public class UIManagerGameRoom : MonoBehaviour
 
     public void AdState()
     {
+        maineMenu.SetActive(true);
         UpdateScoreUI();
         AdListener();
 
@@ -168,12 +175,26 @@ public class UIManagerGameRoom : MonoBehaviour
         }).setEaseInQuad().setDelay(0.5f);
     }
 
+    private void FadeOutEffect()
+    {
+        LeanTween.value(1, 0, 1f).setOnUpdate(value =>
+        {
+            mainUI.alpha = value;
+
+        }).setEaseInQuad().setOnComplete( ()=>
+        {
+            mainUI.gameObject.SetActive(false);
+        });
+    }
+
     private void UpdateScoreUI()
     {
         highScore.text =  $"High Score\n{PlayerPrefs.GetInt("HighScore")}";
         moneyCollected.text =  $"Score\n{money.text}";
     }
-    
+
+
+   
 
     private void AdListener()
     {
@@ -191,11 +212,7 @@ public class UIManagerGameRoom : MonoBehaviour
     private void ResetMainMenu()
     {
         revive.GetComponent<Button>().onClick.RemoveAllListeners();
-        LeanTween.value(1, 0, 1f).setOnUpdate(value =>
-        {
-            mainUI.alpha = value;
-
-        }).setEaseInQuad().setOnComplete( ()=> mainUI.gameObject.SetActive(false));
+        FadeOutEffect();
     }
     
     private void SetGameOver()
@@ -217,14 +234,31 @@ public class UIManagerGameRoom : MonoBehaviour
         
     }
 
+    public void ShowPauseMenu()
+    {
+        UpdateScoreUIPauseMenu();
+        mainUI.gameObject.SetActive(true);
+        mainUI.alpha = 1;
+        pauseMenu.SetActive(true);
+    }
+    
+    public void HidePauseMenu()
+    {
+        mainUI.alpha = 0;
+        mainUI.gameObject.SetActive(false);
+        pauseMenu.SetActive(false);
+    }
+
     public void DecreaseLife()
     {
         playerLives[index].SetActive(false);
         index--;
     }
 
-    public void DefeatedBoss()
+    private void UpdateScoreUIPauseMenu()
     {
-        
+        highScorePauseMenu.text =  $"High Score\n{PlayerPrefs.GetInt("HighScore")}";
+        moneyCollectedPauseMenu.text =  $"Score\n{money.text}";
     }
+
 }

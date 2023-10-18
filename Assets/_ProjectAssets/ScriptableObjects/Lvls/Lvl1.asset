@@ -27,7 +27,7 @@ MonoBehaviour:
   linesLife: 2
   powerUpsLife: 3
   moneyLife: 3
-  lvlDuration: 5
+  lvlDuration: 30
   geometricFiguresSpeed: 1
   obstacleSpeed: 2
   tetrisEnemiesSpeed: 0

@@ -19,6 +19,6 @@ MonoBehaviour:
   type: 0
   effects:
   - name: heal
-    price: 400
+    price: 800
     effect: 2
     value: 2
