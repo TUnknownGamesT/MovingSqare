@@ -28,8 +28,8 @@ public class LVLIndexer : MonoBehaviour
             lvlCompleted = true;
         };
     }
-    
-    public void ResetLvlCompleted()
+
+    private void ResetLvlCompleted()
     {
         lvlCompleted = false;
     }
@@ -45,6 +45,7 @@ public class LVLIndexer : MonoBehaviour
 
     public void NextLevel()
     {
+        LvlCompleted();
         currentLvlIndex++;
     }
 

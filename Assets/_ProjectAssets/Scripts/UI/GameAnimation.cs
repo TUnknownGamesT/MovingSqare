@@ -9,6 +9,7 @@ public class GameAnimation : MonoBehaviour
     public GameObject bottomLine,player;
     public RawImage[] lives;
     public RawImage moneySign;
+    public RawImage pauseButton;
     public TextMeshProUGUI money;
 
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class GameAnimation : MonoBehaviour
             moneySign.color = myColor;
             money.color = myColor;
             lives[0].color = myColor;
+            pauseButton.color = myColor;
             //player.GetComponent<SpriteRenderer>().color = myColor;
         });
     }
