@@ -61,7 +61,6 @@ public abstract class Spawner : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        Debug.LogError(this.GetInstanceID() + " is created");
         BossGameplay.OnBossAppear += StopSpawning;
         BossGameplay.OnBossDisappear += StartSpawning;
         GameManager.onGameOver += StopSpawning;

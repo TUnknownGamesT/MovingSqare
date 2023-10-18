@@ -50,7 +50,6 @@ public class LVLIndexer : MonoBehaviour
 
     public LvlSettings GetCurrentLvlSettings()
     {
-        Debug.Log(currentLvlIndex + " current lvl");
         return levles[currentLvlIndex];
     }
 }
