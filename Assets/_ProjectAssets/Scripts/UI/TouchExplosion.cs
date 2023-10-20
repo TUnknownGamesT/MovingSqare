@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,18 +12,31 @@ public class TouchExplosion : MonoBehaviour
     
 #if !UNITY_EDITOR
 
+
+    private void OnEnable()
+    {
+       
+        UnityEngine.InputSystem.EnhancedTouch.Touch.onFingerDown += SpawnEffect;
+    }
+
+
+    private void OnDisable()
+    {
+        UnityEngine.InputSystem.EnhancedTouch.Touch.onFingerDown -= SpawnEffect;
+    }
+
     void Start()
     {
-        effectsOn = true;
         TouchSimulation.Enable();
         EnhancedTouchSupport.Enable();
-        UnityEngine.InputSystem.EnhancedTouch.Touch.onFingerDown += SpawnEffect;
+        effectsOn = true;
     }
 
     void SpawnEffect(Finger finger)
     {
         Vector2 mousePos = mainCam.ScreenToWorldPoint(finger.screenPosition);
         if (effectsOn) { Instantiate(explosionPrefab, mousePos, Quaternion.identity); }
+            
     }
     public void ToogleEffects(bool value)
     {

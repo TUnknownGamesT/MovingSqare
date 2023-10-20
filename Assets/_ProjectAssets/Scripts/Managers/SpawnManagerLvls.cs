@@ -136,7 +136,12 @@ public class SpawnManagerLvls : Spawner
       }
 
       StartCoroutine(SpawnMoney());
-      StartCoroutine(SpawnPowerUps());
+      
+      if (availablePowerUps.Count != 0)
+      {
+         StartCoroutine(SpawnPowerUps());
+      }
+      
       
       Timer.instance.StartCounter();
    }
@@ -212,9 +217,9 @@ public class SpawnManagerLvls : Spawner
    {
       yield return new WaitForSeconds(timeBetweenSpawnsGeometricFigures);
 
-      GameObject objectToSpawn = geometricFigures[Random.Range(0, geometricFigures.Count)];
+      GameObject objectToSpawn = geometricFigures[Random.Range(0, geometricFigures.Count-1)];
       objectToSpawn.GetComponent<EnemyBehaviour>().UpdateSpeedBasedOnFigure(_geometryFiguresSpeed);
-      Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
+      Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count-1)];
 
       //Set direction and Target 
         
@@ -264,7 +269,7 @@ public class SpawnManagerLvls : Spawner
       yield return new WaitForSeconds(_timeBetweenSpawnTetrisEnemies);
 
       GameObject objectToSpawn = tetrisPrefabs[Random.Range(0, tetrisPrefabs.Length)];
-      Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count)];
+      Transform spawnPoint = spawningPoints[Random.Range(0, spawningPoints.Count-1)];
 
       //Set direction and Target 
         

@@ -54,6 +54,7 @@ public class UIManagerGameRoom : MonoBehaviour
         GameManager.onGameOver += SetGameOver;
         AdsManager.onReviveADFinish +=()=>
         {
+            Debug.LogWarning("Yooo entered in ReviveAdFinish");
             canWatchReviveAD = false;
             ResetMainMenu();
         };
@@ -71,6 +72,7 @@ public class UIManagerGameRoom : MonoBehaviour
         GameManager.onGameOver -= SetGameOver;
         AdsManager.onReviveADFinish -=()=>
         {
+            Debug.LogWarning("Yooo entered in ReviveAdFinish");
             canWatchReviveAD = false;
             ResetMainMenu();
         };
@@ -212,7 +214,8 @@ public class UIManagerGameRoom : MonoBehaviour
     private void ResetMainMenu()
     {
         revive.GetComponent<Button>().onClick.RemoveAllListeners();
-        FadeOutEffect();
+        LeanTween.value(1, 0, 1f).setOnUpdate(value => mainUI.alpha = value).setEaseInQuad()
+            .setOnComplete(()=> mainUI.gameObject.SetActive(false));
     }
     
     private void SetGameOver()

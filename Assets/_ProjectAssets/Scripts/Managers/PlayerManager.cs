@@ -96,7 +96,7 @@ public class PlayerManager : MonoBehaviour
         transform.position = Vector3.zero;
         playerLife.AddLife(1);
         GetComponent<BoxCollider2D>().enabled = false;
-        LeanTween.value(1, 0.5f, 0.3f).setOnUpdate(value =>
+        LeanTween.value(1, 0.5f, 0.5f).setOnUpdate(value =>
         {
             Color c = _spriteRenderer.color;
             c.a = value;

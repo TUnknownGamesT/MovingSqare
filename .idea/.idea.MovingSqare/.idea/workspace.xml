@@ -6,32 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="8ef79f96-8368-4471-a99a-63ea8e86a2d8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovingSqare/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/UI/UI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Prefabs/UI/UI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/LvlsScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/LvlsScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/Survive.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scenes/Survive.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/Lvls/Lvl1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/Lvls/Lvl1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/Lvls/Lvl2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/Lvls/Lvl2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/Lvls/Lvl3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/Lvls/Lvl3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin4.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/Skin4.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin10.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin10.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin11.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin11.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin12.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin12.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin13.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin13.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin14.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin14.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin5.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin6.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin6.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin7.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin7.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin8.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin8.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin9.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/ScriptableObjects/ShopItems/skin9.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/LVLIndexer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/LVLIndexer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/ADS/AdsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/ADS/AdsManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/PlayerLife.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/PlayerLife.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/Timer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Entities/Timer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/SpawnManagerLvls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/SpawnManagerLvls.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/UIManagerGameRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/Managers/UIManagerGameRoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/GameAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/GameAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/TouchExplosion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectAssets/Scripts/UI/TouchExplosion.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
@@ -138,7 +119,10 @@
       <workItem from="1697262489680" duration="2741000" />
       <workItem from="1697372757948" duration="672000" />
       <workItem from="1697569503989" duration="1322000" />
-      <workItem from="1697657349578" duration="5840000" />
+      <workItem from="1697657349578" duration="8210000" />
+      <workItem from="1697734572248" duration="2142000" />
+      <workItem from="1697747053216" duration="5202000" />
+      <workItem from="1697780101833" duration="5847000" />
     </task>
     <servers />
   </component>
