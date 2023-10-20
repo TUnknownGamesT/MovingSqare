@@ -31,9 +31,10 @@ public class AdsManager : MonoBehaviour
 
     public static Action onReviveADFinish;
     public static Action onDoubleMoneyADFinish;
-    
-    private static RewardedAd rewardedAd;
-    private static bool differentTypeOfAdd;
+
+
+    private static bool value;
+        private static RewardedAd rewardedAd;
 
     private void Start()
     {
@@ -46,14 +47,14 @@ public class AdsManager : MonoBehaviour
         
     }
 
-    
+
     public static void InitReviveAD()
     {
         if (rewardedAd.CanShowAd())
         {
+            value = true;
             RegisterEventHandlers(rewardedAd);
-            differentTypeOfAdd = true;
-            ShowReviveAD();
+            ShowReviveAD(true);
         }
     }
     
@@ -61,9 +62,9 @@ public class AdsManager : MonoBehaviour
     {
         if (rewardedAd.CanShowAd())
         {
+            value = false;
             RegisterEventHandlers(rewardedAd);
-            differentTypeOfAdd = false;
-            ShowReviveAD();
+            ShowReviveAD(false);
         }
     }
 
@@ -104,14 +105,24 @@ public class AdsManager : MonoBehaviour
             });
     }
     
-    private static void ShowReviveAD()
+    private static void ShowReviveAD(bool value)
     {
         if (rewardedAd != null && rewardedAd.CanShowAd())
         {
+                Debug.Log("Before Showing Revive AD");
+            
             rewardedAd.Show((Reward reward) =>
             {
-                //send a bool to switch between revive and double money
-                //need to modify in the future
+                if (value)
+                {
+                    Debug.Log("Revive AD Finish");
+                    onReviveADFinish?.Invoke();
+                }
+                else
+                {
+                    Debug.Log("Double AD Finish");
+                    onDoubleMoneyADFinish?.Invoke();
+                }
                 LoadRewardedAd();
             });
         }
@@ -122,18 +133,12 @@ public class AdsManager : MonoBehaviour
         // Raised when the ad closed full screen content.
         ad.OnAdFullScreenContentClosed += () =>
         {
-            Debug.Log("Rewarded Ad full screen content closed.");
-
-            // Reload the ad so that we can show another as soon as possible.
             LoadRewardedAd();
         };
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
         {
-            Debug.LogError("Rewarded ad failed to open full screen content " +
-                           "with error : " + error);
-
-            // Reload the ad so that we can show another as soon as possible.
+            Debug.Log("In OnAdFullScreenContentFailed");
             LoadRewardedAd();
         };
     }
@@ -144,6 +149,7 @@ public class AdsManager : MonoBehaviour
         // Raised when the ad is estimated to have earned money.
         ad.OnAdPaid += (AdValue adValue) =>
         {
+            Debug.Log("In OnAdPaid");
             Debug.Log(String.Format("Rewarded ad paid {0} {1}.",
                 adValue.Value,
                 adValue.CurrencyCode));
@@ -151,6 +157,7 @@ public class AdsManager : MonoBehaviour
         // Raised when an impression is recorded for an ad.
         ad.OnAdImpressionRecorded += () =>
         {
+            
             Debug.Log("Rewarded ad recorded an impression.");
         };
         // Raised when a click is recorded for an ad.
@@ -161,21 +168,27 @@ public class AdsManager : MonoBehaviour
         // Raised when an ad opened full screen content.
         ad.OnAdFullScreenContentOpened += () =>
         {
+            Debug.LogWarning("In OnAdFullScreenContentOpened");
             Debug.Log("Rewarded ad full screen content opened.");
-        };
-        // Raised when the ad closed full screen content.
-        ad.OnAdFullScreenContentClosed += () =>
-        {
-            if (differentTypeOfAdd)
+            
+            /*
+            if (value)
             {
+                Debug.Log("Revive AD Finish");
                 onReviveADFinish?.Invoke();
             }
             else
             {
+                Debug.Log("Double AD Finish");
                 onDoubleMoneyADFinish?.Invoke();
             }
+            */
             
-            RegisterReloadHandler(rewardedAd);
+        };
+        // Raised when the ad closed full screen content.
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            Debug.LogWarning("In OnAdFullScreenContentClosed");
             ad.Destroy();
         };
         // Raised when the ad failed to open full screen content.

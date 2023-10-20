@@ -50,7 +50,6 @@ public class Timer : MonoBehaviour
 
    private void PauseTimer()
    {
-      Debug.LogWarning("PauseTimer");
       _ct.Cancel();
       _ct.Dispose();
       _ct = new();
@@ -58,7 +57,6 @@ public class Timer : MonoBehaviour
 
    private void ResumeTimer()
    {
-      Debug.LogWarning("StartTimer");
       Counter();
    }
    
