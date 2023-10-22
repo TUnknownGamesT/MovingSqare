@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9743e1026f34bf4daea13e8c25d2d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
-  actionColor: {r: 1, g: 0.9929693, b: 0, a: 1}
-  deathColor: {r: 0.5188679, g: 0, b: 0, a: 1}
+  defColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 0.34901962}
+  actionColor: {r: 1, g: 0.9929693, b: 0, a: 0.34901962}
+  deathColor: {r: 0.6320754, g: 0, b: 0, a: 0.34901962}
   children:
   - {fileID: 5115600189782291649}
 --- !u!1 &5115600189782291678

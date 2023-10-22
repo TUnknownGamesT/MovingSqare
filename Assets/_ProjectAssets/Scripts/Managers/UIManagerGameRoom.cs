@@ -42,45 +42,25 @@ public class UIManagerGameRoom : MonoBehaviour
     public TextMeshProUGUI highScorePauseMenu;
     public TextMeshProUGUI moneyCollectedPauseMenu;
 
-    private bool gameOver;
-    private int index = 0;
-    private int timeToIncreaseMoneyValue;
-    private bool candWatchDoubleCoinAD=true;
-    private bool canWatchReviveAD=true;
-    
-    
+    private bool _gameOver;
+    private int _index = 0;
+    private int _timeToIncreaseMoneyValue;
+    private bool _candWatchDoubleCoinAD=true;
+    private bool _canWatchReviveAD=true;
+
     private void OnEnable()
     {
         GameManager.onGameOver += SetGameOver;
-        AdsManager.onReviveADFinish +=()=>
-        {
-            Debug.LogWarning("Yooo entered in ReviveAdFinish");
-            canWatchReviveAD = false;
-            ResetMainMenu();
-        };
-        AdsManager.onDoubleMoneyADFinish += () =>
-        {
-            RemoveDoubleCoinButton();
-            candWatchDoubleCoinAD = false;
-        };
-        
+        AdsManager.onReviveADFinish += ReviveAdFinish;
+        AdsManager.onDoubleMoneyADFinish += RemoveDoubleCoinButton;
         Timer.onCounterEnd += FinishLvlState;
     }
 
     private void OnDisable()
     {
         GameManager.onGameOver -= SetGameOver;
-        AdsManager.onReviveADFinish -=()=>
-        {
-            Debug.LogWarning("Yooo entered in ReviveAdFinish");
-            canWatchReviveAD = false;
-            ResetMainMenu();
-        };
-        AdsManager.onDoubleMoneyADFinish -= () =>
-        {
-            RemoveDoubleCoinButton();
-            candWatchDoubleCoinAD = false;
-        };
+        AdsManager.onReviveADFinish -= ReviveAdFinish;
+        AdsManager.onDoubleMoneyADFinish -= RemoveDoubleCoinButton;
         Timer.onCounterEnd -= FinishLvlState;
     }
     
@@ -128,9 +108,9 @@ public class UIManagerGameRoom : MonoBehaviour
         UpdateScoreUI();
         
         mainUI.gameObject.SetActive(true);
-        revive.SetActive(canWatchReviveAD);
+        revive.SetActive(_canWatchReviveAD);
         next.SetActive(false);
-        doubleCoin.SetActive(candWatchDoubleCoinAD);
+        doubleCoin.SetActive(_candWatchDoubleCoinAD);
 
         FadeInEffect();
     }
@@ -143,7 +123,7 @@ public class UIManagerGameRoom : MonoBehaviour
         mainUI.gameObject.SetActive(true);
         revive.SetActive(false);
         next.SetActive(true);
-        doubleCoin.SetActive(candWatchDoubleCoinAD);
+        doubleCoin.SetActive(_candWatchDoubleCoinAD);
         
         FadeInEffect();
     }
@@ -154,8 +134,8 @@ public class UIManagerGameRoom : MonoBehaviour
         UpdateScoreUI();
         AdListener();
 
-        revive.SetActive(canWatchReviveAD);
-        doubleCoin.SetActive(candWatchDoubleCoinAD);
+        revive.SetActive(_canWatchReviveAD);
+        doubleCoin.SetActive(_candWatchDoubleCoinAD);
         mainUI.gameObject.SetActive(true);
        
         FadeInEffect();
@@ -164,9 +144,16 @@ public class UIManagerGameRoom : MonoBehaviour
     
     private void RemoveDoubleCoinButton()
     {
+        _candWatchDoubleCoinAD = false;
         doubleCoin.SetActive(false);
         DoubleTheMoney();
         UpdateScoreUI();
+    }
+
+    private void ReviveAdFinish()
+    {
+        _canWatchReviveAD = false;
+        ResetMainMenu();
     }
 
     private void FadeInEffect()
@@ -176,18 +163,7 @@ public class UIManagerGameRoom : MonoBehaviour
             mainUI.alpha = value;
         }).setEaseInQuad().setDelay(0.5f);
     }
-
-    private void FadeOutEffect()
-    {
-        LeanTween.value(1, 0, 1f).setOnUpdate(value =>
-        {
-            mainUI.alpha = value;
-
-        }).setEaseInQuad().setOnComplete( ()=>
-        {
-            mainUI.gameObject.SetActive(false);
-        });
-    }
+    
 
     private void UpdateScoreUI()
     {
@@ -220,14 +196,14 @@ public class UIManagerGameRoom : MonoBehaviour
     
     private void SetGameOver()
     {
-        gameOver = true;
+        _gameOver = true;
     }
     
     public void IncreaseLife(int life)
     {
-        while(index < life-1){
-            index++;
-            playerLives[index].SetActive(true);
+        while(_index < life-1){
+            _index++;
+            playerLives[_index].SetActive(true);
         }
         
         LeanTween.value(1, 0.5f, 0.7f).setOnUpdate(value =>
@@ -254,8 +230,8 @@ public class UIManagerGameRoom : MonoBehaviour
 
     public void DecreaseLife()
     {
-        playerLives[index].SetActive(false);
-        index--;
+        playerLives[_index].SetActive(false);
+        _index--;
     }
 
     private void UpdateScoreUIPauseMenu()

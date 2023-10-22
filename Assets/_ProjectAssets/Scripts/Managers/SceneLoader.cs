@@ -27,7 +27,9 @@ public class SceneLoader : MonoBehaviour
     #endregion
     
     public TransitionSettings[] TransitionSettings;
-    private bool isLoading;
+    
+    [HideInInspector]
+    public bool isLoading;
     
     
     public void ReloadGameScene()
@@ -39,18 +41,6 @@ public class SceneLoader : MonoBehaviour
                 .Transition(SceneManager.GetActiveScene().buildIndex
                     ,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)],0);
             onSceneNewSceneLoad?.Invoke();
-        }
-    }
-
-    //Change With Load LvlMenu
-    public void LoadBossScene()
-    {
-        if (!isLoading)
-        {
-            isLoading = !isLoading;
-            EasyTransition.TransitionManager.Instance()
-                .Transition(2,TransitionSettings[Random.Range(0,TransitionSettings.Length-1)]
-                    ,0);
         }
     }
 
@@ -94,8 +84,12 @@ public class SceneLoader : MonoBehaviour
 
     public void RandomTransition()
     {
-        EasyTransition.TransitionManager.Instance()
+        if (!isLoading)
+        { 
+            isLoading=!isLoading;
+            EasyTransition.TransitionManager.Instance()
             .Transition(TransitionSettings[Random.Range(0,TransitionSettings.Length)]
                 ,0);
+        }
     }
 }

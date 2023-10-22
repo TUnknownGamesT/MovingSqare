@@ -34,7 +34,7 @@ public class AdsManager : MonoBehaviour
 
 
     private static bool value;
-        private static RewardedAd rewardedAd;
+    private static RewardedAd rewardedAd;
 
     private void Start()
     {
@@ -53,7 +53,6 @@ public class AdsManager : MonoBehaviour
         if (rewardedAd.CanShowAd())
         {
             value = true;
-            RegisterEventHandlers(rewardedAd);
             ShowReviveAD(true);
         }
     }
@@ -63,7 +62,6 @@ public class AdsManager : MonoBehaviour
         if (rewardedAd.CanShowAd())
         {
             value = false;
-            RegisterEventHandlers(rewardedAd);
             ShowReviveAD(false);
         }
     }
@@ -102,6 +100,7 @@ public class AdsManager : MonoBehaviour
                           + ad.GetResponseInfo());
 
                 rewardedAd = ad;
+                RegisterEventHandlers(rewardedAd);
             });
     }
     
@@ -113,17 +112,7 @@ public class AdsManager : MonoBehaviour
             
             rewardedAd.Show((Reward reward) =>
             {
-                if (value)
-                {
-                    Debug.Log("Revive AD Finish");
-                    onReviveADFinish?.Invoke();
-                }
-                else
-                {
-                    Debug.Log("Double AD Finish");
-                    onDoubleMoneyADFinish?.Invoke();
-                }
-                LoadRewardedAd();
+                Debug.Log("Revive AD Finish");
             });
         }
     }
@@ -133,13 +122,12 @@ public class AdsManager : MonoBehaviour
         // Raised when the ad closed full screen content.
         ad.OnAdFullScreenContentClosed += () =>
         {
-            LoadRewardedAd();
+            Debug.Log("In OnAdFullScreenContentClosed");
         };
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
         {
             Debug.Log("In OnAdFullScreenContentFailed");
-            LoadRewardedAd();
         };
     }
     
@@ -171,7 +159,11 @@ public class AdsManager : MonoBehaviour
             Debug.LogWarning("In OnAdFullScreenContentOpened");
             Debug.Log("Rewarded ad full screen content opened.");
             
-            /*
+            
+        };
+        // Raised when the ad closed full screen content.
+        ad.OnAdFullScreenContentClosed += () =>
+        {
             if (value)
             {
                 Debug.Log("Revive AD Finish");
@@ -182,14 +174,8 @@ public class AdsManager : MonoBehaviour
                 Debug.Log("Double AD Finish");
                 onDoubleMoneyADFinish?.Invoke();
             }
-            */
-            
-        };
-        // Raised when the ad closed full screen content.
-        ad.OnAdFullScreenContentClosed += () =>
-        {
+            LoadRewardedAd();
             Debug.LogWarning("In OnAdFullScreenContentClosed");
-            ad.Destroy();
         };
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>

@@ -65,6 +65,7 @@ public class MenuAnimation : MonoBehaviour
             SceneLoader.RandomTransition();
 
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            SceneLoader.isLoading = false;
         
             lvlMenu.SetActive(true);
         });
@@ -113,7 +114,7 @@ public class MenuAnimation : MonoBehaviour
     IEnumerator ShowHideShop(bool state,float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-
+        SceneLoader.isLoading = false;
         shop.SetActive(state);
     }
 
